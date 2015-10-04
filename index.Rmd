@@ -74,7 +74,7 @@ I encourage the use of version control using [Git](https://git-scm.com). Git all
 
 # References and Resources
 
-## Books
+### Books
 
 Here are some books you may find of use throughout the course. None is required to purchase, and readings will be provided as PDFs as needed. But they're good. Note that many of these are available online (e.g. at Springer's SpringerLink website) in their entirety.
 
@@ -87,28 +87,40 @@ Here are some books you may find of use throughout the course. None is required 
 * W.N. Venables and B.D. Ripley. 2002 *Modern Applied Statistics with S*. 4th Ed. 
 * Edward R. Tufte. 1983. *The Visual Display of Quantitative Information*. Graphics Press.
 
+### Websites
+
+* [Stack Overflow](http://stackoverflow.com). Programming and developer Q&A site with a substantial amount of useful R and ggplot material. Search as normal for keywords, add tags enclosed in square brackets, e.g. `[ggplot]`, to restrict results to the library or language you want answers in.
+* [Cross Validated](http://stats.stackexchange.com). A site in the same family as Stack Overflow, focused less on the specifics of code and more on conceptual and interpretive questions in statistics.
+* [IDRE at UCLA](http://www.ats.ucla.edu/stat/). A very useful resource with numerous worked examples, including data visualization, across a range of statistics packages. 
+* [Flowingdata](http://flowingdata.com). Nathan Yau's website. Good for inspiration and also tutorials.
+* [RStudio Cheatsheets](https://www.rstudio.com/resources/cheatsheets/) Well-designed cheatsheets for working with [ggplot2](https://www.rstudio.com/wp-content/uploads/2015/08/ggplot2-cheatsheet.pdf), [RMarkdown](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf), [RMarkdown again](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf), [dplyr and tidyr](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf), and [R Packages](https://www.rstudio.com/wp-content/uploads/2015/06/devtools-cheatsheet.pdf).
+* [Pro Git](http://git-scm.com/book/en/v2). A complete, book-length guide and reference to Git, by Scott Chacon and Ben Straub. 
 
 # Outline
 
 This is a new course. The material covered and the topics emphasized will depend in part on the needs of the students. So this outline is provisional and almost certainly will change as we go.
 
-## Week 1
+## Week 1: Getting Started
 
 * General Principles of data visualization and statistical graphics. 
 * Mechanics: Getting you up and running in R, and on GitHub. 
 * A Simple Worked Example.
 
-## Week 2
+### Optional Reading
 
-* 
-* 
+* Kieran Healy. 2011. [Choosing Your Workflow Applications](http://www.kieranhealy.org/files/misc/workflow-apps.pdf)
 
-## Week 3
 
-## Week 4
+## Week 2: One Variable, Two Variables, Three Variables
 
-## Week 5
+## Week 3: Exploring Whole Datasets
 
-## Week 6
+## Week 4: Refining Plots for Presentation
+
+## Week 5: Presenting Results from Models
+
+## Week 6: Networks, Maps, and Texts
+
+## Week 7: Presentations
 
 
