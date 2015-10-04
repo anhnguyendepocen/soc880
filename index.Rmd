@@ -1,5 +1,5 @@
 ---
-title: Data Visualization
+title: 'Soc 880: Data Visualization'
 author:
 - name: Kieran Healy
   affiliation: Duke University
@@ -48,18 +48,67 @@ source("setup/options-and-libraries.r")
 
 ```
 
-# Introduction
-This half-semester course is an introduction to some principles and methods of data visualization. It is aimed at graduate students in the Sociology department.
+![William Playfair, Balance of Trade Time Series, 1786](assets/playfair-time-series.png)
 
-```{r Cars}
+# Aims and Scope
+
+This half-semester course is an introduction to visualizing data. It is aimed at graduate students in the Sociology department. We will focus on the practical analysis and presentation of real data in a hands-on fashion. We will also read some material on principles of data visualization, in order to help develop a good working sense of why some graphs and figures work well while others either fail to inform or actively mislead. As much as possible I will want you to work with your own data, or at least real data that you are interested in. 
+
+# Requirements
+
+You are required to attend, participate actively, and do any assigned homework. We will be coding in class, working through cases, examples, and problems as we go. This means you must bring your laptop  to class (with the needed software installed, after the first week) in order to participate properly. You should also have a dataset of your own to work with. I *strongly* encourage you to choose a dataset you are actually using in your own substantive research, and work with that throughout the course. If your data is extremely difficult to work with for some reason, or has strict confidentiality rules associated with it, try to find a related but more tractable dataset to use instead. (Ideally, one with the same basic structure.)
+
+At the end of the seminar we will have a presentation day. You will be required to give a short talk to the class, presenting the results of an original analysis and visualization of your own dataset. The idea is to visually convey what is interesting about the data---either in terms of initial description, or finished analysis, depending on how long you have been working with the data---as directly and informatively as you can. To that end the presentations will be done in a  [PechaKucha](https://en.wikipedia.org/wiki/PechaKucha) style. You will have twenty slides to work with, each of which will be shown to the audience for twenty seconds, for a total presentation time of six minutes and forty seconds. Slides will advance automatically, ready or not. For both audience and presenter alike, this format tends to turn the feeling of waiting for the next slide from one of comatose boredom to slightly frantic excitement, much to everyone's benefit. 
+
+No final paper is required for the course.
+
+# Software
+
+I teach the course using [R](https://www.r-project.org), the free software environment for statistical computing and graphics. R can be [downloaded](https://cran.rstudio.com) and installed [Mac OS X](https://cran.rstudio.com/bin/macosx/) or [Windows](https://cran.rstudio.com/bin/windows/) computers, as well as [Linux](https://cran.rstudio.com). Once you have R installed, you should consider installing [R Studio](https://www.rstudio.com), an integrated development environment that makes using R more straightforward. Rstudio is also free.
+
+We will spend most of our time using `ggplot2` and `lattice`, two R graphical libraries that you can use directly to draw figures, and which are also taken advantage of by many other packages to draw summary graphs or visualize the output of statistical models.
+
+Strictly speaking, R is not required for the course. It might also be possible to use, e.g., [Stata](www.stata.com/) to do the assigned work and final presentation. However, I will not be able to offer you much in the way of technical support if you insist on using it. R is widely used across the social sciences and beyond, and there is a very large volume of code and other supporting material available within its very active user and developer community. While Stata and other commercial statistical packages have their own virtues, and Stata in particular has a lively user community and powerful advantages of its own, it's probably worth your while to learn at least some R, especially as its visualization capabilities are very good indeed.
+
+I encourage the use of version control using [Git](https://git-scm.com). Git allows you to keep track of changes to your code, and much more besides. Git is also free and available for Windows, Mac, and Linux operating systems. Like R, Git also has a number of third-party [third-party front ends](https://git-scm.com/download/gui/mac) that make it more convenient to use if you prefer not to work from the command line. Some of these are free, most are not terribly expensive. You should also sign up for a free account on [GitHub](http://github.com/), where much of the material for the course will be hosted. I have a request in to GitHub to allow students in the class to have free private code repositories, which we will use for homework assignments.
+
+# References and Resources
+
+## Books
+
+Here are some books you may find of use throughout the course. None is required to purchase, and readings will be provided as PDFs as needed. But they're good. Note that many of these are available online (e.g. at Springer's SpringerLink website) in their entirety.
 
 
-```
+* William S. Cleveland. 1994. *The Elements of Graphing Data.* Hobart Press.
+* Peter Dalgaard. 2008. *Introductory Statistics with R.* 2nd. Ed. Springer.
+* Frank Harrell. 2001. *Regression Modeling Strategies*. Springer.
+* Norman Matloff. 2011. *The Art of R Programming.* No Starch Press.
+* Paul Murrell. 2006. *R Graphics*. Chapman & Hall/CRC. 
+* W.N. Venables and B.D. Ripley. 2002 *Modern Applied Statistics with S*. 4th Ed. 
+* Edward R. Tufte. 1983. *The Visual Display of Quantitative Information*. Graphics Press.
 
-# Week 1
 
-# Week 2
+# Outline
 
-# Week 3
+This is a new course. The material covered and the topics emphasized will depend in part on the needs of the students. So this outline is provisional and almost certainly will change as we go.
+
+## Week 1
+
+* General Principles of data visualization and statistical graphics. 
+* Mechanics: Getting you up and running in R, and on GitHub. 
+* A Simple Worked Example.
+
+## Week 2
+
+* 
+* 
+
+## Week 3
+
+## Week 4
+
+## Week 5
+
+## Week 6
 
 
