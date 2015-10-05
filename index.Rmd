@@ -107,7 +107,7 @@ Here are some books you may find of use throughout the course. None is required 
 
 # Outline
 
-This is a new course. The material covered and the topics emphasized will depend in part on the needs of the students. So this outline is provisional and almost certainly will change as we go.
+This is a new course. The material covered and the topics emphasized will depend in part on the needs of the students. This outline is provisional, and we will fill it out (and possibly change the topics and ordering) as we go.
 
 ## Week 1: Getting Started
 
@@ -115,12 +115,14 @@ We will get up and running in R, set up your work environment so that
 you are writing code you can document and reproduce later, and discuss
 the basics of plotting clean data.
 
-* General Principles of data visualization and statistical graphics. 
-* Mechanics: Getting you up and running in R, and on GitHub. 
-* A Simple Worked Example.
+* Mechanics: Getting you up and running in R, and on GitHub.
+* Why bother with graphs and figures?
+* Some very general Principles of data visualization and statistical graphics. 
+* A simple worked example.
 
-### Data
+### Setup 
 
+* [Set up Git](https://help.github.com/categories/bootcamp).
 * Jennifer Bryan, [R basics, workspace and working directory, RStudio projects](http://stat545-ubc.github.io/block002_hello-r-workspace-wd-project.html). This is an introduction to the basics of R and RStudio, if you are completely unfamiliar with either. ([Jenny's teaching materials on R](http://www.stat.ubc.ca/~jenny/teach.html) are well worth looking at more closely.)
 
 ### Optional Reading
@@ -133,16 +135,40 @@ the basics of plotting clean data.
 
 ## Week 2: One Variable, Two Variables, Three Variables
 
-More on principles. 
+* More on perception and the principles of graph construction it implies.
+* Graphs are simple and immediately interpretable, just until you need
+  them to be detailed and require study.
+* Scales, Lengths, Areas, and Angles.
+* Dotplots, Histograms, and Boxplots.
+* Scatterplots and Smoothers.
+* Working with base R, `ggplot` and `lattice` graphics. 
 
-## Week 3: Exploring Whole Datasets
+## Week 3: Exploring Whole Datasets, Creating More Complex Figures
 
-## Week 4: Refining Plots for Presentation
+* Shaping, reshaping, and summarizing data.
+* Pairs, generalized pairs, co-plots, small-multiples, and panels.
+* Faceting and layering.
 
-## Week 5: Presenting Results from Models
+## Week 4: Presenting Results from Models
 
-## Week 6: Networks, Maps, and Texts
+* Tidying model output with `broom`.
+* Model estimates, error bars, confidence intervals, predicted probabilities.
+* Showing data and models together.
+* Comparing multiple estimates.  
+
+## Week 5: Networks, Maps, Trees
+
+* Network data
+* Clustering, Heatmaps, and Mosaics
+* Maps and Map Projections 
+
+## Week 6: Refining Plots for Presentation
+
+* Post-processing plots.
+* Plots for slides, screens, and printed pages.
+* Annotation, typography, integration with page or slides.
 
 ## Week 7: Presentations
 
+* PechaKucha time.
 
