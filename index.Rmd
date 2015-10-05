@@ -81,7 +81,8 @@ This list will be updated as we go.
 Here are some books you may find of use throughout the course. None is required to purchase, and readings will be provided as PDFs as needed. But they're good. Note that many of these are available online (e.g. at Springer's SpringerLink website) in their entirety.
 
 
-* William S. Cleveland. 1994. *The Elements of Graphing Data.* Hobart Press.
+* William S. Cleveland. 1993. *Visualizing Data.* Hobart Press.
+* William S. Cleveland. 1994. *The Elements of Graphing Data.* Revised Edition. Hobart Press.
 * Peter Dalgaard. 2008. *Introductory Statistics with R.* 2nd. Ed. Springer.
 * Frank Harrell. 2001. *Regression Modeling Strategies*. Springer.
 * Norman Matloff. 2011. *The Art of R Programming.* No Starch Press.
