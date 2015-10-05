@@ -106,10 +106,17 @@ This is a new course. The material covered and the topics emphasized will depend
 * Mechanics: Getting you up and running in R, and on GitHub. 
 * A Simple Worked Example.
 
+### Data
+
+* Jennifer Bryan, [R basics, workspace and working directory, RStudio projects](http://stat545-ubc.github.io/block002_hello-r-workspace-wd-project.html). This is a very useful introduction to the basics of R and RStudio, if you are completely unfamiliar with R.
+
+* 
+
 ### Optional Reading
 
-* Kieran Healy. 2011. [Choosing Your Workflow Applications](http://www.kieranhealy.org/files/misc/workflow-apps.pdf)
+* Kieran Healy. 2011. [Choosing Your Workflow Applications](http://www.kieranhealy.org/files/misc/workflow-apps.pdf). The Political Methodologist 18 (2), 9–18.
 
+* Kieran Healy and James Moody. 2014. [Data Visualization in Sociology](http://kieranhealy.org/files/papers/data-visualization.pdf). *Annual Review of Sociology* 40: 105-128.
 
 ## Week 2: One Variable, Two Variables, Three Variables
 
