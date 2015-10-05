@@ -21,7 +21,7 @@
 MEXT = md
 
 ## All markdown files in the working directory
-SRC = $(wildcard *.$(MEXT))
+SRC = $(filter-out README.md, $(wildcard *.$(MEXT)))
 
 ## Location of Pandoc support files.
 PREFIX = /Users/kjhealy/.pandoc
@@ -58,4 +58,4 @@ proclabs:
 	latexmk $<
 
 clean:
-	rm -f *.html *.pdf *.tex
+	rm -f *.html *.pdf *.tex *.bcf *.blg
