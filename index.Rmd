@@ -87,14 +87,23 @@ Here are some books you may find of use throughout the course. None is required 
 * W.N. Venables and B.D. Ripley. 2002 *Modern Applied Statistics with S*. 4th Ed. 
 * Edward R. Tufte. 1983. *The Visual Display of Quantitative Information*. Graphics Press.
 
-### Websites
+### Websites related to R
 
-* [Stack Overflow](http://stackoverflow.com). Programming and developer Q&A site with a substantial amount of useful R and ggplot material. Search as normal for keywords, add tags enclosed in square brackets, e.g. `[ggplot]`, to restrict results to the library or language you want answers in.
-* [Cross Validated](http://stats.stackexchange.com). A site in the same family as Stack Overflow, focused less on the specifics of code and more on conceptual and interpretive questions in statistics.
 * [IDRE at UCLA](http://www.ats.ucla.edu/stat/). A very useful resource with numerous worked examples, including data visualization, across a range of statistics packages. 
 * [Flowingdata](http://flowingdata.com). Nathan Yau's website. Good for inspiration and also tutorials.
 * [RStudio Cheatsheets](https://www.rstudio.com/resources/cheatsheets/) Well-designed cheatsheets for working with [ggplot2](https://www.rstudio.com/wp-content/uploads/2015/08/ggplot2-cheatsheet.pdf), [RMarkdown](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf), [RMarkdown again](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf), [dplyr and tidyr](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf), and [R Packages](https://www.rstudio.com/wp-content/uploads/2015/06/devtools-cheatsheet.pdf).
+
+### Websites related to Git
+
+* [Try Git](https://try.github.io/levels/1/challenges/1). A hands-on introductory git tutorial in your browser.
+* [Set up Git](https://help.github.com/categories/bootcamp). If you will be using Git mostly or entirely via GitHub, look at these how-tos. GitHub also has its own [desktop application](https://desktop.github.com), if you want to stay away from the terminal window as much as possible.
 * [Pro Git](http://git-scm.com/book/en/v2). A complete, book-length guide and reference to Git, by Scott Chacon and Ben Straub. 
+
+### Stack Sites
+
+* [Stack Overflow](http://stackoverflow.com). Programming and developer Q&A site. Search as normal for keywords, add tags enclosed in square brackets, e.g. `[ggplot]` or `[git]`, to restrict results to the library or language you want answers in.
+* [Cross Validated](http://stats.stackexchange.com). A site in the same family as Stack Overflow, focused less on the specifics of code and more on conceptual and interpretive questions in statistics.
+
 
 # Outline
 
@@ -102,23 +111,29 @@ This is a new course. The material covered and the topics emphasized will depend
 
 ## Week 1: Getting Started
 
+We will get up and running in R, set up your work environment so that
+you are writing code you can document and reproduce later, and discuss
+the basics of plotting clean data.
+
 * General Principles of data visualization and statistical graphics. 
 * Mechanics: Getting you up and running in R, and on GitHub. 
 * A Simple Worked Example.
 
 ### Data
 
-* Jennifer Bryan, [R basics, workspace and working directory, RStudio projects](http://stat545-ubc.github.io/block002_hello-r-workspace-wd-project.html). This is a very useful introduction to the basics of R and RStudio, if you are completely unfamiliar with R.
-
-* 
+* Jennifer Bryan, [R basics, workspace and working directory, RStudio projects](http://stat545-ubc.github.io/block002_hello-r-workspace-wd-project.html). This is an introduction to the basics of R and RStudio, if you are completely unfamiliar with either. ([Jenny's teaching materials on R](http://www.stat.ubc.ca/~jenny/teach.html) are well worth looking at more closely.)
 
 ### Optional Reading
 
 * Kieran Healy. 2011. [Choosing Your Workflow Applications](http://www.kieranhealy.org/files/misc/workflow-apps.pdf). The Political Methodologist 18 (2), 9–18.
 
+* Kieran Healy. 2014. [Plain Text, Papers, Pandoc](http://kieranhealy.org/blog/archives/2014/01/23/plain-text/). An overview of how to get from a plain-text RMarkdown document to a nice PDF or HTML page. Something like this is what goes on behind the scenes when you generate reports or slides in RStudio.
+
 * Kieran Healy and James Moody. 2014. [Data Visualization in Sociology](http://kieranhealy.org/files/papers/data-visualization.pdf). *Annual Review of Sociology* 40: 105-128.
 
 ## Week 2: One Variable, Two Variables, Three Variables
+
+More on principles. 
 
 ## Week 3: Exploring Whole Datasets
 
