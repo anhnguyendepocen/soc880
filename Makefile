@@ -26,6 +26,9 @@ SRC = $(filter-out README.md, $(wildcard *.$(MEXT)))
 ## Location of Pandoc support files.
 PREFIX = /Users/kjhealy/.pandoc
 
+## Location of CSS file
+CSS = assets/css/github.css
+
 ## Location of your working bibliography file
 BIB = /Users/kjhealy/Documents/bibs/socbib-pandoc.bib
 
@@ -48,7 +51,7 @@ proclabs:
 	proc-pandoc-texrefs.sh $(SRC)
 
 %.html:	%.md
-	pandoc -r markdown+simple_tables+table_captions+yaml_metadata_block -w html -S --template=$(PREFIX)/templates/html.template --css=$(PREFIX)/marked/github.css --filter pandoc-citeproc --csl=$(PREFIX)/csl/$(CSL).csl --bibliography=$(BIB) -o $@ $<
+	pandoc -r markdown+simple_tables+table_captions+yaml_metadata_block -w html -S --template=$(PREFIX)/templates/html.template --css=$(CSS) --filter pandoc-citeproc --csl=$(PREFIX)/csl/$(CSL).csl --bibliography=$(BIB) -o $@ $<
 
 %.tex:	%.md
 	pandoc -r markdown+simple_tables+table_captions+yaml_metadata_block -w latex -s -S --latex-engine=pdflatex --template=$(PREFIX)/templates/latex.template --filter pandoc-citeproc --csl=$(PREFIX)/csl/ajps.csl --bibliography=$(BIB) -o $@ $<
