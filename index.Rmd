@@ -74,7 +74,9 @@ I encourage the use of version control using [Git](https://git-scm.com). Git all
 
 # References and Resources
 
-### Books
+This list will be updated as we go.
+
+## Books
 
 Here are some books you may find of use throughout the course. None is required to purchase, and readings will be provided as PDFs as needed. But they're good. Note that many of these are available online (e.g. at Springer's SpringerLink website) in their entirety.
 
