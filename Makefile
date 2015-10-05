@@ -27,7 +27,7 @@ SRC = $(filter-out README.md, $(wildcard *.$(MEXT)))
 PREFIX = /Users/kjhealy/.pandoc
 
 ## Location of CSS file
-CSS = assets/css/grump.css
+CSS = assets/css/Grump.css
 
 ## Location of your working bibliography file
 BIB = /Users/kjhealy/Documents/bibs/socbib-pandoc.bib
