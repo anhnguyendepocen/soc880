@@ -34,7 +34,7 @@ BIB = /Users/kjhealy/Documents/bibs/socbib-pandoc.bib
 
 ## CSL stylesheet (located in the csl folder of the PREFIX directory).
 CSL = apsa
-
+ 
 
 PDFS=$(SRC:.md=.pdf)
 HTML=$(SRC:.md=.html)

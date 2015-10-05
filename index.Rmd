@@ -68,13 +68,15 @@ I teach the course using [R](https://www.r-project.org), the free software envir
 
 We will spend most of our time using `ggplot2` and `lattice`, two R graphical libraries that you can use directly to draw figures, and which are also taken advantage of by many other packages to draw summary graphs or visualize the output of statistical models.
 
-Strictly speaking, R is not required for the course. It might also be possible to use, e.g., [Stata](www.stata.com/) to do the assigned work and final presentation. However, I will not be able to offer you much in the way of technical support if you insist on using it. R is widely used across the social sciences and beyond, and there is a very large volume of code and other supporting material available within its very active user and developer community. While Stata and other commercial statistical packages have their own virtues, and Stata in particular has a lively user community and powerful advantages of its own, it's probably worth your while to learn at least some R, especially as its visualization capabilities are very good indeed.
+Strictly speaking, R is not required for the course. It might also be possible to use, e.g., [Stata](www.stata.com/) to do the assigned work and final presentation. However, I will not be able to offer you much in the way of technical support if you insist on using it. R is widely used across the social sciences and beyond, and there is a very large volume of code and other supporting material available within its very active user and developer community. While Stata and other commercial statistical packages have many virtues, and Stata in particular has a lively user community and powerful advantages of its own, it's probably worth your while to learn at least some R, especially as its visualization capabilities are very good indeed.
 
 I encourage the use of version control using [Git](https://git-scm.com). Git allows you to keep track of changes to your code, and much more besides. Git is also free and available for Windows, Mac, and Linux operating systems. Like R, Git also has a number of third-party [third-party front ends](https://git-scm.com/download/gui/mac) that make it more convenient to use if you prefer not to work from the command line. Some of these are free, most are not terribly expensive. You should also sign up for a free account on [GitHub](http://github.com/), where much of the material for the course will be hosted. I have a request in to GitHub to allow students in the class to have free private code repositories, which we will use for homework assignments.
 
 # References and Resources
 
-### Books
+This list will be updated as we go.
+
+## Books
 
 Here are some books you may find of use throughout the course. None is required to purchase, and readings will be provided as PDFs as needed. But they're good. Note that many of these are available online (e.g. at Springer's SpringerLink website) in their entirety.
 
