@@ -123,6 +123,14 @@ the basics of plotting clean data.
 * Some very general Principles of data visualization and statistical graphics. 
 * A simple worked example.
 
+### Week 1 Materials
+
+[Week 1 Slides](week-01/index.html)
+
+[Rmd file for the slides](week-01/index.Rmd)
+
+Curve Perception Example. 
+
 ### Setup 
 
 * [Set up Git](https://help.github.com/categories/bootcamp).
