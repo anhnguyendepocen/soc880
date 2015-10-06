@@ -23,3 +23,11 @@ lines(x, y1, type="l")
 ```
 
 Once you've got the plot in a graphics window, take a look at the apparent rate of change between the two curves. Then drag the window so that it's six or seven times wider, but not any taller. Now how do the curves compare?
+
+```{r curves-2, fig.height=5, fig.width=15}
+
+plot(x, y, type="l")
+lines(x, y1, type="l")
+
+
+```
