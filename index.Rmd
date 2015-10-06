@@ -127,7 +127,7 @@ the basics of plotting clean data.
 
 [Week 1 Slides](week-01/index.html)
 
-[Rmd file for the slides](week-01/index.Rmd)
+[Rmd file for the slides](https://github.com/socviz/soc880/blob/gh-pages/week-01/index.Rmd)
 
 Curve Perception Example. 
 
