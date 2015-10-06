@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Data Visualization</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Data Visualization">
+  <meta name="author" content="Kieran Healy">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/solarized_dark.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Data Visualization</h1>
+    <h2>Week 1</h2>
+    <p>Kieran Healy<br/>Duke University</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <article data-timings="">
+    <!-- Limit image width and height -->
+
+<style type='text/css'>
+img {
+    max-height: 560px;
+    max-width: 964px;
+    }
+
+.title-slide {
+background-color: #EDE0CF;
+background-image:url(../assets/playfair-time-series-masked.png);
+background-repeat: no-repeat;
+background-position: center center;
+background-size: cover;
+
+}
+
+.title-slide hgroup > h1, 
+.title-slide hgroup > h2,
+.title-slide hgroup > p {
+color: #3F3F3F;
+}
+
+ 
+</style>
+
+<!-- Center image on slide -->
+
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+
+<script type='text/javascript'>
+$(function() {
+    $("p:has(img)").addClass('centered');
+});
+</script>
+
+<h2>Outline for Today</h2>
+
+<ol>
+<li>Housekeeping</li>
+<li>Motivation and Goals</li>
+<li>Up and running with R and RStudio</li>
+<li>What we are Good and Bad at Seeing</li>
+<li>A First Figure in R</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Housekeeping</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>Course website: <a href="http://socviz.github.io/soc880/">http://socviz.github.io/soc880/</a></h3>
+
+<ul>
+<li>Slides, code, and other material will be available there.</li>
+<li>The side is hosted on GitHub.</li>
+<li>Take a look at that here: <a href="https://github.com/socviz/soc880">https://github.com/socviz/soc880</a></li>
+<li>Soon we&#39;ll get you access for private repositories where you can put your assignments.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>We want to create pictures of data that people, including ourselves, can look at and learn from</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Slides and other material for this class will be fairly interactive and hands-on. More like working notes than the sort of thing you would present as finished work, or to an audience</li>
+<li>Code you can use in R will look like this:</li>
+</ul>
+
+<pre><code class="r">## This is a comment
+data &lt;- c(1, 1, 4, 1, 1, 4, 1)
+
+data
+</code></pre>
+
+<pre><code>## [1] 1 1 4 1 1 4 1
+</code></pre>
+
+<ul>
+<li>The first box shows something you can type into the R console. The second shows what you&#39;d see as output if you did.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>How to take notes in this class</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Use a text editor. Not MS Word. It&#39;s easiest to work with RStudio. Create a new project there.</li>
+<li>We will want to alternate back and forth between bits of code and explanatory notes to ourselves, commentary, or other material. We need a format to do this in that still allows us to work in R easily. </li>
+<li>Create an RMarkdown file in the directory. RStudio sets up a quick template for you. Save the file, calling it <code>week-01-notes.Rmd</code>.</li>
+<li>You won&#39;t use RMarkdown for everything you do. Very short project might just need a single <code>.r</code> file. Very large projects may need more organization. </li>
+<li>But it&#39;s good for taking notes while also working with snippets of code. Note that RStudio has various keyboard and menu shortcuts to help you edit quickly.</li>
+<li>RMarkdown documents can have all kinds of options and other paraphernalia added. Never mind about those for now. Just stick with the defaults.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>What&#39;s happening behind the scenes</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="../assets/wk-01-workflow-wide.png" alt="I promise this is less insane than it appears."></p>
+
+<ul>
+<li>RStudio will take care of this for you, so don&#39;t panic. </li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>Why does it need to be so cumbersome?</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>You may be used to thinking of your final document (e.g. a Word
+file, PDF, or presentation slides, or the tables and figures you
+make) as what&#39;s &quot;real&quot; about your project.</li>
+<li>It&#39;s better to think of the data and code as what&#39;s real, together
+with the text you write.</li>
+<li>The idea is that all of the finished output---figures, tables,
+etc---is, as much as is reasonable, procedurally and reproducibly
+generated from your code, data, and text.</li>
+<li>Reproducibility is important to the scientific process. But the
+reality for most of us is that the person you most want to be able
+to reproduce your work is <em>you</em>, six months or a year from now.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>This still seems like kind of a pain in the ass</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Working in plain text can be annoying.</li>
+<li>But we need to write code that R (or Stata) can understand.</li>
+<li>And we really do need to have a way to remember what we did.</li>
+<li>Plain text files are a robust and easy-to-share format.</li>
+<li>So, as much as possible, keep things simple inside your files.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>When working in R ...</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Make sure you know where you are.</li>
+</ul>
+
+<pre><code class="r">## Get the working directory
+getwd()
+</code></pre>
+
+<pre><code>## [1] &quot;/Users/kjhealy/Documents/courses/graduate/soc880/week-01&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>When working in R ...</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>A little organization can help a lot</li>
+</ul>
+
+<p><img src="../assets/wk-01-org-1.png" alt="A simple project"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
+  <hgroup>
+    <h2>When working in R ...</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>More complex projects may have a more complex structure</li>
+<li>Rstudio can help with project organization as well.</li>
+</ul>
+
+<p><img src="../assets/wk-01-org-2.png" alt="A more complex project"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h2>When working in R ...</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>Everything has a <em>name</em></h3>
+
+<ul>
+<li>Some names are forbidden. These include words like <code>FALSE</code> and <code>TRUE</code>, logical operators and programming words like <code>Inf</code>, <code>for</code>, <code>else</code>, <code>break</code>, <code>function</code>, and words for special entities like <code>NA</code> and <code>NaN</code>.</li>
+<li>Some names you should not use. These include words that are also the names of very widely used objects like <code>q</code> or <code>c</code> or <code>mean</code>, or <code>pi</code>, or <code>range</code>, or <code>var</code>.</li>
+<li>All names are case sensitive.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h2>When working in R ...</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>Everything is an <em>object</em></h3>
+
+<ul>
+<li>Objects are built in to R, are added via libraries, or are created by the user.</li>
+</ul>
+
+<pre><code class="r">## This is a vector of numbers
+
+my_numbers &lt;- c(1, 2, 3, 1, 3, 5, 25)
+
+my_numbers
+</code></pre>
+
+<pre><code>## [1]  1  2  3  1  3  5 25
+</code></pre>
+
+<pre><code class="r">summary(my_numbers)
+</code></pre>
+
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   1.000   1.500   3.000   5.714   4.000  25.000
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
+  <hgroup>
+    <h2>When working in R ...</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>Every object as a <em>class</em></h3>
+
+<ul>
+<li>Depending on what type of object something is, you can extract bits of information from it.</li>
+</ul>
+
+<pre><code class="r">class(my_numbers)
+</code></pre>
+
+<pre><code>## [1] &quot;numeric&quot;
+</code></pre>
+
+<pre><code class="r">class(summary)
+</code></pre>
+
+<pre><code>## [1] &quot;function&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
+  <hgroup>
+    <h2>When working in R ...</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>Functions take Data (or Functions) as inputs, and produce outputs</h3>
+
+<pre><code class="r">## A Function takes arguments inside parentheses 
+my_summary &lt;- summary(my_numbers)
+
+class(my_summary)
+</code></pre>
+
+<pre><code>## [1] &quot;summaryDefault&quot; &quot;table&quot;
+</code></pre>
+
+<pre><code class="r">my_summary
+</code></pre>
+
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   1.000   1.500   3.000   5.714   4.000  25.000
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-15" style="background:;">
+  <hgroup>
+    <h2>When working in R ...</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>For now just remember that you do things in R by creating and manipulating objects, and that you manipulate objects by feeding them to functions and getting output back as a result.</li>
+</ul>
+
+<pre><code class="r">my_numbers * 2
+</code></pre>
+
+<pre><code>## [1]  2  4  6  2  6 10 50
+</code></pre>
+
+<pre><code class="r">table(my_numbers)
+</code></pre>
+
+<pre><code>## my_numbers
+##  1  2  3  5 25 
+##  2  1  2  1  1
+</code></pre>
+
+<pre><code class="r">sd(my_numbers)
+</code></pre>
+
+<pre><code>## [1] 8.616153
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-16" style="background:;">
+  <hgroup>
+    <h2>When working in R ...</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>If you&#39;re not sure what something is, ask for its class:</h3>
+
+<pre><code class="r">class(my_numbers)
+</code></pre>
+
+<pre><code>## [1] &quot;numeric&quot;
+</code></pre>
+
+<pre><code class="r">class(my_summary)
+</code></pre>
+
+<pre><code>## [1] &quot;summaryDefault&quot; &quot;table&quot;
+</code></pre>
+
+<pre><code class="r">class(table)
+</code></pre>
+
+<pre><code>## [1] &quot;function&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-17" style="background:;">
+  <hgroup>
+    <h2>When working in R ...</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>If you&#39;re not sure what something is, ask for its structure</h3>
+
+<pre><code class="r">str(my_numbers)
+</code></pre>
+
+<pre><code>##  num [1:7] 1 2 3 1 3 5 25
+</code></pre>
+
+<pre><code class="r">str(my_summary)
+</code></pre>
+
+<pre><code>## Classes &#39;summaryDefault&#39;, &#39;table&#39;  Named num [1:6] 1 1.5 3 5.71 4 ...
+##   ..- attr(*, &quot;names&quot;)= chr [1:6] &quot;Min.&quot; &quot;1st Qu.&quot; &quot;Median&quot; &quot;Mean&quot; ...
+</code></pre>
+
+<pre><code class="r">str(summary)
+</code></pre>
+
+<pre><code>## function (object, ...)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-18" style="background:;">
+  <hgroup>
+    <h2>Before we get lost in the Weeds, let&#39;s look at some pictures</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We will be looking at R objects and functions in more detail later, and writing our own.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-19" style="background:;">
+  <hgroup>
+    <h2>What Data Values are Displayed in this Figure?</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="../assets/wk-01-excel-3d-column-chart.png" alt="A 3-D Column Chart created in Excel for Mac"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-20" style="background:;">
+  <hgroup>
+    <h2>The answer may surprise you.</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="../assets/wk-01-excel-3d-column-chart-values.png" alt="Excel 3-D Column Chart with Values shown"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-21" style="background:;">
+  <hgroup>
+    <h2>What about this one?</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="../assets/wk-01-excel-3d-pie-chart.png" alt="A 3-D Pie Chart created in Excel for Mac"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-22" style="background:;">
+  <article data-timings="">
+    <p>##</p>
+
+<p><img src="../assets/wk-01-excel-3d-pie-chart-values.png" alt="A 3-D Pie Chart created in Excel for Mac"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-23" style="background:;">
+  <hgroup>
+    <h2>What Makes Bad Figures Bad?</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Sometimes, it&#39;s just aesthetics. The chart is fine but it looks terrible. </li>
+<li>Sometimes, the figure is showing you less than it should, or could.</li>
+<li>Sometimes, the figure is showing you way more than it should. </li>
+<li>Sometimes, it&#39;s because they mislead or lend themselves to misinterpretation, either accidentally or on purpose.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-24" style="background:;">
+  <hgroup>
+    <h2>Simplify, Simplify</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Tufte emphasizes simplification and maximizing the &quot;data to ink ratio&quot;.</li>
+<li>Show the data as much as you can, and avoid &quot;chartjunk&quot; and &quot;ducks&quot;.</li>
+</ul>
+
+<p><img src="../assets/wk-01-chartjunk.gif" alt="Chartjunk Gif"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-25" style="background:;">
+  <hgroup>
+    <h2>Some Principles from William Cleveland</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="../assets/wk-01-cleveland-tasks.png" alt="Cleveland&#39;s visual tasks"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-26" style="background:;">
+  <hgroup>
+    <h2>Some Principles from William Cleveland</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>People misjudge <em>areas</em> easily. Area judgments are less accurate than length judgments or position judgments.</li>
+<li>It is difficult to compare length judgments without a common baseline.</li>
+<li>People  misjudge <em>volumes</em> even more. This is one reason 3-D charts are usually terrible.</li>
+<li>People misjudge <em>angles</em>, as well. The size of acute angles is underestimated. The size of obtuse angles is overestimated. This is one reason pie charts are terrible.</li>
+<li>People find it hard to judge <em>slopes</em> and <em>changes in slope</em>. </li>
+<li>Comparisons can&#39;t be made if people can&#39;t see the data points to begin with (e.g. if they overlap too much or are otherwise obscured.)</li>
+<li>Colors are good for distinguishing categories, but much less so the values of continuous variables.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-27" style="background:;">
+  <hgroup>
+    <h2>Chartjunk is terrible, but ...</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="../assets/wk-01-stacked-bar.jpeg" alt="Baseline 1"></p>
+
+<p>Ew.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-28" style="background:;">
+  <hgroup>
+    <h2>Removing Chartjunk won&#39;t fix Perceptual Problems</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="../assets/wk-01-stacked-column.png" alt="Baseline 2"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-29" style="background:;">
+  <hgroup>
+    <h2>Removing Chartjunk won&#39;t fix Perceptual Problems</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="../assets/wk-01-length-baseline.png" alt="Baseline 3"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-30" style="background:;">
+  <hgroup>
+    <h2>Removing Chartjunk won&#39;t fix Perceptual Problems</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="../assets/wk-01-cleveland-pie-bar.png" alt="Cleveland Pie"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-31" style="background:;">
+  <hgroup>
+    <h2>Removing Chartjunk won&#39;t fix Perceptual Problems</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>What&#39;s the trend with these two curves?</li>
+</ul>
+
+<p><img src="../assets/wk-01-curves-1.png" alt="Cleveland curve 1"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-32" style="background:;">
+  <hgroup>
+    <h2>Removing Chartjunk won&#39;t fix Perceptual Problems</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><em>Now</em> what&#39;s the trend?</li>
+</ul>
+
+<p><img src="../assets/wk-01-curves-2.png" alt=""></p>
+
+<ul>
+<li>We just adjusted the width of the figure, nothing else.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-33" style="background:;">
+  <hgroup>
+    <h2>Let&#39;s get some Data ...</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">## Helper libraries give you new functions to use
+library(devtools)
+library(ggplot2)
+
+## Put the url in an object
+gapminder.url &lt;- &quot;https://raw.githubusercontent.com/socviz/soc880/master/data/gapminder.csv&quot;
+
+## What is it?
+class(gapminder.url)
+</code></pre>
+
+<pre><code>## [1] &quot;character&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-34" style="background:;">
+  <hgroup>
+    <h2>Let&#39;s get some Data ...</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">## Make a new object
+## Notice how we are using more than one function here
+data &lt;- read.csv(url(gapminder.url))
+
+## What&#39;s the class?
+class(data)
+</code></pre>
+
+<pre><code>## [1] &quot;data.frame&quot;
+</code></pre>
+
+<pre><code class="r">## What&#39;s inside?
+str(data)
+</code></pre>
+
+<pre><code>## &#39;data.frame&#39;:    1704 obs. of  6 variables:
+##  $ country  : Factor w/ 142 levels &quot;Afghanistan&quot;,..: 3 3 3 3 3 3 3 3 3 3 ...
+##  $ continent: Factor w/ 5 levels &quot;Africa&quot;,&quot;Americas&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ year     : int  1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...
+##  $ lifeExp  : num  43.1 45.7 48.3 51.4 54.5 ...
+##  $ pop      : num  9279525 10270856 11000948 12760499 14760787 ...
+##  $ gdpPercap: num  2449 3014 2551 3247 4183 ...
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-35" style="background:;">
+  <hgroup>
+    <h2>Let&#39;s get some Data ...</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">## Get the dimensions of the data frame
+dim(data)
+</code></pre>
+
+<pre><code>## [1] 1704    6
+</code></pre>
+
+<pre><code class="r">## Another way to look at a data frame
+head(data)
+</code></pre>
+
+<pre><code>##   country continent year lifeExp      pop gdpPercap
+## 1 Algeria    Africa 1952  43.077  9279525  2449.008
+## 2 Algeria    Africa 1957  45.685 10270856  3013.976
+## 3 Algeria    Africa 1962  48.303 11000948  2550.817
+## 4 Algeria    Africa 1967  51.407 12760499  3246.992
+## 5 Algeria    Africa 1972  54.518 14760787  4182.664
+## 6 Algeria    Africa 1977  58.014 17152804  4910.417
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-36" style="background:;">
+  <hgroup>
+    <h2>... and get ready to plot it</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">## Make an object containing the plot
+## try str(p) if you like. Objects can be complex!
+
+p &lt;- ggplot(data,
+            aes(x = gdpPercap,
+                y = lifeExp))
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-37" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">## Take our data and make a scatter plot
+p + geom_point()
+</code></pre>
+
+<p><img src="assets/fig/FirstPlot-3-1.png" alt="plot of chunk FirstPlot-3"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-38" style="background:;">
+  <hgroup>
+    <h2>Homework</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Create an RMarkdown file for your work if you haven&#39;t already.</li>
+<li>Look again at the data.</li>
+<li>Put <code>lifeExp</code> on the x-axis and <code>gdpPercap</code> on the y-axis.</li>
+<li>Plot <code>pop</code> on the x-axis and gdpPercap on the y-axis.</li>
+<li>Plot <code>year</code> on the x-axis and any continuous variable on the y-axis. </li>
+</ol>
+
+<h2></h2>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='NA'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Housekeeping'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='We want to create pictures of data that people, including ourselves, can look at and learn from'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='How to take notes in this class'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='What&#39;s happening behind the scenes'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Why does it need to be so cumbersome?'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='This still seems like kind of a pain in the ass'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='When working in R ...'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='When working in R ...'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='When working in R ...'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='When working in R ...'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='When working in R ...'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='When working in R ...'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='When working in R ...'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='When working in R ...'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='When working in R ...'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='When working in R ...'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='Before we get lost in the Weeds, let&#39;s look at some pictures'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='What Data Values are Displayed in this Figure?'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='The answer may surprise you.'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='What about this one?'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='NA'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='What Makes Bad Figures Bad?'>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title='Simplify, Simplify'>
+         24
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=25 title='Some Principles from William Cleveland'>
+         25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title='Some Principles from William Cleveland'>
+         26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title='Chartjunk is terrible, but ...'>
+         27
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=28 title='Removing Chartjunk won&#39;t fix Perceptual Problems'>
+         28
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=29 title='Removing Chartjunk won&#39;t fix Perceptual Problems'>
+         29
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=30 title='Removing Chartjunk won&#39;t fix Perceptual Problems'>
+         30
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=31 title='Removing Chartjunk won&#39;t fix Perceptual Problems'>
+         31
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=32 title='Removing Chartjunk won&#39;t fix Perceptual Problems'>
+         32
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=33 title='Let&#39;s get some Data ...'>
+         33
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=34 title='Let&#39;s get some Data ...'>
+         34
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=35 title='Let&#39;s get some Data ...'>
+         35
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=36 title='... and get ready to plot it'>
+         36
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=37 title='NA'>
+         37
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=38 title='Homework'>
+         38
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
