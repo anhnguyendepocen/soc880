@@ -1,0 +1,84 @@
+---
+title       : Data Visualization
+subtitle    : Week 1
+author      : Kieran Healy
+job         : Duke University
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : solarized_light      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+```{r Setup, include=FALSE, results='hide', warning=FALSE}
+
+opts_chunk$set(fig.path="../figures/wk01-fig-",
+               cache.path="../cache/working-",
+               dev=c("png","pdf"),
+               fig.width=14,
+               fig.height=7,
+               dpi=300,
+               fig.show="hold",
+               fig.lp="fig:",
+               cache=TRUE,
+               par=TRUE,
+               echo=TRUE,
+               message=FALSE,
+               warning=FALSE)
+
+```
+
+## What Data Values are Displayed in this Figure?
+
+![A 3-D Column Chart created in Excel for Mac](../assets/wk-01-excel-3d-column-chart.png)
+
+---
+
+## 
+
+![Excel 3-D Column Chart with Values shown](../assets/wk-01-excel-3d-column-chart-values.png)
+
+---
+
+
+
+## What about this one?
+
+![A 3-D Pie Chart created in Excel for Mac](../assets/wk-01-excel-3d-pie-chart.png)
+
+---
+
+## 
+
+![A 3-D Pie Chart created in Excel for Mac](../assets/wk-01-excel-3d-pie-chart-values.png)
+
+---
+
+
+
+## Let's get some Data ...
+
+```{r FirstPlot-1}
+
+library(ggplot2)
+library(devtools)
+
+gapminder.url <- "https://raw.githubusercontent.com/socviz/soc880/master/data/gapminder.csv"
+data <- read.csv(url(gapminder.url))
+head(data)
+
+```
+
+---
+
+## ... and Plot it
+
+```{r FirstPlot-2, fig.align = "center"}
+
+p <- ggplot(data, aes(x=gdpPercap, y=lifeExp))
+p + geom_point()
+
+```
+
+---

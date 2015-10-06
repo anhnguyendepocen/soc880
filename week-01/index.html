@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Data Visualization</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Data Visualization">
+  <meta name="author" content="Kieran Healy">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/solarized_light.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Data Visualization</h1>
+    <h2>Week 1</h2>
+    <p>Kieran Healy<br/>Duke University</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>What Data Values are Displayed in this Figure?</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="../assets/wk-01-excel-3d-column-chart.png" alt="A 3-D Column Chart created in Excel for Mac"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <article data-timings="">
+    <p><img src="../assets/wk-01-excel-3d-column-chart-values.png" alt="Excel 3-D Column Chart with Values shown"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>What about this one?</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="../assets/wk-01-excel-3d-pie-chart.png" alt="A 3-D Pie Chart created in Excel for Mac"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <article data-timings="">
+    <p><img src="../assets/wk-01-excel-3d-pie-chart-values.png" alt="A 3-D Pie Chart created in Excel for Mac"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Let&#39;s get some Data ...</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">library(ggplot2)
+library(devtools)
+
+gapminder.url &lt;- &quot;https://raw.githubusercontent.com/socviz/soc880/master/data/gapminder.csv&quot;
+data &lt;- read.csv(url(gapminder.url))
+head(data)
+</code></pre>
+
+<pre><code>##   country continent year lifeExp      pop gdpPercap
+## 1 Algeria    Africa 1952  43.077  9279525  2449.008
+## 2 Algeria    Africa 1957  45.685 10270856  3013.976
+## 3 Algeria    Africa 1962  48.303 11000948  2550.817
+## 4 Algeria    Africa 1967  51.407 12760499  3246.992
+## 5 Algeria    Africa 1972  54.518 14760787  4182.664
+## 6 Algeria    Africa 1977  58.014 17152804  4910.417
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>... and Plot it</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">p &lt;- ggplot(data, aes(x=gdpPercap, y=lifeExp))
+p + geom_point()
+</code></pre>
+
+<p><img src="assets/fig/FirstPlot-2-1.png" title="plot of chunk FirstPlot-2" alt="plot of chunk FirstPlot-2" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='What Data Values are Displayed in this Figure?'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='NA'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='What about this one?'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='NA'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Let&#39;s get some Data ...'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='... and Plot it'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='NA'>
+         7
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
