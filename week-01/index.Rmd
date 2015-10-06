@@ -212,7 +212,7 @@ summary(my_numbers)
 
 ## When working in R ...
 
-### Every object as a *class*
+### Every object has a *class*
 
 - Depending on what type of object something is, you can extract bits of information from it.
 
