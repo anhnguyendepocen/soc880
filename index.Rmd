@@ -129,7 +129,7 @@ the basics of plotting clean data.
 
 [Rmd file for the slides](https://github.com/socviz/soc880/blob/gh-pages/week-01/index.Rmd)
 
-Curve Perception Example. 
+[Curve Perception Example](snippets/curve-banking.html). 
 
 ### Setup 
 
