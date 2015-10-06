@@ -194,7 +194,7 @@ getwd()
 
 ### Everything is an *object*
 
-- Objects are build in to R, are added via libraries, or are created by the user.
+- Objects are built in to R, are added via libraries, or are created by the user.
 
 ```{r objects, echo=TRUE}
 
