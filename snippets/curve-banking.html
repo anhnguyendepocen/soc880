@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>Curve Rate of Change Example</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="../assets/css/Grump.css">
+</head>
+<body>
+<div id="wrapper">  
+<header>
+<h3 class="date">Soc 880 Fall 2015</h3>
+
+<h1 class="title">Curve Rate of Change Example</h1>
+
+
+<h2 class="author">Kieran Healy</h2>
+<p class="affilation"><em>Duke University</em></p>
+
+</header>
+
+
+
+<p>This is from an example by William Cleveland. Independent of the aesthetic quality of a graph, some perceptual features are hard to fight against. E.g., assessing rates of change in two curves.</p>
+<p>Consider the following. (Run this interactively in an R session and pop up a plot window with the results.)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">8</span>, <span class="fl">0.001</span>)
+y &lt;-<span class="st"> </span>x^<span class="dv">4</span>
+y1 &lt;-<span class="st"> </span>(x^<span class="dv">4</span>) +<span class="st"> </span><span class="dv">400</span>
+
+<span class="kw">plot</span>(x, y, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>)
+<span class="kw">lines</span>(x, y1, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>)</code></pre></div>
+<div class="figure">
+<img src="assets/fig/curves-1.png" alt="plot of chunk curves" />
+<p class="caption">plot of chunk curves</p>
+</div>
+<p>Once you’ve got the plot in a graphics window, take a look at the apparent rate of change between the two curves. Then drag the window so that it’s six or seven times wider, but not any taller. Now how do the curves compare?</p>
+<div class="references">
+
+</div>
+</div>
+</body>
+</html>
