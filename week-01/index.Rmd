@@ -86,9 +86,11 @@ opts_chunk$set(fig.path="../figures/wk01-fig-",
 
 - When you view them online, notice the compass in the bottom right corner
 - You can go left or right, or sometimes down to more detail.
-- Try hitting the down arrow now.
-- Hit the Escape key to get an overview of all the slides.
-- Hit Escape again to return to the slide you were looking at.
+- Try hitting the down arrow (or swiping down) now.
+- Hit the Escape key to get an overview of all the slides. On a phone
+  or tablet, pinch to get the slide overview.
+- You can use the arrow keys (or swipe up and down) in this view as well. 
+- Hit Escape again to return to the slide you were looking at. On a phone or tablet, tap the slide you want.
 
 ---
 
