@@ -3,48 +3,24 @@ title       : Data Visualization
 subtitle    : Week 1
 author      : Kieran Healy
 job         : Duke University
-framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+framework   : revealjs        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
 hitheme     : solarized_dark      # 
 widgets     : []            # {mathjax, quiz, bootstrap}
 mode        : selfcontained # {standalone, draft}
 knit        : slidify::knit2slides
+url         : {lib: "."}
+revealjs:
+  theme: solarized
+  transition: fade
+  center: "true"
 ---
 
-<!-- Limit image width and height -->
 <style type='text/css'>
-img {
-    max-height: 560px;
-    max-width: 964px;
-    }
-
-.title-slide {
-background-color: #EDE0CF;
-background-image:url(../assets/playfair-time-series-masked.png);
-background-repeat: no-repeat;
-background-position: center center;
-background-size: cover;
-
+.reveal {
+  font-size: 28px;  
 }
-
-.title-slide hgroup > h1, 
-.title-slide hgroup > h2,
-.title-slide hgroup > p {
-color: #3F3F3F;
-}
-
- 
 </style>
-
-<!-- Center image on slide -->
-<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
-<script type='text/javascript'>
-$(function() {
-    $("p:has(img)").addClass('centered');
-});
-</script>
-
-
 
 
 ```{r Setup, include=FALSE, results='hide', warning=FALSE}
@@ -65,6 +41,12 @@ opts_chunk$set(fig.path="../figures/wk01-fig-",
 
 ```
 
+# Data Visualization: Week 1
+
+### Kieran Healy, Duke University
+
+---
+
 ## Outline for Today
 
 0. Housekeeping
@@ -73,19 +55,42 @@ opts_chunk$set(fig.path="../figures/wk01-fig-",
 3. What we are Good and Bad at Seeing
 4. A First Figure in R
 
----
+--- 
 
 ## Housekeeping
 
-### Course website: [http://socviz.github.io/soc880/](http://socviz.github.io/soc880/)
+### [http://socviz.github.io/soc880/](http://socviz.github.io/soc880/)
 
 - Slides, code, and other material will be available there.
 - The site is hosted on GitHub.
 - Take a look at that here: [https://github.com/socviz/soc880](https://github.com/socviz/soc880)
 - Soon we'll get you access for private repositories where you can put your assignments.
 
+--- &vertical
+
+## How to Navigate these Slides
+
+- When you view them online, notice the compass in the bottom right corner
+- You can go left or right, or sometimes down to more detail.
+- Try hitting the down arrow now.
+
+***
+
+## Hello from down here
+
+- Hit the up arrow to return to the main line of slides.
+
 ---
 
+## How to Navigate these Slides
+
+- When you view them online, notice the compass in the bottom right corner
+- You can go left or right, or sometimes down to more detail.
+- Try hitting the down arrow now.
+- Hit the Escape key to get an overview of all the slides.
+- Hit Escape again to return to the slide you were looking at.
+
+---
 
 ## We want to create pictures of data that people, including ourselves, can look at and learn from
 
@@ -103,7 +108,7 @@ data
 
 - The first box shows something you can type into the R console. The second shows what you'd see as output if you did.
 
----
+--- &vertical
 
 ## How to take notes in this class
 
@@ -114,7 +119,7 @@ data
 - But it's good for taking notes while also working with snippets of code. Note that RStudio has various keyboard and menu shortcuts to help you edit quickly.
 - RMarkdown documents can have all kinds of options and other paraphernalia added. Never mind about those for now. Just stick with the defaults.
 
----
+***
 
 ## What's happening behind the scenes
 
@@ -122,7 +127,7 @@ data
 
 - RStudio will take care of this for you, so don't panic. 
 
----
+***
 
 ## Why does it need to be so cumbersome?
 
@@ -138,7 +143,7 @@ data
   reality for most of us is that the person you most want to be able
   to reproduce your work is *you*, six months or a year from now.
 
----
+***
 
 ## This still seems like kind of a pain in the ass 
 
@@ -148,7 +153,7 @@ data
 - Plain text files are a robust and easy-to-share format.
 - So, as much as possible, keep things simple inside your files.
 
----
+--- &vertical
 
 ## When working in R ...
 
@@ -178,7 +183,7 @@ getwd()
 
 ![A more complex project](../assets/wk-01-org-2.png)
 
----
+--- &vertical
 
 ## When working in R ...
 
@@ -188,7 +193,7 @@ getwd()
 - Some names you should not use. These include words that are also the names of very widely used objects like `q` or `c` or `mean`, or `pi`, or `range`, or `var`.
 - All names are case sensitive.
 
----
+***
 
 ## When working in R ...
 
@@ -208,7 +213,7 @@ summary(my_numbers)
 
 ```
 
----
+*** 
 
 ## When working in R ...
 
@@ -224,7 +229,7 @@ class(summary)
 
 ```
 
----
+***
 
 ## When working in R ...
 
@@ -241,7 +246,7 @@ my_summary
 
 ```
 
----
+***
 
 ## When working in R ...
 
@@ -257,7 +262,7 @@ sd(my_numbers)
 
 ```
 
----
+***
 
 ## When working in R ...
 
@@ -273,7 +278,7 @@ class(table)
 
 ```
 
----
+***
 
 ## When working in R ...
 
@@ -359,7 +364,7 @@ str(summary)
 - Comparisons can't be made if people can't see the data points to begin with (e.g. if they overlap too much or are otherwise obscured.)
 - Colors are good for distinguishing categories, but much less so the values of continuous variables.
 
----
+--- &vertical
 
 
 ## Chartjunk is terrible, but ...
@@ -368,25 +373,25 @@ str(summary)
 
 Ew.
 
----
+***
 
 ## Removing Chartjunk won't fix Perceptual Problems
 
 ![Baseline 2](../assets/wk-01-stacked-column.png)
 
----
+***
 
 ## Removing Chartjunk won't fix Perceptual Problems
 
 ![Baseline 3](../assets/wk-01-length-baseline.png)
 
----
+***
 
 ## Removing Chartjunk won't fix Perceptual Problems
 
 ![Cleveland Pie](../assets/wk-01-cleveland-pie-bar.png)
 
----
+***
 
 ## Removing Chartjunk won't fix Perceptual Problems
 
@@ -394,7 +399,7 @@ Ew.
 
 ![Cleveland curve 1](../assets/wk-01-curves-1.png)
 
----
+***
 
 ## Removing Chartjunk won't fix Perceptual Problems
 
@@ -405,7 +410,7 @@ Ew.
 - We just adjusted the width of the figure, nothing else.
 
 
----
+--- &vertical
 
 
 ## Let's get some Data ...
@@ -424,7 +429,7 @@ class(gapminder.url)
 
 ```
 
----
+***
 
 ## Let's get some Data ...
 
@@ -443,7 +448,7 @@ str(data)
 
 ```
 
----
+***
 
 
 ## Let's get some Data ...
@@ -458,8 +463,7 @@ head(data)
 
 ```
 
----
-
+***
 
 ## ... and get ready to plot it
 
@@ -475,8 +479,7 @@ p <- ggplot(data,
 
 ```
 
----
-
+***
 
 ```{r FirstPlot-3}
 
