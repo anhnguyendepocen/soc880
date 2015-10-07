@@ -80,7 +80,7 @@ opts_chunk$set(fig.path="../figures/wk01-fig-",
 ### Course website: [http://socviz.github.io/soc880/](http://socviz.github.io/soc880/)
 
 - Slides, code, and other material will be available there.
-- The side is hosted on GitHub.
+- The site is hosted on GitHub.
 - Take a look at that here: [https://github.com/socviz/soc880](https://github.com/socviz/soc880)
 - Soon we'll get you access for private repositories where you can put your assignments.
 
@@ -324,10 +324,11 @@ str(summary)
 
 ## What Makes Bad Figures Bad? 
 
-- Sometimes, it's just aesthetics. The chart is fine but it looks terrible. 
-- Sometimes, the figure is showing you less than it should, or could.
-- Sometimes, the figure is showing you way more than it should. 
-- Sometimes, it's because they mislead or lend themselves to misinterpretation, either accidentally or on purpose.
+- Sometimes, it's because they mislead or lend themselves to misinterpretation, either accidentally or on purpose. 
+- Sometimes, it's just aesthetics. The chart is fine but it looks terrible.
+- Sometimes, the figure is showing you less than it should, or could. 
+- Sometimes, the figure is showing you way more than it should.
+- As problems can go in both directions (too much; too little) we need more than pure taste to guide us.
 
 ---
 
@@ -350,8 +351,8 @@ str(summary)
 
 ## Some Principles from William Cleveland
 
-- People misjudge *areas* easily. Area judgments are less accurate than length judgments or position judgments.
 - It is difficult to compare length judgments without a common baseline.
+- People misjudge *areas* easily. Area judgments are less accurate than length judgments or position judgments.
 - People  misjudge *volumes* even more. This is one reason 3-D charts are usually terrible.
 - People misjudge *angles*, as well. The size of acute angles is underestimated. The size of obtuse angles is overestimated. This is one reason pie charts are terrible.
 - People find it hard to judge *slopes* and *changes in slope*. 
@@ -402,6 +403,7 @@ Ew.
 ![](../assets/wk-01-curves-2.png)
 
 - We just adjusted the width of the figure, nothing else.
+
 
 ---
 
