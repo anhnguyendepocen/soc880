@@ -11,7 +11,7 @@ mode        : selfcontained # {standalone, draft}
 knit        : slidify::knit2slides
 url         : {lib: "."}
 revealjs:
-  theme: solarized
+  theme: moon
   transition: fade
   center: "true"
 ---
@@ -26,7 +26,10 @@ revealjs:
 
 ```{r Setup, include=FALSE, results='hide', warning=FALSE}
 
-opts_chunk$set(fig.path="../figures/wk01-fig-",
+library(devtools)
+library(ggplot2)
+
+opts_chunk$set(fig.path="../figures/wk02-fig-",
                cache.path="../cache/working-",
                dev=c("png","pdf"),
                fig.width=6,
@@ -34,7 +37,7 @@ opts_chunk$set(fig.path="../figures/wk01-fig-",
                dpi=300,
                fig.show="hold",
                fig.lp="fig:",
-               cache=TRUE,
+               cache=FALSE,
                par=TRUE,
                echo=TRUE,
                message=FALSE,
@@ -42,7 +45,8 @@ opts_chunk$set(fig.path="../figures/wk01-fig-",
 
 ```
 
-# One Variable, Two Variable, Three Variables
+
+# One, Two, Three Variables
 
 ## Data Visualization, Week 2
 
@@ -53,8 +57,259 @@ opts_chunk$set(fig.path="../figures/wk01-fig-",
 ## Outline for Today
 
 0. Housekeeping
-1. Recap
-2. Summarizing One, Two, and More Variables
+1. Basic Principles Again
+2. Introducing `ggplot`
+3. Summarizing a Variable
 
 --- 
 
+## How to Navigate these Slides
+
+- When you view them online, notice the compass in the bottom right corner
+- You can go left or right, or sometimes down to more detail.
+- Hit the `Escape` key to get an overview of all the slides. On a phone
+  or tablet, pinch to get the slide overview.
+- You can use the arrow keys (or swipe up and down) in this view, as well. 
+- Hit `Escape` again to return to the slide you were looking at. 
+- On a phone or tablet, tap the slide you want.
+
+---
+
+## Perception
+
+- Visualizing data is not just a matter of good taste.
+- Basic perceptual processes play a very strong role.
+- These have consequences for how we will want to encode data when we
+  visualize it---i.e., how and whether we choose to represent numbers
+  or categories as shapes, colors, lengths, etc.
+
+---
+
+![Hermann Grid Effect](../assets/perception-hermann-grid-effect.jpg)
+
+- Hermann Grid Effect
+
+---
+
+![Contrast Effects](../assets/perception-contrast-effects.png)
+
+- Contrast Effects 
+
+---
+
+![Color Makes things More Complex](../assets/perception-coloreffects1.png)
+
+- Color makes things more complex 
+- For more on perception, color, and cognitive processing of images, see [Miriah Meyer's Visualization Lectures](http://www.sci.utah.edu/~miriah/cs6630/), especially weeks 2 and 3.
+
+---
+
+```{r, echo = FALSE}
+
+correlatedValue <- function(x, r){
+  r2 = r^2
+  ve = 1-r2
+  SD = sqrt(ve)
+  e  = rnorm(length(x), mean=0, sd=SD)
+  y  = r*x + e
+  return(y)
+}
+
+n.obs <- 200
+
+set.seed(10)
+x <- rnorm(n.obs)
+y <- correlatedValue(x=x, r=.7)
+z <- correlatedValue(x=y, r=0.9)
+z <- factor(z>0 & sample(z, n.obs))
+
+pop <- rep(FALSE, length(x))
+ind <- which(x==max(x))
+
+pop[ind] <- TRUE
+
+
+pop[] <- TRUE
+
+big <- rep(3, length(x))
+big[pop==TRUE] <- 5
+
+
+alt <- rep(c("Shape 1", "Shape 2"), length(x)/2)
+
+x <- x + 10
+y <- y + 10
+
+data <- data.frame(Tea=x, Biscuits=y, Chocolate=z, Pop=pop, Alt=alt, Big=big)
+
+```
+
+```{r, echo = FALSE, fig.width=11, fig.height=8.5}
+
+p <- ggplot(data, aes(x=Tea, y=Biscuits))
+p + geom_point(size=3)
+
+```
+
+- Example: Picking out a data point
+
+---
+
+
+```{r, echo=FALSE, fig.width=11, fig.height=8.5}
+
+p <- ggplot(data, aes(x=Tea, y=Biscuits, color=Pop))
+p + geom_point(size=3) +
+    scale_color_manual(values = c("Black", "Red")) +
+    guides(color=FALSE)
+
+```
+
+- Highlight by color
+
+---
+
+```{r, echo=FALSE, fig.width=11, fig.height=8.5}
+
+p <- ggplot(data, aes(x=Tea, y=Biscuits, shape=Pop))
+
+p + geom_point(size=3) +
+    guides(shape=FALSE)
+
+```
+
+- Highlight by shape
+
+---
+
+```{r, echo=FALSE, fig.width=11, fig.height=8.5}
+
+p <- ggplot(data, aes(x=Tea, y=Biscuits, size=Big))
+
+p + geom_point() +
+    scale_size_continuous(range = c(3,8)) +
+    guides(size=FALSE)
+
+
+```
+
+- Highlight by size
+
+
+---
+
+
+```{r, echo=FALSE, fig.width=11, fig.height=8.5}
+
+p <- ggplot(data, aes(x=Tea, y=Biscuits, color=Pop, shape=Pop, size=Big))
+
+p + geom_point() +
+    scale_size_continuous(range = c(3,8)) +
+    scale_color_manual(values = c("Black", "Red")) + 
+    guides(color=FALSE, shape=FALSE, size=FALSE)
+
+
+```
+
+- Highlight by all three
+
+---
+
+```{r, echo=FALSE, fig.width=11, fig.height=8.5}
+
+p <- ggplot(data, aes(x=Tea, y=Biscuits, color=Alt, shape=Chocolate, size=Big))
+
+p + geom_point() +
+    scale_size_continuous(range = c(3,8)) +
+    scale_color_manual(values = c("Black", "Red")) + 
+    guides(color=FALSE, shape=FALSE, size=FALSE)
+
+
+```
+
+- Multiple channels of comparison get tricky very fast
+
+---
+
+
+```{r, echo=FALSE, fig.width=11, fig.height=8.5}
+
+p <- ggplot(data, aes(x=Tea, y=Biscuits, color=Chocolate))
+
+p + geom_point(size=3) +
+    scale_color_manual(values = c("Black", "Red")) + 
+    guides(color=FALSE)
+
+
+```
+
+- Unless your data has a lot of structure
+
+---
+
+
+
+
+
+<q> The data on the graph are the reason for the existence of the graph.</q>
+
+Cleveland (1994, 25)
+
+---
+
+```{r, echo = FALSE, fig.width=11, fig.height=8.5}
+
+correlatedValue <- function(x, r){
+  r2 = r^2
+  ve = 1-r2
+  SD = sqrt(ve)
+  e  = rnorm(length(x), mean=0, sd=SD)
+  y  = r*x + e
+  return(y)
+}
+
+n.obs <- 100
+
+set.seed(10)
+x <- rnorm(n.obs)
+y <- correlatedValue(x=x, r=.5)
+
+z <- correlatedValue(x=y, r=0.8)
+z <- factor(z>0 & sample(z, n.obs))
+
+x <- x + 10
+y <- y + 10
+
+data <- data.frame(Tea=x, Biscuits=y, Chocolate=z)
+
+p <- ggplot(data, aes(x=Tea, y=Biscuits))
+
+p + geom_point()
+
+```
+
+---
+
+
+
+```{r, getdata-1, echo= TRUE}
+
+gapminder.url <- "https://raw.githubusercontent.com/socviz/soc880/master/data/gapminder.csv"
+data <- read.csv(url(gapminder.url))
+dim(data)
+head(data)
+```
+
+---
+
+```{r, FirstPlot}
+
+p <- ggplot(data,
+            aes(x=log10(gdpPercap), y=lifeExp))
+
+p + geom_point()
+
+```
+
+
+---
