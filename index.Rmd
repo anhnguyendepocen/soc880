@@ -145,15 +145,19 @@ the basics of plotting clean data.
 
 * Kieran Healy and James Moody. 2014. [Data Visualization in Sociology](http://kieranhealy.org/files/papers/data-visualization.pdf). *Annual Review of Sociology* 40: 105-128.
 
-## Week 2: One Variable, Two Variables, Three Variables
+## Week 2: Getting into `ggplot`
 
 * More on perception and the principles of graph construction it implies.
 * Graphs are simple and immediately interpretable, just until you need
   them to be detailed and require study.
-* Scales, Lengths, Areas, and Angles.
-* Dotplots, Histograms, and Boxplots.
-* Scatterplots and Smoothers.
-* Working with base R, `ggplot` and `lattice` graphics. 
+* Working with `ggplot`: data, layers, and mappings. 
+
+### Week 2 Materials
+
+[Week 2 Slides](week-02/index.html)
+
+[Rmd file for the slides](https://github.com/socviz/soc880/blob/gh-pages/week-02/index.Rmd)
+
 
 ## Week 3: Exploring Whole Datasets, Creating More Complex Figures
 
