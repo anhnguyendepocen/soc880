@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>One Variable, Two Variables, Three Variables</title>
+  <title>Getting Used to ggplot</title>
   <meta name="description" content="">
   <meta name="author" content="Kieran Healy">
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <link rel="stylesheet" href="./frameworks/revealjs/css/reveal.min.css">
-  <link rel="stylesheet" href="./frameworks/revealjs/css/theme/solarized.css" id="theme">
+  <link rel="stylesheet" href="./frameworks/revealjs/css/theme/night.css" id="theme">
   <link rel="stylesheet" href="./highlighters/highlight.js/css/solarized_light.css" id="theme">
   <!--[if lt IE 9]>
   <script src="lib/js/html5shiv.js"></script>
@@ -26,7 +26,7 @@
 }
 </style>
 
-<h1>One Variable, Two Variable, Three Variables</h1>
+<h1>Getting used to ggplot</h1>
 
 <h2>Data Visualization, Week 2</h2>
 
@@ -37,12 +37,435 @@
   <h2>Outline for Today</h2>
   <ol>
 <li>Housekeeping</li>
-<li>Recap</li>
-<li>Summarizing One, Two, and More Variables</li>
+<li>Basic Principles Again</li>
+<li>Introducing <code>ggplot</code></li>
+<li>Summarizing a Variable</li>
 </ol>
 
 </section>
 <section class='' data-state='' id='slide-3'>
+  <h2>How to Navigate these Slides</h2>
+  <ul>
+<li>When you view them online, notice the compass in the bottom right corner</li>
+<li>You can go left or right, or sometimes down to more detail.</li>
+<li>Hit the <code>Escape</code> key to get an overview of all the slides. On a phone
+or tablet, pinch to get the slide overview.</li>
+<li>You can use the arrow keys (or swipe up and down) in this view, as well. </li>
+<li>Hit <code>Escape</code> again to return to the slide you were looking at. </li>
+<li>On a phone or tablet, tap the slide you want.</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-4'>
+  <h2>Reminder</h2>
+  <ul>
+<li>There are two ways to learn R: the easy way and the tedious way. </li>
+<li>The problem is that the easy way doesn&#39;t work.</li>
+<li>You have to practice the examples and work through them manually.
+Type them out, even if you&#39;re just copying at the beginning. It
+really will help you get used to how the language works.</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-5'>
+  <h2>Reminder</h2>
+  <ul>
+<li>You will benefit a lot from taking almost any R tutorial, whether from a textbook or online. The syllabus has links. </li>
+<li>For example, <a href="http://tryr.codeschool.com/levels/1/challenges/1">Try R</a>.</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-6'>
+  <h1>Principles Again</h1>
+  
+</section>
+<section class='' data-state='' id='slide-7'>
+  <h2>Perception</h2>
+  <ul>
+<li>Visualizing data is not just a matter of good taste.</li>
+<li>Basic perceptual processes play a very strong role.</li>
+<li>These have consequences for how we will want to encode data when we
+visualize it---i.e., how and whether we choose to represent numbers
+or categories as shapes, colors, lengths, etc.</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-8'>
+  <h2>Perception</h2>
+  <ul>
+<li>We more easily see edges, contrasts, and movement.</li>
+<li>We judge relative differences rather than absolute values.</li>
+<li>We tend to infer relationships between elements based on
+gestalt-like rules.</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-9'>
+  
+  <p><img src="../assets/perception-hermann-grid-effect.jpg" alt="Hermann Grid Effect"></p>
+
+<ul>
+<li>Hermann Grid Effect</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-10'>
+  
+  <p><img src="../assets/perception-contrast-effects.png" alt="Contrast Effects"></p>
+
+<ul>
+<li>Contrast Effects </li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-11'>
+  
+  <p><img src="../assets/perception-coloreffects1.png" alt="Color Makes things More Complex"></p>
+
+<ul>
+<li>Color makes things more complex </li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-12'>
+  
+  <p><img src="../assets/perception-easy-hard.png" alt="What stands out"></p>
+
+<ul>
+<li>Some things pop out more easily than others. (Examples from Miriah Meyer.)</li>
+<li>For more on perception, color, and cognitive processing of images, see <a href="http://www.sci.utah.edu/%7Emiriah/cs6630/">Miriah Meyer&#39;s Visualization Lectures</a>, especially weeks 2 and 3.</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-13'>
+  
+  <p><img src="../assets/perception-gestalt-1-bang-wong.jpg" alt="Gestalt Rules"></p>
+
+<ul>
+<li>Bang Wong, <em>Nature Methods</em> 7 863 (2010)</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-14'>
+  
+  <p><img src="../assets/perception-gestalt-2-bang-wong.jpg" alt="Gestalt Rules"></p>
+
+<ul>
+<li>Bang Wong, <em>Nature Methods</em> 7 863 (2010)</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-15'>
+  
+  <p><img src="assets/fig/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"> </p>
+
+<ul>
+<li>Example: Picking out a data point</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-16'>
+  
+  <p><img src="assets/fig/unnamed-chunk-3-1.png" alt="plot of chunk unnamed-chunk-3"> </p>
+
+<ul>
+<li>Highlight by shape</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-17'>
+  
+  <p><img src="assets/fig/unnamed-chunk-4-1.png" alt="plot of chunk unnamed-chunk-4"> </p>
+
+<ul>
+<li>Highlight by color</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-18'>
+  
+  <p><img src="assets/fig/unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5"> </p>
+
+<ul>
+<li>Highlight by size</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-19'>
+  
+  <p><img src="assets/fig/unnamed-chunk-6-1.png" alt="plot of chunk unnamed-chunk-6"> </p>
+
+<ul>
+<li>Highlight by all three</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-20'>
+  
+  <p><img src="assets/fig/unnamed-chunk-7-1.png" alt="plot of chunk unnamed-chunk-7"> </p>
+
+<ul>
+<li>Multiple channels of comparison become uninterpretable very fast</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-21'>
+  
+  <p><img src="assets/fig/unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8"> </p>
+
+<ul>
+<li>Unless your data has a lot of structure</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-22'>
+  
+  <p><q> The data on the graph are the reason for the existence of the graph.</q></p>
+
+<p>Cleveland (1994, 25)</p>
+
+</section>
+<section class='' data-state='' id='slide-23'>
+  <h1>Writing Plots</h1>
+  
+</section>
+<section class='' data-state='' id='slide-24'>
+  <h2>Go get the Gapminder Data</h2>
+  <pre><code class="r">gapminder.url &lt;- &quot;https://raw.githubusercontent.com/socviz/soc880/master/data/gapminder.csv&quot;
+my.data &lt;- read.csv(url(gapminder.url))
+dim(my.data)
+</code></pre>
+
+<pre><code>## [1] 1704    6
+</code></pre>
+
+<pre><code class="r">head(my.data)
+</code></pre>
+
+<pre><code>##   country continent year lifeExp      pop gdpPercap
+## 1 Algeria    Africa 1952  43.077  9279525  2449.008
+## 2 Algeria    Africa 1957  45.685 10270856  3013.976
+## 3 Algeria    Africa 1962  48.303 11000948  2550.817
+## 4 Algeria    Africa 1967  51.407 12760499  3246.992
+## 5 Algeria    Africa 1972  54.518 14760787  4182.664
+## 6 Algeria    Africa 1977  58.014 17152804  4910.417
+</code></pre>
+
+<ul>
+<li>Remember what we said before about everything being an object, and
+every object having a class.</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-25'>
+  
+  <pre><code class="r">## We&#39;ll be a bit more verbose
+## to make things clearer
+p &lt;- ggplot(data=my.data,
+            aes(x=gdpPercap,
+                y=lifeExp))
+</code></pre>
+
+<ul>
+<li><code>ggplot</code> works by building your plot piece by piece</li>
+<li>We start with a clean data frame called <code>my.data</code></li>
+<li>Then we tell <code>ggplot</code> what pieces of it we are interested in right now.</li>
+<li>We create an object called <code>p</code> containing this information</li>
+<li>Here, <code>x=gfpPercap</code> and <code>y=lifeExp</code> say what will go on the <code>x</code> and the <code>y</code> axes</li>
+<li>These are <em>aesthetic mappings</em> that connect pieces of the data to things we can actually see on a plot.</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-26'>
+  <h2>About aesthetic mappings</h2>
+  <ul>
+<li>The <code>aes()</code> function <em>links variables</em> to <em>things you will see</em> on the plot.</li>
+<li>The <code>x</code> and <code>y</code> values are the most obvious ones.</li>
+<li>Other aesthetic mappings include, e.g., <code>color</code>, <code>shape</code>, and <code>size</code>.</li>
+<li>These mappings are not <em>directly</em> specifying what specific, e.g.,
+colors or shapes will be on the plot. Rather they say which
+<em>variables</em> in the data will be <em>represented</em> by, e.g., colors and
+shapes on the plot.</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-27'>
+  <h3>Adding layers to the plot</h3>
+  <ul>
+<li>What happens when you type <code>p</code> at the console and hit return?</li>
+<li>We need to add a <em>layer</em> to the plot. </li>
+</ul>
+
+<pre><code class="r">p + geom_point()
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-10-1.png" alt="plot of chunk unnamed-chunk-10"> </p>
+
+<ul>
+<li>This takes the <code>p</code> object we&#39;ve created, and applies <code>geom_point()</code>
+to it, a function that knows how to take <code>x</code> and <code>y</code> values and plot
+them in a scatterplot.</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-28'>
+  <h2>The Plot-Making Process</h2>
+  <h4>0. Start with your data in the right shape</h4>
+
+<h4>1. Tell <code>ggplot</code> <em>what</em> relationships you want to see</h4>
+
+<h4>2. Tell <code>ggplot</code> <em>how</em> you want to see them</h4>
+
+<h4>3. Layer these pictures as needed</h4>
+
+<h4>4. Fine-tune scales, labels, tick marks, etc</h4>
+
+</section>
+<section class='' data-state='' id='slide-29'>
+  <h4>This layering process is literally additive</h4>
+  <pre><code class="r">p &lt;- ggplot(my.data,
+            aes(x=gdpPercap, y=lifeExp))
+
+p + geom_point()
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-11-1.png" alt="plot of chunk unnamed-chunk-11"> </p>
+
+</section>
+<section class='' data-state='' id='slide-30'>
+  
+  <pre><code class="r">p + geom_point() +
+    geom_smooth(method=&quot;loess&quot;) 
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-12-1.png" alt="plot of chunk unnamed-chunk-12"> </p>
+
+<ul>
+<li>Here we add a second geom. It&#39;s a <code>loess</code> smoother. There are
+others. Try <code>lm</code>, for example.</li>
+<li>What happens when you put <code>geom_smooth()</code> first instead of second?</li>
+<li>Notice how both <code>geom_point</code> and <code>geom_smooth()</code> inherit the
+information in <code>p</code> about what the <code>x</code> and <code>y</code> variables are.</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-31'>
+  
+  <pre><code class="r">p + geom_point() +
+    geom_smooth(method=&quot;loess&quot;) +
+    scale_x_log10()
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-13-1.png" alt="plot of chunk unnamed-chunk-13"> </p>
+
+<ul>
+<li>The next layer does not change anything in the underlying data. Instead it adjusts the x-axis scale. </li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-32'>
+  
+  <pre><code class="r">p + geom_point(color=&quot;firebrick&quot;) +
+    geom_smooth(method=&quot;loess&quot;) +
+    scale_x_log10()
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-14-1.png" alt="plot of chunk unnamed-chunk-14"> </p>
+
+<ul>
+<li>Here, notice we changed the color of the points by specifying the <code>color</code> argument in <code>geom_point()</code></li>
+<li>This is called <em>setting</em> an aesthetic feature. </li>
+<li>It has no relationship to the data. The color red is not representing or <em>mapping</em> any feature of the data.</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-33'>
+  
+  <ul>
+<li>To see the difference between <em>setting</em> and <em>mapping</em> an aesthetic, let&#39;s go back to our <code>p</code> object and recreate it. </li>
+<li>This time, in addition to <code>x</code> and <code>y</code> we tell <code>ggplot</code> to map the variable <code>Continent</code> to the <code>color</code> aesthetic.</li>
+</ul>
+
+<pre><code class="r">p &lt;- ggplot(my.data,
+            aes(x=gdpPercap,
+                y=lifeExp,
+                color=continent))
+</code></pre>
+
+<ul>
+<li>Now there <em>is</em> a relationship or <em>mapping</em> between the data and the aesthetic.</li>
+<li>The values of the variable <code>continent</code> will be <em>represented</em> by colors on the figure we draw.</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-34'>
+  
+  <pre><code class="r">p + geom_point() +
+    scale_x_log10()
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-16-1.png" alt="plot of chunk unnamed-chunk-16"> </p>
+
+<ul>
+<li>Like this. Notice that we did not have to manually specify any colors. </li>
+<li>Instead we told <code>ggplot()</code> to <em>map</em> the values of <code>contintent</code> to the property, or <em>aesthetic</em>, of <code>color</code></li>
+<li>Try mapping <code>continent</code> to the aesthetic <code>shape</code> instead</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-35'>
+  <h3>Colorless green ideas sleep furiously</h3>
+  <ul>
+<li><code>ggplot</code> implements a &quot;grammar&quot; of graphics, an idea developed by Leland Wilkinson (2005).</li>
+<li>The grammar gives you rules for how to map
+pieces of data to geometric objects (like points and lines) with
+attributes (like color and size), togehter with further rules for
+transforming the data if needed, adjusting scales, or projecting the
+results onto a coordinate system.</li>
+<li>A key point is that, like other rules of syntax, it limits what you
+can say but doesn&#39;t make what you say sensible or meaningful. </li>
+<li>It allows you to produce &quot;sentences&quot; (mappings of data to objects)
+but they can easily be garbled.</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-36'>
+  <h3>More work needed (1)</h3>
+  <pre><code class="r">p + geom_line()
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-17-1.png" alt="plot of chunk unnamed-chunk-17"> </p>
+
+</section>
+<section class='' data-state='' id='slide-37'>
+  <h3>More work needed (2)</h3>
+  <pre><code class="r">p + geom_bar(stat=&quot;identity&quot;)
+</code></pre>
+
+<pre><code>## Warning: position_stack requires constant width: output may be incorrect
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-18-1.png" alt="plot of chunk unnamed-chunk-18"> </p>
+
+</section>
+<section class='' data-state='' id='slide-38'>
+  <h3>On the other hand, once you get used to it, this layered grammar lets you build up sophisticated plots</h3>
+  
+</section>
+<section class='' data-state='' id='slide-39'>
+  
+  <pre><code class="r">p &lt;- ggplot(my.data, aes(x=year, y=lifeExp))
+
+p1 &lt;- p + geom_line(color=&quot;gray70&quot;, aes(group=country)) +
+    geom_smooth(size=1.1, method=&quot;loess&quot;)
+
+p1 + facet_wrap(~ continent) + labs(x=&quot;Year&quot;, y=&quot;Life Expectancy&quot;)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-19-1.png" alt="plot of chunk unnamed-chunk-19"> </p>
+
+</section>
+<section class='' data-state='' id='slide-40'>
   
   
 </section>
@@ -59,7 +482,7 @@
     progress: true,
     history: true,
     center: true,
-    theme: Reveal.getQueryHash().theme || 'solarized', 
+    theme: Reveal.getQueryHash().theme || 'night', 
     transition: Reveal.getQueryHash().transition || 'fade', 
     dependencies: [
     // Cross-browser shim that fully implements classList -
