@@ -456,7 +456,9 @@ p + geom_point(color="firebrick") +
 
 --- 
 
-- Setting an aesthetic has no relationship to the data. The color red is not representing or *mapping* any feature of the data.
+- Setting an aesthetic has no relationship to the data. In the
+  previous plot, the color red is not representing or *mapping* any
+  feature of the data.
 - To see the difference between *setting* and *mapping* an aesthetic, let's go back to our `p` object and recreate it. 
 - This time, in addition to `x` and `y` we tell `ggplot` to map the variable `Continent` to the `color` aesthetic.
 
@@ -546,7 +548,7 @@ p1 + facet_wrap(~ continent) + labs(x="Year", y="GDP")
 
 ---
 
-- To see the logic of each step of a plot, peel the layers bawards from the last one to the first, and see which parts of the plot are changed, or disappear. 
+- To see the logic of each step of a plot, peel the layers backwards from the last one to the first, and see which parts of the plot are changed, or disappear. 
 - Also examine what happens if you change some of the arguments, e.g. `se=TRUE`, or `method='lm'`, or what happens when you leave them at their defaults.
 
 ---

@@ -140,26 +140,26 @@ revealjs:
 
 
 
-![plot of chunk unnamed-chunk-2](assets/fig/wk02-fig-unnamed-chunk-2-1.png) 
+![plot of chunk unnamed-chunk-2](assets/fig/unnamed-chunk-2-1.png) 
 
 - Example: Picking out a data point
 
 ---
 
-![plot of chunk unnamed-chunk-3](assets/fig/wk02-fig-unnamed-chunk-3-1.png) 
+![plot of chunk unnamed-chunk-3](assets/fig/unnamed-chunk-3-1.png) 
 
 - Highlight by shape
 
 ---
 
 
-![plot of chunk unnamed-chunk-4](assets/fig/wk02-fig-unnamed-chunk-4-1.png) 
+![plot of chunk unnamed-chunk-4](assets/fig/unnamed-chunk-4-1.png) 
 
 - Highlight by color
 
 ---
 
-![plot of chunk unnamed-chunk-5](assets/fig/wk02-fig-unnamed-chunk-5-1.png) 
+![plot of chunk unnamed-chunk-5](assets/fig/unnamed-chunk-5-1.png) 
 
 - Highlight by size
 
@@ -167,20 +167,20 @@ revealjs:
 ---
 
 
-![plot of chunk unnamed-chunk-6](assets/fig/wk02-fig-unnamed-chunk-6-1.png) 
+![plot of chunk unnamed-chunk-6](assets/fig/unnamed-chunk-6-1.png) 
 
 - Highlight by all three
 
 ---
 
-![plot of chunk unnamed-chunk-7](assets/fig/wk02-fig-unnamed-chunk-7-1.png) 
+![plot of chunk unnamed-chunk-7](assets/fig/unnamed-chunk-7-1.png) 
 
 - Multiple channels of comparison become uninterpretable very fast
 
 ---
 
 
-![plot of chunk unnamed-chunk-8](assets/fig/wk02-fig-unnamed-chunk-8-1.png) 
+![plot of chunk unnamed-chunk-8](assets/fig/unnamed-chunk-8-1.png) 
 
 - Unless your data has a lot of structure
 
@@ -274,7 +274,7 @@ p <- ggplot(data=my.data,
 p + geom_point()
 ```
 
-![plot of chunk unnamed-chunk-10](assets/fig/wk02-fig-unnamed-chunk-10-1.png) 
+![plot of chunk unnamed-chunk-10](assets/fig/unnamed-chunk-10-1.png) 
 
 ---
 
@@ -302,7 +302,7 @@ p <- ggplot(my.data,
 p + geom_point()
 ```
 
-![plot of chunk unnamed-chunk-11](assets/fig/wk02-fig-unnamed-chunk-11-1.png) 
+![plot of chunk unnamed-chunk-11](assets/fig/unnamed-chunk-11-1.png) 
 
 --- 
 
@@ -312,7 +312,7 @@ p + geom_point() +
     geom_smooth(method="loess") 
 ```
 
-![plot of chunk unnamed-chunk-12](assets/fig/wk02-fig-unnamed-chunk-12-1.png) 
+![plot of chunk unnamed-chunk-12](assets/fig/unnamed-chunk-12-1.png) 
 
 - Here we add a second geom. It's a `loess` smoother. There are
   others. Try `lm`, for example.
@@ -332,7 +332,7 @@ p + geom_point() +
     scale_x_log10()
 ```
 
-![plot of chunk unnamed-chunk-13](assets/fig/wk02-fig-unnamed-chunk-13-1.png) 
+![plot of chunk unnamed-chunk-13](assets/fig/unnamed-chunk-13-1.png) 
 
 - The next layer does not change anything in the underlying data. Instead it adjusts the x-axis scale. 
 
@@ -347,13 +347,15 @@ p + geom_point(color="firebrick") +
     scale_x_log10()
 ```
 
-![plot of chunk unnamed-chunk-14](assets/fig/wk02-fig-unnamed-chunk-14-1.png) 
+![plot of chunk unnamed-chunk-14](assets/fig/unnamed-chunk-14-1.png) 
 
 - Here, notice we changed the color of the points by specifying the `color` argument in `geom_point()`. This is called *setting* an aesthetic feature. 
 
 --- 
 
-- Setting an aesthetic has no relationship to the data. The color red is not representing or *mapping* any feature of the data.
+- Setting an aesthetic has no relationship to the data. In the
+  previous plot, the color red is not representing or *mapping* any
+  feature of the data.
 - To see the difference between *setting* and *mapping* an aesthetic, let's go back to our `p` object and recreate it. 
 - This time, in addition to `x` and `y` we tell `ggplot` to map the variable `Continent` to the `color` aesthetic.
 
@@ -377,7 +379,7 @@ p + geom_point() +
     scale_x_log10()
 ```
 
-![plot of chunk unnamed-chunk-16](assets/fig/wk02-fig-unnamed-chunk-16-1.png) 
+![plot of chunk unnamed-chunk-16](assets/fig/unnamed-chunk-16-1.png) 
 
 - Like this. We do not manually specify any colors. We told `ggplot()` to *map* the values of `contintent` to the property, or *aesthetic*, of `color`
 - Try mapping `continent` to the aesthetic `shape`.
@@ -407,7 +409,7 @@ but they can easily be garbled.
 p + geom_line()
 ```
 
-![plot of chunk unnamed-chunk-17](assets/fig/wk02-fig-unnamed-chunk-17-1.png) 
+![plot of chunk unnamed-chunk-17](assets/fig/unnamed-chunk-17-1.png) 
 
 ---
 
@@ -418,7 +420,11 @@ p + geom_line()
 p + geom_bar(stat="identity")
 ```
 
-![plot of chunk unnamed-chunk-18](assets/fig/wk02-fig-unnamed-chunk-18-1.png) 
+```
+## Warning: position_stack requires constant width: output may be incorrect
+```
+
+![plot of chunk unnamed-chunk-18](assets/fig/unnamed-chunk-18-1.png) 
 
 ----
 
@@ -441,11 +447,11 @@ p1 <- p + geom_line(color="gray70", aes(group=country)) +
 p1 + facet_wrap(~ continent) + labs(x="Year", y="GDP")
 ```
 
-![plot of chunk unnamed-chunk-19](assets/fig/wk02-fig-unnamed-chunk-19-1.png) 
+![plot of chunk unnamed-chunk-19](assets/fig/unnamed-chunk-19-1.png) 
 
 ---
 
-- To see the logic of each step of a plot, peel the layers bawards from the last one to the first, and see which parts of the plot are changed, or disappear. 
+- To see the logic of each step of a plot, peel the layers backwards from the last one to the first, and see which parts of the plot are changed, or disappear. 
 - Also examine what happens if you change some of the arguments, e.g. `se=TRUE`, or `method='lm'`, or what happens when you leave them at their defaults.
 
 ---
