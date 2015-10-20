@@ -8,6 +8,43 @@
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
   <link rel="stylesheet" href="assets/css/Grump.css">
 </head>
 <body>
@@ -25,6 +62,7 @@
 
 
 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;setup/options-and-libraries.r&quot;</span>)</code></pre></div>
 <div class="figure">
 <img src="assets/playfair-time-series.png" alt="William Playfair, Balance of Trade Time Series, 1786" />
 <p class="caption">William Playfair, Balance of Trade Time Series, 1786</p>
@@ -36,7 +74,7 @@
 <p>At the end of the seminar we will have a presentation day. You will be required to give a short talk to the class, presenting the results of an original analysis and visualization of your own dataset. The idea is to visually convey what is interesting about the data—either in terms of initial description, or finished analysis, depending on how long you have been working with the data—as directly and informatively as you can. To that end the presentations will be done in a <a href="https://en.wikipedia.org/wiki/PechaKucha">PechaKucha</a> style. You will have twenty slides to work with, each of which will be shown to the audience for twenty seconds, for a total presentation time of six minutes and forty seconds. Slides will advance automatically, ready or not. For both audience and presenter alike, this format tends to turn the feeling of waiting for the next slide from one of comatose boredom to slightly frantic excitement, much to everyone’s benefit.</p>
 <p>No final paper is required for the course.</p>
 <h1 id="software">Software</h1>
-<p>I teach the course using <a href="https://www.r-project.org">R</a>, the free software environment for statistical computing and graphics. R can be <a href="https://cran.rstudio.com">downloaded</a> and installed on <a href="https://cran.rstudio.com/bin/macosx/">Mac OS X</a> or <a href="https://cran.rstudio.com/bin/windows/">Windows</a> computers, as well as <a href="https://cran.rstudio.com">Linux</a>. Once you have R installed, you should consider installing <a href="https://www.rstudio.com">R Studio</a>, an integrated development environment that makes using R more straightforward. Rstudio is also free.</p>
+<p>I teach the course using <a href="https://www.r-project.org">R</a>, the free software environment for statistical computing and graphics. R can be <a href="https://cran.rstudio.com">downloaded</a> and installed <a href="https://cran.rstudio.com/bin/macosx/">Mac OS X</a> or <a href="https://cran.rstudio.com/bin/windows/">Windows</a> computers, as well as <a href="https://cran.rstudio.com">Linux</a>. Once you have R installed, you should consider installing <a href="https://www.rstudio.com">R Studio</a>, an integrated development environment that makes using R more straightforward. Rstudio is also free.</p>
 <p>We will spend most of our time using <code>ggplot2</code> and <code>lattice</code>, two R graphical libraries that you can use directly to draw figures, and which are also taken advantage of by many other packages to draw summary graphs or visualize the output of statistical models.</p>
 <p>Strictly speaking, R is not required for the course. It might also be possible to use, e.g., <a href="www.stata.com/">Stata</a> to do the assigned work and final presentation. However, I will not be able to offer you much in the way of technical support if you insist on using it. R is widely used across the social sciences and beyond, and there is a very large volume of code and other supporting material available within its very active user and developer community. While Stata and other commercial statistical packages have many virtues, and Stata in particular has a lively user community and powerful advantages of its own, it’s probably worth your while to learn at least some R, especially as its visualization capabilities are very good indeed.</p>
 <p>I encourage the use of version control using <a href="https://git-scm.com">Git</a>. Git allows you to keep track of changes to your code, and much more besides. Git is also free and available for Windows, Mac, and Linux operating systems. Like R, Git also has a number of third-party <a href="https://git-scm.com/download/gui/mac">third-party front ends</a> that make it more convenient to use if you prefer not to work from the command line. Some of these are free, most are not terribly expensive. You should also sign up for a free account on <a href="http://github.com/">GitHub</a>, where much of the material for the course will be hosted. I have a request in to GitHub to allow students in the class to have free private code repositories, which we will use for homework assignments.</p>
@@ -56,6 +94,7 @@
 </ul>
 <h3 id="websites-related-to-r">Websites related to R</h3>
 <ul>
+<li><a href="http://tryr.codeschool.com/levels/1/challenges/1">Try R</a>. An interactive online tutorial. Worth signing up and completing.</li>
 <li><a href="http://www.ats.ucla.edu/stat/">IDRE at UCLA</a>. A very useful resource with numerous worked examples, including data visualization, across a range of statistics packages.</li>
 <li><a href="http://flowingdata.com">Flowingdata</a>. Nathan Yau’s website. Good for inspiration and also tutorials.</li>
 <li><a href="https://www.rstudio.com/resources/cheatsheets/">RStudio Cheatsheets</a> Well-designed cheatsheets for working with <a href="https://www.rstudio.com/wp-content/uploads/2015/08/ggplot2-cheatsheet.pdf">ggplot2</a>, <a href="https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf">RMarkdown</a>, <a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">RMarkdown again</a>, <a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">dplyr and tidyr</a>, and <a href="https://www.rstudio.com/wp-content/uploads/2015/06/devtools-cheatsheet.pdf">R Packages</a>.</li>
@@ -96,15 +135,15 @@
 <li><p>Kieran Healy. 2014. <a href="http://kieranhealy.org/blog/archives/2014/01/23/plain-text/">Plain Text, Papers, Pandoc</a>. An overview of how to get from a plain-text RMarkdown document to a nice PDF or HTML page. Something like this is what goes on behind the scenes when you generate reports or slides in RStudio.</p></li>
 <li><p>Kieran Healy and James Moody. 2014. <a href="http://kieranhealy.org/files/papers/data-visualization.pdf">Data Visualization in Sociology</a>. <em>Annual Review of Sociology</em> 40: 105-128.</p></li>
 </ul>
-<h2 id="week-2-one-variable-two-variables-three-variables">Week 2: One Variable, Two Variables, Three Variables</h2>
+<h2 id="week-2-getting-into-ggplot">Week 2: Getting into <code>ggplot</code></h2>
 <ul>
 <li>More on perception and the principles of graph construction it implies.</li>
 <li>Graphs are simple and immediately interpretable, just until you need them to be detailed and require study.</li>
-<li>Scales, Lengths, Areas, and Angles.</li>
-<li>Dotplots, Histograms, and Boxplots.</li>
-<li>Scatterplots and Smoothers.</li>
-<li>Working with base R, <code>ggplot</code> and <code>lattice</code> graphics.</li>
+<li>Working with <code>ggplot</code>: data, layers, and mappings.</li>
 </ul>
+<h3 id="week-2-materials">Week 2 Materials</h3>
+<p><a href="week-02/index.html">Week 2 Slides</a></p>
+<p><a href="https://github.com/socviz/soc880/blob/gh-pages/week-02/index.Rmd">Rmd file for the slides</a></p>
 <h2 id="week-3-exploring-whole-datasets-creating-more-complex-figures">Week 3: Exploring Whole Datasets, Creating More Complex Figures</h2>
 <ul>
 <li>Shaping, reshaping, and summarizing data.</li>

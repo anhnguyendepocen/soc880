@@ -157,7 +157,7 @@ gestalt-like rules.</li>
 </section>
 <section class='' data-state='' id='slide-15'>
   
-  <p><img src="assets/fig/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"> </p>
+  <p><img src="../figures/wk02-fig-unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"> </p>
 
 <ul>
 <li>Example: Picking out a data point</li>
@@ -166,7 +166,7 @@ gestalt-like rules.</li>
 </section>
 <section class='' data-state='' id='slide-16'>
   
-  <p><img src="assets/fig/unnamed-chunk-3-1.png" alt="plot of chunk unnamed-chunk-3"> </p>
+  <p><img src="../figures/wk02-fig-unnamed-chunk-3-1.png" alt="plot of chunk unnamed-chunk-3"> </p>
 
 <ul>
 <li>Highlight by shape</li>
@@ -175,7 +175,7 @@ gestalt-like rules.</li>
 </section>
 <section class='' data-state='' id='slide-17'>
   
-  <p><img src="assets/fig/unnamed-chunk-4-1.png" alt="plot of chunk unnamed-chunk-4"> </p>
+  <p><img src="../figures/wk02-fig-unnamed-chunk-4-1.png" alt="plot of chunk unnamed-chunk-4"> </p>
 
 <ul>
 <li>Highlight by color</li>
@@ -184,7 +184,7 @@ gestalt-like rules.</li>
 </section>
 <section class='' data-state='' id='slide-18'>
   
-  <p><img src="assets/fig/unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5"> </p>
+  <p><img src="../figures/wk02-fig-unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5"> </p>
 
 <ul>
 <li>Highlight by size</li>
@@ -193,7 +193,7 @@ gestalt-like rules.</li>
 </section>
 <section class='' data-state='' id='slide-19'>
   
-  <p><img src="assets/fig/unnamed-chunk-6-1.png" alt="plot of chunk unnamed-chunk-6"> </p>
+  <p><img src="../figures/wk02-fig-unnamed-chunk-6-1.png" alt="plot of chunk unnamed-chunk-6"> </p>
 
 <ul>
 <li>Highlight by all three</li>
@@ -202,7 +202,7 @@ gestalt-like rules.</li>
 </section>
 <section class='' data-state='' id='slide-20'>
   
-  <p><img src="assets/fig/unnamed-chunk-7-1.png" alt="plot of chunk unnamed-chunk-7"> </p>
+  <p><img src="../figures/wk02-fig-unnamed-chunk-7-1.png" alt="plot of chunk unnamed-chunk-7"> </p>
 
 <ul>
 <li>Multiple channels of comparison become uninterpretable very fast</li>
@@ -211,7 +211,7 @@ gestalt-like rules.</li>
 </section>
 <section class='' data-state='' id='slide-21'>
   
-  <p><img src="assets/fig/unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8"> </p>
+  <p><img src="../figures/wk02-fig-unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8"> </p>
 
 <ul>
 <li>Unless your data has a lot of structure</li>
@@ -299,7 +299,7 @@ shapes on the plot.</li>
 <pre><code class="r">p + geom_point()
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-10-1.png" alt="plot of chunk unnamed-chunk-10"> </p>
+<p><img src="../figures/wk02-fig-unnamed-chunk-10-1.png" alt="plot of chunk unnamed-chunk-10"> </p>
 
 <ul>
 <li>This takes the <code>p</code> object we&#39;ve created, and applies <code>geom_point()</code>
@@ -329,7 +329,7 @@ them in a scatterplot.</li>
 p + geom_point()
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-11-1.png" alt="plot of chunk unnamed-chunk-11"> </p>
+<p><img src="../figures/wk02-fig-unnamed-chunk-11-1.png" alt="plot of chunk unnamed-chunk-11"> </p>
 
 </section>
 <section class='' data-state='' id='slide-30'>
@@ -338,7 +338,7 @@ p + geom_point()
     geom_smooth(method=&quot;loess&quot;) 
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-12-1.png" alt="plot of chunk unnamed-chunk-12"> </p>
+<p><img src="../figures/wk02-fig-unnamed-chunk-12-1.png" alt="plot of chunk unnamed-chunk-12"> </p>
 
 <ul>
 <li>Here we add a second geom. It&#39;s a <code>loess</code> smoother. There are
@@ -356,7 +356,7 @@ information in <code>p</code> about what the <code>x</code> and <code>y</code> v
     scale_x_log10()
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-13-1.png" alt="plot of chunk unnamed-chunk-13"> </p>
+<p><img src="../figures/wk02-fig-unnamed-chunk-13-1.png" alt="plot of chunk unnamed-chunk-13"> </p>
 
 <ul>
 <li>The next layer does not change anything in the underlying data. Instead it adjusts the x-axis scale. </li>
@@ -370,7 +370,7 @@ information in <code>p</code> about what the <code>x</code> and <code>y</code> v
     scale_x_log10()
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-14-1.png" alt="plot of chunk unnamed-chunk-14"> </p>
+<p><img src="../figures/wk02-fig-unnamed-chunk-14-1.png" alt="plot of chunk unnamed-chunk-14"> </p>
 
 <ul>
 <li>Here, notice we changed the color of the points by specifying the <code>color</code> argument in <code>geom_point()</code></li>
@@ -404,7 +404,7 @@ information in <code>p</code> about what the <code>x</code> and <code>y</code> v
     scale_x_log10()
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-16-1.png" alt="plot of chunk unnamed-chunk-16"> </p>
+<p><img src="../figures/wk02-fig-unnamed-chunk-16-1.png" alt="plot of chunk unnamed-chunk-16"> </p>
 
 <ul>
 <li>Like this. Notice that we did not have to manually specify any colors. </li>
@@ -434,7 +434,7 @@ but they can easily be garbled.</li>
   <pre><code class="r">p + geom_line()
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-17-1.png" alt="plot of chunk unnamed-chunk-17"> </p>
+<p><img src="../figures/wk02-fig-unnamed-chunk-17-1.png" alt="plot of chunk unnamed-chunk-17"> </p>
 
 </section>
 <section class='' data-state='' id='slide-37'>
@@ -442,10 +442,7 @@ but they can easily be garbled.</li>
   <pre><code class="r">p + geom_bar(stat=&quot;identity&quot;)
 </code></pre>
 
-<pre><code>## Warning: position_stack requires constant width: output may be incorrect
-</code></pre>
-
-<p><img src="assets/fig/unnamed-chunk-18-1.png" alt="plot of chunk unnamed-chunk-18"> </p>
+<p><img src="../figures/wk02-fig-unnamed-chunk-18-1.png" alt="plot of chunk unnamed-chunk-18"> </p>
 
 </section>
 <section class='' data-state='' id='slide-38'>
@@ -462,7 +459,7 @@ p1 &lt;- p + geom_line(color=&quot;gray70&quot;, aes(group=country)) +
 p1 + facet_wrap(~ continent) + labs(x=&quot;Year&quot;, y=&quot;Life Expectancy&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-19-1.png" alt="plot of chunk unnamed-chunk-19"> </p>
+<p><img src="../figures/wk02-fig-unnamed-chunk-19-1.png" alt="plot of chunk unnamed-chunk-19"> </p>
 
 </section>
 <section class='' data-state='' id='slide-40'>
