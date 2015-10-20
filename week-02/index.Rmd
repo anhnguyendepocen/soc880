@@ -75,6 +75,27 @@ opts_chunk$set(fig.path="../figures/wk02-fig-",
 
 ---
 
+## Reminder
+
+- There are two ways to learn R: the easy way and the tedious way. 
+- The problem is that the easy way doesn't work.
+- You have to practice the examples and work through them manually.
+  Type them out, even if you're just copying at the beginning. It
+  really will help you get used to how the language works.
+
+--- 
+
+## Reminder
+
+- You will benefit a lot from taking almost any R tutorial, whether from a textbook or online. The syllabus has links. 
+- For example, [Try R](http://tryr.codeschool.com/levels/1/challenges/1)
+
+---
+
+# Principles Again
+
+---
+
 ## Perception
 
 - Visualizing data is not just a matter of good taste.
@@ -82,6 +103,15 @@ opts_chunk$set(fig.path="../figures/wk02-fig-",
 - These have consequences for how we will want to encode data when we
   visualize it---i.e., how and whether we choose to represent numbers
   or categories as shapes, colors, lengths, etc.
+
+---
+
+## Perception
+
+- We easily see edges, contrasts, and movement.
+- Put another way: we more easily see relative differences than absolute
+  values.
+
 
 ---
 
@@ -94,6 +124,12 @@ opts_chunk$set(fig.path="../figures/wk02-fig-",
 ![Contrast Effects](../assets/perception-contrast-effects.png)
 
 - Contrast Effects 
+
+---
+
+![What stands out](../assets/perception-easy-hard.png)
+
+- Some things pop out more easily than others. (Examples from Miriah Meyer.)
 
 ---
 
