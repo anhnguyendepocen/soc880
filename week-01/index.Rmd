@@ -11,7 +11,7 @@ mode        : selfcontained # {standalone, draft}
 knit        : slidify::knit2slides
 url         : {lib: "."}
 revealjs:
-  theme: moon
+  theme: night
   transition: fade
   center: "true"
 ---
@@ -41,7 +41,7 @@ opts_chunk$set(fig.path="../figures/wk01-fig-",
 
 ```
 
-# Data Visualization: Week 1
+# Data Visualization Week 1
 
 ### Kieran Healy, Duke University
 
@@ -323,7 +323,6 @@ str(summary)
 
 ---
 
-##
 
 ![A 3-D Pie Chart created in Excel for Mac](../assets/wk-01-excel-3d-pie-chart-values.png)
 
@@ -349,14 +348,14 @@ str(summary)
 
 ---
 
-## Some Principles from William Cleveland
+## William Cleveland
 
 ![Cleveland's visual tasks](../assets/wk-01-cleveland-tasks.png)
 
 ---
 
 
-## Some Principles from William Cleveland
+## William Cleveland
 
 - It is difficult to compare length judgments without a common baseline.
 - People misjudge *areas* easily. Area judgments are less accurate than length judgments or position judgments.
