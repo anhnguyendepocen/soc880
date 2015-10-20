@@ -422,12 +422,17 @@ p + geom_bar(stat="identity")
 
 ----
 
-### On the other hand, once you get used to it, this layered grammar lets you build up sophisticated plots
+### Once you get used to it, this layered grammar lets you build up sophisticated plots
 
 ---
 
 
 ```r
+## "Not in" convenience operator
+"%nin%" <- function(x, y) {
+  return( !(x %in% y) )
+}
+
 p <- ggplot(subset(my.data, country %nin% "Kuwait"), aes(x=year, y=gdpPercap))
 
 p1 <- p + geom_line(color="gray70", aes(group=country)) +

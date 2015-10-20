@@ -27,6 +27,7 @@ revealjs:
 
 library(devtools)
 library(ggplot2)
+library(knitr)
 
 opts_chunk$set(fig.path="assets/fig/wk02-fig-",
                cache.path="../cache/working-",
@@ -522,11 +523,16 @@ p + geom_bar(stat="identity")
 
 ----
 
-### On the other hand, once you get used to it, this layered grammar lets you build up sophisticated plots
+### Once you get used to it, this layered grammar lets you build up sophisticated plots
 
 ---
 
-```{r}
+```{r, fig.width=12, fig.height=5}
+
+## "Not in" convenience operator
+"%nin%" <- function(x, y) {
+  return( !(x %in% y) )
+}
 
 p <- ggplot(subset(my.data, country %nin% "Kuwait"), aes(x=year, y=gdpPercap))
 

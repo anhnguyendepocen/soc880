@@ -456,12 +456,17 @@ but they can easily be garbled.</li>
 
 </section>
 <section class='' data-state='' id='slide-41'>
-  <h3>On the other hand, once you get used to it, this layered grammar lets you build up sophisticated plots</h3>
+  <h3>Once you get used to it, this layered grammar lets you build up sophisticated plots</h3>
   
 </section>
 <section class='' data-state='' id='slide-42'>
   
-  <pre><code class="r">p &lt;- ggplot(subset(my.data, country %nin% &quot;Kuwait&quot;), aes(x=year, y=gdpPercap))
+  <pre><code class="r">## &quot;Not in&quot; convenience operator
+&quot;%nin%&quot; &lt;- function(x, y) {
+  return( !(x %in% y) )
+}
+
+p &lt;- ggplot(subset(my.data, country %nin% &quot;Kuwait&quot;), aes(x=year, y=gdpPercap))
 
 p1 &lt;- p + geom_line(color=&quot;gray70&quot;, aes(group=country)) +
     geom_smooth(size=1.1, method=&quot;loess&quot;, se=FALSE)
