@@ -132,8 +132,7 @@ gestalt-like rules.</li>
   <p><img src="../assets/perception-easy-hard.png" alt="What stands out"></p>
 
 <ul>
-<li>Some things pop out more easily than others. (Examples from Miriah Meyer.)</li>
-<li>For more on perception, color, and cognitive processing of images, see <a href="http://www.sci.utah.edu/%7Emiriah/cs6630/">Miriah Meyer&#39;s Visualization Lectures</a>, especially weeks 2 and 3.</li>
+<li>(Miriah Meyer.)</li>
 </ul>
 
 </section>
@@ -157,79 +156,86 @@ gestalt-like rules.</li>
 </section>
 <section class='' data-state='' id='slide-15'>
   
-  <p><img src="../figures/wk02-fig-unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"> </p>
+  <ul>
+<li>For more on perception, color, and cognitive processing of images, see <a href="http://www.sci.utah.edu/%7Emiriah/cs6630/">Miriah Meyer&#39;s Visualization Lectures</a>, especially weeks 2 and 3.</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-16'>
+  
+  <p><img src="assets/fig/wk02-fig-unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"> </p>
 
 <ul>
 <li>Example: Picking out a data point</li>
 </ul>
 
 </section>
-<section class='' data-state='' id='slide-16'>
+<section class='' data-state='' id='slide-17'>
   
-  <p><img src="../figures/wk02-fig-unnamed-chunk-3-1.png" alt="plot of chunk unnamed-chunk-3"> </p>
+  <p><img src="assets/fig/wk02-fig-unnamed-chunk-3-1.png" alt="plot of chunk unnamed-chunk-3"> </p>
 
 <ul>
 <li>Highlight by shape</li>
 </ul>
 
 </section>
-<section class='' data-state='' id='slide-17'>
+<section class='' data-state='' id='slide-18'>
   
-  <p><img src="../figures/wk02-fig-unnamed-chunk-4-1.png" alt="plot of chunk unnamed-chunk-4"> </p>
+  <p><img src="assets/fig/wk02-fig-unnamed-chunk-4-1.png" alt="plot of chunk unnamed-chunk-4"> </p>
 
 <ul>
 <li>Highlight by color</li>
 </ul>
 
 </section>
-<section class='' data-state='' id='slide-18'>
+<section class='' data-state='' id='slide-19'>
   
-  <p><img src="../figures/wk02-fig-unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5"> </p>
+  <p><img src="assets/fig/wk02-fig-unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5"> </p>
 
 <ul>
 <li>Highlight by size</li>
 </ul>
 
 </section>
-<section class='' data-state='' id='slide-19'>
+<section class='' data-state='' id='slide-20'>
   
-  <p><img src="../figures/wk02-fig-unnamed-chunk-6-1.png" alt="plot of chunk unnamed-chunk-6"> </p>
+  <p><img src="assets/fig/wk02-fig-unnamed-chunk-6-1.png" alt="plot of chunk unnamed-chunk-6"> </p>
 
 <ul>
 <li>Highlight by all three</li>
 </ul>
 
 </section>
-<section class='' data-state='' id='slide-20'>
+<section class='' data-state='' id='slide-21'>
   
-  <p><img src="../figures/wk02-fig-unnamed-chunk-7-1.png" alt="plot of chunk unnamed-chunk-7"> </p>
+  <p><img src="assets/fig/wk02-fig-unnamed-chunk-7-1.png" alt="plot of chunk unnamed-chunk-7"> </p>
 
 <ul>
 <li>Multiple channels of comparison become uninterpretable very fast</li>
 </ul>
 
 </section>
-<section class='' data-state='' id='slide-21'>
+<section class='' data-state='' id='slide-22'>
   
-  <p><img src="../figures/wk02-fig-unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8"> </p>
+  <p><img src="assets/fig/wk02-fig-unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8"> </p>
 
 <ul>
 <li>Unless your data has a lot of structure</li>
 </ul>
 
 </section>
-<section class='' data-state='' id='slide-22'>
+<section class='' data-state='' id='slide-23'>
   
   <p><q> The data on the graph are the reason for the existence of the graph.</q></p>
 
 <p>Cleveland (1994, 25)</p>
 
 </section>
-<section class='' data-state='' id='slide-23'>
+<section class='' data-state='' id='slide-24'>
   <h1>Writing Plots</h1>
   
 </section>
-<section class='' data-state='' id='slide-24'>
+<section class='' data-state='' id='slide-25'>
   <h2>Go get the Gapminder Data</h2>
   <pre><code class="r">gapminder.url &lt;- &quot;https://raw.githubusercontent.com/socviz/soc880/master/data/gapminder.csv&quot;
 my.data &lt;- read.csv(url(gapminder.url))
@@ -257,13 +263,13 @@ every object having a class.</li>
 </ul>
 
 </section>
-<section class='' data-state='' id='slide-25'>
+<section class='' data-state='' id='slide-26'>
   
   <pre><code class="r">## We&#39;ll be a bit more verbose
 ## to make things clearer
 p &lt;- ggplot(data=my.data,
             aes(x=gdpPercap,
-                y=lifeExp))
+                y=lifeExp)) 
 </code></pre>
 
 <ul>
@@ -271,12 +277,12 @@ p &lt;- ggplot(data=my.data,
 <li>We start with a clean data frame called <code>my.data</code></li>
 <li>Then we tell <code>ggplot</code> what pieces of it we are interested in right now.</li>
 <li>We create an object called <code>p</code> containing this information</li>
-<li>Here, <code>x=gfpPercap</code> and <code>y=lifeExp</code> say what will go on the <code>x</code> and the <code>y</code> axes</li>
+<li>Here, <code>x=gdpPercap</code> and <code>y=lifeExp</code> say what will go on the <code>x</code> and the <code>y</code> axes</li>
 <li>These are <em>aesthetic mappings</em> that connect pieces of the data to things we can actually see on a plot.</li>
 </ul>
 
 </section>
-<section class='' data-state='' id='slide-26'>
+<section class='' data-state='' id='slide-27'>
   <h2>About aesthetic mappings</h2>
   <ul>
 <li>The <code>aes()</code> function <em>links variables</em> to <em>things you will see</em> on the plot.</li>
@@ -289,26 +295,26 @@ shapes on the plot.</li>
 </ul>
 
 </section>
-<section class='' data-state='' id='slide-27'>
+<section class='' data-state='' id='slide-28'>
   <h3>Adding layers to the plot</h3>
   <ul>
 <li>What happens when you type <code>p</code> at the console and hit return?</li>
 <li>We need to add a <em>layer</em> to the plot. </li>
-</ul>
-
-<pre><code class="r">p + geom_point()
-</code></pre>
-
-<p><img src="../figures/wk02-fig-unnamed-chunk-10-1.png" alt="plot of chunk unnamed-chunk-10"> </p>
-
-<ul>
 <li>This takes the <code>p</code> object we&#39;ve created, and applies <code>geom_point()</code>
 to it, a function that knows how to take <code>x</code> and <code>y</code> values and plot
 them in a scatterplot.</li>
 </ul>
 
 </section>
-<section class='' data-state='' id='slide-28'>
+<section class='' data-state='' id='slide-29'>
+  
+  <pre><code class="r">p + geom_point()
+</code></pre>
+
+<p><img src="assets/fig/wk02-fig-unnamed-chunk-10-1.png" alt="plot of chunk unnamed-chunk-10"> </p>
+
+</section>
+<section class='' data-state='' id='slide-30'>
   <h2>The Plot-Making Process</h2>
   <h4>0. Start with your data in the right shape</h4>
 
@@ -321,7 +327,7 @@ them in a scatterplot.</li>
 <h4>4. Fine-tune scales, labels, tick marks, etc</h4>
 
 </section>
-<section class='' data-state='' id='slide-29'>
+<section class='' data-state='' id='slide-31'>
   <h4>This layering process is literally additive</h4>
   <pre><code class="r">p &lt;- ggplot(my.data,
             aes(x=gdpPercap, y=lifeExp))
@@ -329,59 +335,64 @@ them in a scatterplot.</li>
 p + geom_point()
 </code></pre>
 
-<p><img src="../figures/wk02-fig-unnamed-chunk-11-1.png" alt="plot of chunk unnamed-chunk-11"> </p>
+<p><img src="assets/fig/wk02-fig-unnamed-chunk-11-1.png" alt="plot of chunk unnamed-chunk-11"> </p>
 
 </section>
-<section class='' data-state='' id='slide-30'>
+<section class='' data-state='' id='slide-32'>
   
   <pre><code class="r">p + geom_point() +
     geom_smooth(method=&quot;loess&quot;) 
 </code></pre>
 
-<p><img src="../figures/wk02-fig-unnamed-chunk-12-1.png" alt="plot of chunk unnamed-chunk-12"> </p>
+<p><img src="assets/fig/wk02-fig-unnamed-chunk-12-1.png" alt="plot of chunk unnamed-chunk-12"> </p>
 
 <ul>
 <li>Here we add a second geom. It&#39;s a <code>loess</code> smoother. There are
 others. Try <code>lm</code>, for example.</li>
-<li>What happens when you put <code>geom_smooth()</code> first instead of second?</li>
-<li>Notice how both <code>geom_point</code> and <code>geom_smooth()</code> inherit the
-information in <code>p</code> about what the <code>x</code> and <code>y</code> variables are.</li>
-</ul>
-
-</section>
-<section class='' data-state='' id='slide-31'>
-  
-  <pre><code class="r">p + geom_point() +
-    geom_smooth(method=&quot;loess&quot;) +
-    scale_x_log10()
-</code></pre>
-
-<p><img src="../figures/wk02-fig-unnamed-chunk-13-1.png" alt="plot of chunk unnamed-chunk-13"> </p>
-
-<ul>
-<li>The next layer does not change anything in the underlying data. Instead it adjusts the x-axis scale. </li>
-</ul>
-
-</section>
-<section class='' data-state='' id='slide-32'>
-  
-  <pre><code class="r">p + geom_point(color=&quot;firebrick&quot;) +
-    geom_smooth(method=&quot;loess&quot;) +
-    scale_x_log10()
-</code></pre>
-
-<p><img src="../figures/wk02-fig-unnamed-chunk-14-1.png" alt="plot of chunk unnamed-chunk-14"> </p>
-
-<ul>
-<li>Here, notice we changed the color of the points by specifying the <code>color</code> argument in <code>geom_point()</code></li>
-<li>This is called <em>setting</em> an aesthetic feature. </li>
-<li>It has no relationship to the data. The color red is not representing or <em>mapping</em> any feature of the data.</li>
 </ul>
 
 </section>
 <section class='' data-state='' id='slide-33'>
   
   <ul>
+<li>What happens when you put <code>geom_smooth()</code> first instead of second?</li>
+<li>Notice how both <code>geom_point</code> and <code>geom_smooth()</code> inherit the
+information in <code>p</code> about what the <code>x</code> and <code>y</code> variables are.</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-34'>
+  
+  <pre><code class="r">p + geom_point() +
+    geom_smooth(method=&quot;loess&quot;) +
+    scale_x_log10()
+</code></pre>
+
+<p><img src="assets/fig/wk02-fig-unnamed-chunk-13-1.png" alt="plot of chunk unnamed-chunk-13"> </p>
+
+<ul>
+<li>The next layer does not change anything in the underlying data. Instead it adjusts the x-axis scale. </li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-35'>
+  
+  <pre><code class="r">p + geom_point(color=&quot;firebrick&quot;) +
+    geom_smooth(method=&quot;loess&quot;) +
+    scale_x_log10()
+</code></pre>
+
+<p><img src="assets/fig/wk02-fig-unnamed-chunk-14-1.png" alt="plot of chunk unnamed-chunk-14"> </p>
+
+<ul>
+<li>Here, notice we changed the color of the points by specifying the <code>color</code> argument in <code>geom_point()</code>. This is called <em>setting</em> an aesthetic feature. </li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-36'>
+  
+  <ul>
+<li>Setting an aesthetic has no relationship to the data. The color red is not representing or <em>mapping</em> any feature of the data.</li>
 <li>To see the difference between <em>setting</em> and <em>mapping</em> an aesthetic, let&#39;s go back to our <code>p</code> object and recreate it. </li>
 <li>This time, in addition to <code>x</code> and <code>y</code> we tell <code>ggplot</code> to map the variable <code>Continent</code> to the <code>color</code> aesthetic.</li>
 </ul>
@@ -398,28 +409,27 @@ information in <code>p</code> about what the <code>x</code> and <code>y</code> v
 </ul>
 
 </section>
-<section class='' data-state='' id='slide-34'>
+<section class='' data-state='' id='slide-37'>
   
   <pre><code class="r">p + geom_point() +
     scale_x_log10()
 </code></pre>
 
-<p><img src="../figures/wk02-fig-unnamed-chunk-16-1.png" alt="plot of chunk unnamed-chunk-16"> </p>
+<p><img src="assets/fig/wk02-fig-unnamed-chunk-16-1.png" alt="plot of chunk unnamed-chunk-16"> </p>
 
 <ul>
-<li>Like this. Notice that we did not have to manually specify any colors. </li>
-<li>Instead we told <code>ggplot()</code> to <em>map</em> the values of <code>contintent</code> to the property, or <em>aesthetic</em>, of <code>color</code></li>
-<li>Try mapping <code>continent</code> to the aesthetic <code>shape</code> instead</li>
+<li>Like this. We do not manually specify any colors. We told <code>ggplot()</code> to <em>map</em> the values of <code>contintent</code> to the property, or <em>aesthetic</em>, of <code>color</code></li>
+<li>Try mapping <code>continent</code> to the aesthetic <code>shape</code>.</li>
 </ul>
 
 </section>
-<section class='' data-state='' id='slide-35'>
+<section class='' data-state='' id='slide-38'>
   <h3>Colorless green ideas sleep furiously</h3>
   <ul>
 <li><code>ggplot</code> implements a &quot;grammar&quot; of graphics, an idea developed by Leland Wilkinson (2005).</li>
 <li>The grammar gives you rules for how to map
 pieces of data to geometric objects (like points and lines) with
-attributes (like color and size), togehter with further rules for
+attributes (like color and size), together with further rules for
 transforming the data if needed, adjusting scales, or projecting the
 results onto a coordinate system.</li>
 <li>A key point is that, like other rules of syntax, it limits what you
@@ -429,40 +439,48 @@ but they can easily be garbled.</li>
 </ul>
 
 </section>
-<section class='' data-state='' id='slide-36'>
+<section class='' data-state='' id='slide-39'>
   <h3>More work needed (1)</h3>
   <pre><code class="r">p + geom_line()
 </code></pre>
 
-<p><img src="../figures/wk02-fig-unnamed-chunk-17-1.png" alt="plot of chunk unnamed-chunk-17"> </p>
+<p><img src="assets/fig/wk02-fig-unnamed-chunk-17-1.png" alt="plot of chunk unnamed-chunk-17"> </p>
 
 </section>
-<section class='' data-state='' id='slide-37'>
+<section class='' data-state='' id='slide-40'>
   <h3>More work needed (2)</h3>
   <pre><code class="r">p + geom_bar(stat=&quot;identity&quot;)
 </code></pre>
 
-<p><img src="../figures/wk02-fig-unnamed-chunk-18-1.png" alt="plot of chunk unnamed-chunk-18"> </p>
+<p><img src="assets/fig/wk02-fig-unnamed-chunk-18-1.png" alt="plot of chunk unnamed-chunk-18"> </p>
 
 </section>
-<section class='' data-state='' id='slide-38'>
+<section class='' data-state='' id='slide-41'>
   <h3>On the other hand, once you get used to it, this layered grammar lets you build up sophisticated plots</h3>
   
 </section>
-<section class='' data-state='' id='slide-39'>
+<section class='' data-state='' id='slide-42'>
   
-  <pre><code class="r">p &lt;- ggplot(my.data, aes(x=year, y=lifeExp))
+  <pre><code class="r">p &lt;- ggplot(subset(my.data, country %nin% &quot;Kuwait&quot;), aes(x=year, y=gdpPercap))
 
 p1 &lt;- p + geom_line(color=&quot;gray70&quot;, aes(group=country)) +
-    geom_smooth(size=1.1, method=&quot;loess&quot;)
+    geom_smooth(size=1.1, method=&quot;loess&quot;, se=FALSE)
 
-p1 + facet_wrap(~ continent) + labs(x=&quot;Year&quot;, y=&quot;Life Expectancy&quot;)
+p1 + facet_wrap(~ continent) + labs(x=&quot;Year&quot;, y=&quot;GDP&quot;)
 </code></pre>
 
-<p><img src="../figures/wk02-fig-unnamed-chunk-19-1.png" alt="plot of chunk unnamed-chunk-19"> </p>
+<p><img src="assets/fig/wk02-fig-unnamed-chunk-19-1.png" alt="plot of chunk unnamed-chunk-19"> </p>
 
 </section>
-<section class='' data-state='' id='slide-40'>
+<section class='' data-state='' id='slide-43'>
+  
+  <ul>
+<li>To see the logic of each step of a plot, peel the layers bawards from the last one to the first, and see which parts of the plot are changed, or disappear. </li>
+<li>Also examine what happens if you change some of the arguments, e.g. <code>se=TRUE</code>, or <code>method=&#39;lm&#39;</code>, or what happens when you leave them at their defaults.</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-44'>
   
   
 </section>

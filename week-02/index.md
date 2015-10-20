@@ -14,6 +14,7 @@ revealjs:
   theme: night
   transition: fade
   center: "true"
+  height: 600
 ---
 
 <style type='text/css'>
@@ -21,7 +22,6 @@ revealjs:
   font-size: 28px;  
 }
 </style>
-
 
 
 
@@ -116,8 +116,7 @@ revealjs:
 
 ![What stands out](../assets/perception-easy-hard.png)
 
-- Some things pop out more easily than others. (Examples from Miriah Meyer.)
-- For more on perception, color, and cognitive processing of images, see [Miriah Meyer's Visualization Lectures](http://www.sci.utah.edu/~miriah/cs6630/), especially weeks 2 and 3.
+- (Miriah Meyer.)
 
 ---
 
@@ -134,28 +133,33 @@ revealjs:
 
 ---
 
+- For more on perception, color, and cognitive processing of images, see [Miriah Meyer's Visualization Lectures](http://www.sci.utah.edu/~miriah/cs6630/), especially weeks 2 and 3.
+
+---
 
 
-![plot of chunk unnamed-chunk-2](../figures/wk02-fig-unnamed-chunk-2-1.png) 
+
+
+![plot of chunk unnamed-chunk-2](assets/fig/wk02-fig-unnamed-chunk-2-1.png) 
 
 - Example: Picking out a data point
 
 ---
 
-![plot of chunk unnamed-chunk-3](../figures/wk02-fig-unnamed-chunk-3-1.png) 
+![plot of chunk unnamed-chunk-3](assets/fig/wk02-fig-unnamed-chunk-3-1.png) 
 
 - Highlight by shape
 
 ---
 
 
-![plot of chunk unnamed-chunk-4](../figures/wk02-fig-unnamed-chunk-4-1.png) 
+![plot of chunk unnamed-chunk-4](assets/fig/wk02-fig-unnamed-chunk-4-1.png) 
 
 - Highlight by color
 
 ---
 
-![plot of chunk unnamed-chunk-5](../figures/wk02-fig-unnamed-chunk-5-1.png) 
+![plot of chunk unnamed-chunk-5](assets/fig/wk02-fig-unnamed-chunk-5-1.png) 
 
 - Highlight by size
 
@@ -163,20 +167,20 @@ revealjs:
 ---
 
 
-![plot of chunk unnamed-chunk-6](../figures/wk02-fig-unnamed-chunk-6-1.png) 
+![plot of chunk unnamed-chunk-6](assets/fig/wk02-fig-unnamed-chunk-6-1.png) 
 
 - Highlight by all three
 
 ---
 
-![plot of chunk unnamed-chunk-7](../figures/wk02-fig-unnamed-chunk-7-1.png) 
+![plot of chunk unnamed-chunk-7](assets/fig/wk02-fig-unnamed-chunk-7-1.png) 
 
 - Multiple channels of comparison become uninterpretable very fast
 
 ---
 
 
-![plot of chunk unnamed-chunk-8](../figures/wk02-fig-unnamed-chunk-8-1.png) 
+![plot of chunk unnamed-chunk-8](assets/fig/wk02-fig-unnamed-chunk-8-1.png) 
 
 - Unless your data has a lot of structure
 
@@ -230,14 +234,14 @@ head(my.data)
 ## to make things clearer
 p <- ggplot(data=my.data,
             aes(x=gdpPercap,
-                y=lifeExp))
+                y=lifeExp)) 
 ```
 
 - `ggplot` works by building your plot piece by piece
 - We start with a clean data frame called `my.data`
 - Then we tell `ggplot` what pieces of it we are interested in right now.
 - We create an object called `p` containing this information
-- Here, `x=gfpPercap` and `y=lifeExp` say what will go on the `x` and the `y` axes
+- Here, `x=gdpPercap` and `y=lifeExp` say what will go on the `x` and the `y` axes
 - These are *aesthetic mappings* that connect pieces of the data to things we can actually see on a plot.
 
 
@@ -259,18 +263,18 @@ p <- ggplot(data=my.data,
 
 - What happens when you type `p` at the console and hit return?
 - We need to add a *layer* to the plot. 
+- This takes the `p` object we've created, and applies `geom_point()`
+  to it, a function that knows how to take `x` and `y` values and plot
+  them in a scatterplot.
+
+---
 
 
 ```r
 p + geom_point()
 ```
 
-![plot of chunk unnamed-chunk-10](../figures/wk02-fig-unnamed-chunk-10-1.png) 
-
-- This takes the `p` object we've created, and applies `geom_point()`
-  to it, a function that knows how to take `x` and `y` values and plot
-  them in a scatterplot.
-
+![plot of chunk unnamed-chunk-10](assets/fig/wk02-fig-unnamed-chunk-10-1.png) 
 
 ---
 
@@ -298,7 +302,7 @@ p <- ggplot(my.data,
 p + geom_point()
 ```
 
-![plot of chunk unnamed-chunk-11](../figures/wk02-fig-unnamed-chunk-11-1.png) 
+![plot of chunk unnamed-chunk-11](assets/fig/wk02-fig-unnamed-chunk-11-1.png) 
 
 --- 
 
@@ -308,14 +312,16 @@ p + geom_point() +
     geom_smooth(method="loess") 
 ```
 
-![plot of chunk unnamed-chunk-12](../figures/wk02-fig-unnamed-chunk-12-1.png) 
+![plot of chunk unnamed-chunk-12](assets/fig/wk02-fig-unnamed-chunk-12-1.png) 
 
 - Here we add a second geom. It's a `loess` smoother. There are
   others. Try `lm`, for example.
+
+---
+
 - What happens when you put `geom_smooth()` first instead of second?
 - Notice how both `geom_point` and `geom_smooth()` inherit the
   information in `p` about what the `x` and `y` variables are.
-
 
 ---
 
@@ -326,7 +332,7 @@ p + geom_point() +
     scale_x_log10()
 ```
 
-![plot of chunk unnamed-chunk-13](../figures/wk02-fig-unnamed-chunk-13-1.png) 
+![plot of chunk unnamed-chunk-13](assets/fig/wk02-fig-unnamed-chunk-13-1.png) 
 
 - The next layer does not change anything in the underlying data. Instead it adjusts the x-axis scale. 
 
@@ -341,14 +347,13 @@ p + geom_point(color="firebrick") +
     scale_x_log10()
 ```
 
-![plot of chunk unnamed-chunk-14](../figures/wk02-fig-unnamed-chunk-14-1.png) 
+![plot of chunk unnamed-chunk-14](assets/fig/wk02-fig-unnamed-chunk-14-1.png) 
 
-- Here, notice we changed the color of the points by specifying the `color` argument in `geom_point()`
-- This is called *setting* an aesthetic feature. 
-- It has no relationship to the data. The color red is not representing or *mapping* any feature of the data.
+- Here, notice we changed the color of the points by specifying the `color` argument in `geom_point()`. This is called *setting* an aesthetic feature. 
 
 --- 
 
+- Setting an aesthetic has no relationship to the data. The color red is not representing or *mapping* any feature of the data.
 - To see the difference between *setting* and *mapping* an aesthetic, let's go back to our `p` object and recreate it. 
 - This time, in addition to `x` and `y` we tell `ggplot` to map the variable `Continent` to the `color` aesthetic.
 
@@ -372,11 +377,10 @@ p + geom_point() +
     scale_x_log10()
 ```
 
-![plot of chunk unnamed-chunk-16](../figures/wk02-fig-unnamed-chunk-16-1.png) 
+![plot of chunk unnamed-chunk-16](assets/fig/wk02-fig-unnamed-chunk-16-1.png) 
 
-- Like this. Notice that we did not have to manually specify any colors. 
-- Instead we told `ggplot()` to *map* the values of `contintent` to the property, or *aesthetic*, of `color`
-- Try mapping `continent` to the aesthetic `shape` instead
+- Like this. We do not manually specify any colors. We told `ggplot()` to *map* the values of `contintent` to the property, or *aesthetic*, of `color`
+- Try mapping `continent` to the aesthetic `shape`.
 
 
 ---
@@ -386,7 +390,7 @@ p + geom_point() +
 - `ggplot` implements a "grammar" of graphics, an idea developed by Leland Wilkinson (2005).
 - The grammar gives you rules for how to map
   pieces of data to geometric objects (like points and lines) with
-  attributes (like color and size), togehter with further rules for
+  attributes (like color and size), together with further rules for
   transforming the data if needed, adjusting scales, or projecting the
   results onto a coordinate system.
 - A key point is that, like other rules of syntax, it limits what you
@@ -403,7 +407,7 @@ but they can easily be garbled.
 p + geom_line()
 ```
 
-![plot of chunk unnamed-chunk-17](../figures/wk02-fig-unnamed-chunk-17-1.png) 
+![plot of chunk unnamed-chunk-17](assets/fig/wk02-fig-unnamed-chunk-17-1.png) 
 
 ---
 
@@ -414,7 +418,7 @@ p + geom_line()
 p + geom_bar(stat="identity")
 ```
 
-![plot of chunk unnamed-chunk-18](../figures/wk02-fig-unnamed-chunk-18-1.png) 
+![plot of chunk unnamed-chunk-18](assets/fig/wk02-fig-unnamed-chunk-18-1.png) 
 
 ----
 
@@ -424,16 +428,19 @@ p + geom_bar(stat="identity")
 
 
 ```r
-p <- ggplot(my.data, aes(x=year, y=lifeExp))
+p <- ggplot(subset(my.data, country %nin% "Kuwait"), aes(x=year, y=gdpPercap))
 
 p1 <- p + geom_line(color="gray70", aes(group=country)) +
-    geom_smooth(size=1.1, method="loess")
+    geom_smooth(size=1.1, method="loess", se=FALSE)
 
-p1 + facet_wrap(~ continent) + labs(x="Year", y="Life Expectancy")
+p1 + facet_wrap(~ continent) + labs(x="Year", y="GDP")
 ```
 
-![plot of chunk unnamed-chunk-19](../figures/wk02-fig-unnamed-chunk-19-1.png) 
+![plot of chunk unnamed-chunk-19](assets/fig/wk02-fig-unnamed-chunk-19-1.png) 
 
+---
 
+- To see the logic of each step of a plot, peel the layers bawards from the last one to the first, and see which parts of the plot are changed, or disappear. 
+- Also examine what happens if you change some of the arguments, e.g. `se=TRUE`, or `method='lm'`, or what happens when you leave them at their defaults.
 
 ---
