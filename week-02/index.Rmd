@@ -27,7 +27,6 @@ revealjs:
 
 library(devtools)
 library(ggplot2)
-library(knitr)
 
 opts_chunk$set(fig.path="assets/fig/wk02-fig-",
                cache.path="../cache/working-",
