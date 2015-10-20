@@ -42,7 +42,7 @@ opts_knit$set(kfigr.prefix=TRUE,
 
 ```
 
-```{r Options}
+```{r Options, include=FALSE, results="hide"}
 
 source("setup/options-and-libraries.r")
 
