@@ -1,0 +1,714 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Looking at Data</title>
+  <meta name="description" content="">
+  <meta name="author" content="Kieran Healy">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="stylesheet" href="./frameworks/revealjs/css/reveal.min.css">
+  <link rel="stylesheet" href="./frameworks/revealjs/css/theme/night.css" id="theme">
+  <link rel="stylesheet" href="./highlighters/highlight.js/css/solarized_light.css" id="theme">
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->  
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section class='' data-state='' id='slide-1'>
+  
+  <style type='text/css'>
+.reveal {
+  font-size: 28px;  
+}
+</style>
+
+<h1>Looking at Data</h1>
+
+<h2>Data Visualization, Week 3</h2>
+
+<h3>Kieran Healy, Duke University</h3>
+
+</section>
+<section class='' data-state='' id='slide-2'>
+  <h2>Outline for Today</h2>
+  <ol>
+<li>Housekeeping</li>
+<li>Patterns in Data</li>
+<li>Recapping <code>ggplot</code> fundamentals</li>
+<li>Worked examples with the Gapminder Data</li>
+<li>A new dataset</li>
+<li>Dot plots and other 1-D summaries</li>
+</ol>
+
+</section>
+<section class='' data-state='' id='slide-3'>
+  <h2>How to Navigate these Slides</h2>
+  <ul>
+<li>When you view them online, notice the compass in the bottom right corner</li>
+<li>You can go left or right, or sometimes down to more detail.</li>
+<li>Hit the <code>Escape</code> key to get an overview of all the slides. On a phone
+or tablet, pinch to get the slide overview.</li>
+<li>You can use the arrow keys (or swipe up and down) in this view, as well. </li>
+<li>Hit <code>Escape</code> again to return to the slide you were looking at. </li>
+<li>On a phone or tablet, tap the slide you want.</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-4'>
+  <h2>Reminder</h2>
+  <ul>
+<li>There are two ways to learn R: the easy way and the tedious way. </li>
+<li>The problem is that the easy way doesn&#39;t work.</li>
+<li>You have to practice the examples and work through them manually.
+Type them out, even if you&#39;re just copying at the beginning. It
+really will help you get used to how the language works.</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-5'>
+  <h3>We&#39;re good at seeing patterns in data</h3>
+  <p><img src="../assets/wk-03-random-structure.png" alt="Looking for Patterns"></p>
+
+<ul>
+<li>(Images: Peter Coles)</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-6'>
+  <h3>Maybe a little too good</h3>
+  <p><img src="../assets/wk-03-random-structure.png" alt="Looking for Patterns"></p>
+
+<ul>
+<li>(L) Random 2-D Poisson Process. </li>
+<li>(R) Random Process with added spatial anti-correlation.</li>
+<li>(Images: Peter Coles)</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-7'>
+  <h2>ggplot</h2>
+  <pre><code class="r">gapminder.url &lt;- &quot;https://raw.githubusercontent.com/socviz/soc880/master/data/gapminder.csv&quot;
+my.data &lt;- read.csv(url(gapminder.url))
+dim(my.data)
+</code></pre>
+
+<pre><code>## [1] 1704    6
+</code></pre>
+
+<pre><code class="r">head(my.data)
+</code></pre>
+
+<pre><code>##   country continent year lifeExp      pop gdpPercap
+## 1 Algeria    Africa 1952  43.077  9279525  2449.008
+## 2 Algeria    Africa 1957  45.685 10270856  3013.976
+## 3 Algeria    Africa 1962  48.303 11000948  2550.817
+## 4 Algeria    Africa 1967  51.407 12760499  3246.992
+## 5 Algeria    Africa 1972  54.518 14760787  4182.664
+## 6 Algeria    Africa 1977  58.014 17152804  4910.417
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-8'>
+  
+  <pre><code class="r">## We&#39;ll be a bit more verbose
+## to make things clearer
+p &lt;- ggplot(data=my.data,
+            aes(x=gdpPercap,
+                y=lifeExp))
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-9'>
+  
+  <pre><code class="r">p + geom_point()
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"> </p>
+
+</section>
+<section class='' data-state='' id='slide-10'>
+  <h2>The Plot-Making Process</h2>
+  <h4>0. Start with your data in the right shape</h4>
+
+<h4>1. Tell <code>ggplot</code> <em>what</em> relationships you want to see</h4>
+
+<h4>2. Tell <code>ggplot</code> <em>how</em> you want to see them</h4>
+
+<h4>3. Layer these pictures as needed</h4>
+
+<h4>4. Fine-tune scales, labels, tick marks, etc</h4>
+
+</section>
+<section class='' data-state='' id='slide-11'>
+  <h4>Mapping variables to aesthetic features</h4>
+  <ul>
+<li><code>ggplot</code> works by building your plot piece by piece</li>
+<li>The <code>aes()</code> function maps <em>variables</em> to <em>aesthetic features</em> of the plot.</li>
+<li>The <code>x</code> and <code>y</code> values are the most obvious ones.</li>
+<li>Other aesthetic mappings include, e.g., <code>color</code>, <code>shape</code>, and <code>size</code>.</li>
+<li>These mappings are not <em>directly</em> specifying what specific, e.g.,
+colors or shapes will be on the plot. Rather they say which
+<em>variables</em> in the data will be <em>represented</em> by, e.g., colors and
+shapes.</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-12'>
+  <h4>Specify aesthetic mappings all at once, or per geom layer</h4>
+  <pre><code class="r">p + geom_point(aes(color=continent)) +
+    geom_smooth(method=&quot;loess&quot;) + 
+    scale_x_log10()
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-3-1.png" alt="plot of chunk unnamed-chunk-3"> </p>
+
+</section>
+<section class='' data-state='' id='slide-13'>
+  <h4>Layer functions have options other than aesthetic mappings. These don&#39;t go in inside the aes() function</h4>
+  <pre><code class="r">p + geom_point(aes(color=continent)) +
+    geom_smooth(color=&quot;darkgreen&quot;, se=FALSE, size=2, method=&quot;lm&quot;) +
+    scale_x_log10()
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-4-1.png" alt="plot of chunk unnamed-chunk-4"> </p>
+
+</section>
+<section class='' data-state='' id='slide-14'>
+  <h4>First geoms, then scales, then labels, theme elements, and titles</h4>
+  <pre><code class="r">library(scales)
+
+p + geom_point(aes(color=continent)) +
+    geom_smooth(color=&quot;orange&quot;, method=&quot;loess&quot;, se=FALSE, size=2) +
+    scale_x_log10(labels=comma) +
+    labs(x=&quot;GDP per Capita&quot;,
+         y=&quot;Life Expectancy&quot;,
+         color=&quot;Continent&quot;) +
+    theme(legend.position=&quot;bottom&quot;) +
+    ggtitle(&quot;Broad Trends&quot;)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5"> </p>
+
+</section>
+<section class='' data-state='' id='slide-15'>
+  <h4>When ggplot misbehaves or gives unexpected output, it is usually because the mapping you have specified is not what you need, or the variable is not appropriate to the aesthetic feature in some way</h4>
+  
+</section>
+<section class='' data-state='' id='slide-16'>
+  
+  <pre><code class="r">p &lt;- ggplot(my.data,
+            aes(x=gdpPercap, y=lifeExp))
+
+p + geom_line() +
+    scale_x_log10() 
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-6-1.png" alt="plot of chunk unnamed-chunk-6"> </p>
+
+<ul>
+<li>What&#39;s wrong with this picture?</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-17'>
+  <h5>Put year on the x-axis</h5>
+  <pre><code class="r">p &lt;- ggplot(my.data,
+            aes(x=year, y=lifeExp))
+p + geom_line() +
+    scale_x_log10() 
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-7-1.png" alt="plot of chunk unnamed-chunk-7"> </p>
+
+<ul>
+<li>Hmm, not much better</li>
+<li>Also, why are there no x labels for years?</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-18'>
+  <h5>Put year on the x-axis</h5>
+  <pre><code class="r">p &lt;- ggplot(my.data,
+            aes(x=year, y=lifeExp))
+p + geom_line() 
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8"> </p>
+
+<ul>
+<li>Fix the scale. </li>
+<li>The plot is still meaningless, unfortunately</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-19'>
+  
+  <pre><code class="r">p &lt;- ggplot(my.data,
+            aes(x=year, y=lifeExp))
+p + geom_line(aes(group=country)) 
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-9-1.png" alt="plot of chunk unnamed-chunk-9"> </p>
+
+<ul>
+<li>More promising</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-20'>
+  
+  <pre><code class="r">p &lt;- ggplot(my.data,
+            aes(x=year, y=lifeExp))
+p + geom_line(aes(group=country,
+                  color=continent)) 
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-10-1.png" alt="plot of chunk unnamed-chunk-10"> </p>
+
+<ul>
+<li>Better</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-21'>
+  <h3>Let&#39;s just look at Asia</h3>
+  <pre><code class="r">p &lt;- ggplot(my.data,
+            aes(x=year, y=lifeExp))
+p + geom_line(aes(group=country,
+                  color=(continent==&quot;Asia&quot;)))
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-11-1.png" alt="plot of chunk unnamed-chunk-11"> </p>
+
+</section>
+<section class='' data-state='' id='slide-22'>
+  <h3>Better colors</h3>
+  <pre><code class="r">p &lt;- ggplot(my.data,
+            aes(x=year, y=lifeExp))
+p + geom_line(aes(group=country,
+                  color=(continent==&quot;Asia&quot;))) +
+    scale_color_manual(values=c(&quot;gray70&quot;, &quot;firebrick&quot;)) 
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-12-1.png" alt="plot of chunk unnamed-chunk-12"> </p>
+
+</section>
+<section class='' data-state='' id='slide-23'>
+  <h3>Better Legend Labels</h3>
+  <pre><code class="r">p + geom_line(aes(group=country,
+                  color=(continent==&quot;Asia&quot;))) +
+    scale_color_manual(values=c(&quot;gray70&quot;, &quot;firebrick&quot;),
+                       labels=c(&quot;All Other Countries&quot;, &quot;Asian Countries&quot;)) +
+    scale_x_log10() 
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-13-1.png" alt="plot of chunk unnamed-chunk-13"> </p>
+
+</section>
+<section class='' data-state='' id='slide-24'>
+  <h3>Better Legend Title and Position</h3>
+  <pre><code class="r">p + geom_line(aes(group=country,
+                  color=(continent==&quot;Asia&quot;))) +
+    scale_color_manual(values=c(&quot;gray70&quot;, &quot;firebrick&quot;),
+                       labels=c(&quot;All Other Countries&quot;, &quot;Asian Countries&quot;)) +
+    labs(color=&quot;Country&quot;) +
+    theme(legend.position=&quot;top&quot;)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-14-1.png" alt="plot of chunk unnamed-chunk-14"> </p>
+
+</section>
+<section class='' data-state='' id='slide-25'>
+  <h3>Make the Salient category the first one</h3>
+  <pre><code class="r">p + geom_line(aes(group=country,
+                  color=(continent==&quot;Asia&quot;))) +
+    scale_color_manual(values=c(&quot;gray70&quot;, &quot;firebrick&quot;),
+                       labels=c(&quot;All Other Countries&quot;, &quot;Asian Countries&quot;)) +
+    labs(color=&quot;Country&quot;) +
+    theme(legend.position=&quot;top&quot;) +
+    guides(color=guide_legend(reverse = TRUE))
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-15-1.png" alt="plot of chunk unnamed-chunk-15"> </p>
+
+</section>
+<section class='' data-state='' id='slide-26'>
+  <h3>And add labels</h3>
+  <pre><code class="r">p + geom_line(aes(group=country,
+                  color=(continent==&quot;Asia&quot;))) +
+    scale_color_manual(values=c(&quot;gray70&quot;, &quot;firebrick&quot;),
+                       labels=c(&quot;All Other Countries&quot;, &quot;Asian Countries&quot;)) +
+    labs(x=&quot;Year&quot;,
+         y=&quot;Life Expectancy&quot;,
+         color=&quot;Country&quot;) +
+    theme(legend.position=&quot;top&quot;) +
+    guides(color=guide_legend(reverse = TRUE))
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-16-1.png" alt="plot of chunk unnamed-chunk-16"> </p>
+
+</section>
+<section class='' data-state='' id='slide-27'>
+  <h4>To see the logic behind each plot, peel each layer off from the last one to the first. See which parts of the plot change, or disappear.</h4>
+  
+</section>
+<section class='' data-state='' id='slide-28'>
+  <h2>A New Dataset</h2>
+  <pre><code class="r">organs.url &lt;- &quot;https://raw.githubusercontent.com/socviz/soc880/gh-pages/data/organ-procurement.csv&quot;
+organs.data &lt;- read.csv(url(organs.url), row.names=1)
+dim(organs.data)
+</code></pre>
+
+<pre><code>## [1] 238  20
+</code></pre>
+
+<pre><code class="r">head(organs.data)
+</code></pre>
+
+<pre><code>##     country year donors   pop  pop.dens   gdp gdp.lag health health.lag
+## 1 Australia   NA     NA 17065 0.2204433 16774   16591   1300       1224
+## 2 Australia 1991  12.09 17284 0.2232723 17171   16774   1379       1300
+## 3 Australia 1992  12.35 17495 0.2259980 17914   17171   1455       1379
+## 4 Australia 1993  12.51 17667 0.2282198 18883   17914   1540       1455
+## 5 Australia 1994  10.25 17855 0.2306484 19849   18883   1626       1540
+## 6 Australia 1995  10.18 18072 0.2334516 21079   19849   1737       1626
+##   pubhealth    roads cerebvas assault external   txp.pop   world opt
+## 1       4.8 136.5954      682      21      444 0.9375916 Liberal  In
+## 2       5.4 122.2518      647      19      425 0.9257116 Liberal  In
+## 3       5.4 112.8322      630      17      406 0.9145470 Liberal  In
+## 4       5.4 110.5451      611      18      376 0.9056433 Liberal  In
+## 5       5.4 107.9810      631      17      387 0.8961075 Liberal  In
+## 6       5.5 111.6091      592      16      371 0.8853475 Liberal  In
+##   consent.law consent.practice consistent
+## 1    Informed         Informed        Yes
+## 2    Informed         Informed        Yes
+## 3    Informed         Informed        Yes
+## 4    Informed         Informed        Yes
+## 5    Informed         Informed        Yes
+## 6    Informed         Informed        Yes
+</code></pre>
+
+<pre><code class="r">## For convenience, let R know year is a time measure.
+organs.data$year &lt;- ad.Date(strptime(organs.data$year, format=&quot;%Y&quot;))
+</code></pre>
+
+<pre><code>## Error in eval(expr, envir, enclos): could not find function &quot;ad.Date&quot;
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-29'>
+  <h3>Similar country-year structure to before</h3>
+  <ul>
+<li>Before looking at the next few slides, what can you get out of this dataset?</li>
+<li>Try examining it and making a few plots</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-30'>
+  
+  <pre><code class="r">p &lt;- ggplot(data=organs.data,
+            aes(x=as.Date(year),
+                y=donors))
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-31'>
+  
+  <pre><code class="r">p + geom_line(aes(group=country,
+                  color=consent.law)) +
+    scale_color_manual(values=c(&quot;gray40&quot;, &quot;firebrick&quot;)) +
+    scale_x_date() + 
+    labs(x=&quot;Year&quot;,
+         y=&quot;Donors&quot;,
+         color=&quot;Consent Law&quot;) +
+    theme(legend.position=&quot;top&quot;)
+</code></pre>
+
+<pre><code>## Warning: Removed 34 rows containing missing values (geom_path).
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-18-1.png" alt="plot of chunk unnamed-chunk-18"> </p>
+
+</section>
+<section class='' data-state='' id='slide-32'>
+  
+  <pre><code class="r">p + geom_line(aes(group=country)) +
+    labs(x=&quot;Year&quot;,
+         y=&quot;Donors&quot;) +
+    facet_grid(~consent.law)
+</code></pre>
+
+<pre><code>## Warning: Removed 16 rows containing missing values (geom_path).
+</code></pre>
+
+<pre><code>## Warning: Removed 18 rows containing missing values (geom_path).
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-19-1.png" alt="plot of chunk unnamed-chunk-19"> </p>
+
+</section>
+<section class='' data-state='' id='slide-33'>
+  <h2>A quick bit of data manipulation</h2>
+  <pre><code class="r">library(magrittr)
+library(dplyr)
+
+
+by.country &lt;- organs.data %&gt;% group_by(consent.law, country) %&gt;%
+    summarize(donors=mean(donors, na.rm = TRUE))
+</code></pre>
+
+<pre><code>## Error in eval(expr, envir, enclos): column &#39;year&#39; has unsupported type : POSIXlt, POSIXt
+</code></pre>
+
+<pre><code class="r">by.country
+</code></pre>
+
+<pre><code>## Source: local data frame [17 x 3]
+## Groups: consent.law [?]
+## 
+##    consent.law        country   donors
+##         (fctr)         (fctr)    (dbl)
+## 1     Informed      Australia 10.63500
+## 2     Informed         Canada 13.96667
+## 3     Informed        Denmark 13.09167
+## 4     Informed        Germany 13.04167
+## 5     Informed        Ireland 19.79167
+## 6     Informed    Netherlands 13.65833
+## 7     Informed United Kingdom 13.49167
+## 8     Informed  United States 19.98167
+## 9     Presumed        Austria 23.52500
+## 10    Presumed        Belgium 21.90000
+## 11    Presumed        Finland 18.44167
+## 12    Presumed         France 16.75833
+## 13    Presumed          Italy 11.10000
+## 14    Presumed         Norway 15.44167
+## 15    Presumed          Spain 28.10833
+## 16    Presumed         Sweden 13.12500
+## 17    Presumed    Switzerland 14.18250
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-34'>
+  
+  <pre><code class="r">p &lt;- ggplot(by.country, aes(x=donors, y=country, color=consent.law))
+p + geom_point(size=3)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-21-1.png" alt="plot of chunk unnamed-chunk-21"> </p>
+
+<ul>
+<li>How can we improve this?</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-35'>
+  
+  <pre><code class="r">p &lt;- ggplot(by.country, aes(x=donors, y=reorder(country, donors), color=consent.law))
+p + geom_point(size=3)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-22-1.png" alt="plot of chunk unnamed-chunk-22"> </p>
+
+<ul>
+<li>Get your factors (the categorical variable) in order</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-36'>
+  
+  <pre><code class="r">p + geom_point(size=3) +
+    labs(x=&quot;Donor Procurement Rate (per million population)&quot;,
+         y=&quot;&quot;,
+         color=&quot;Consent Law&quot;) +
+    theme(legend.position=&quot;top&quot;)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-23-1.png" alt="plot of chunk unnamed-chunk-23"> </p>
+
+</section>
+<section class='' data-state='' id='slide-37'>
+  <h2>Alternatively</h2>
+  <pre><code class="r">p &lt;- ggplot(by.country, aes(x=donors, y=reorder(country, donors)))
+p + geom_point(size=3) +
+    facet_grid(consent.law ~ ., scales=&quot;free&quot;) +
+    labs(x=&quot;Donor Procurement Rate (per million population)&quot;,
+         y=&quot;&quot;,
+         color=&quot;Consent Law&quot;) +
+    theme(legend.position=&quot;top&quot;)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-24-1.png" alt="plot of chunk unnamed-chunk-24"> </p>
+
+</section>
+<section class='' data-state='' id='slide-38'>
+  <h4>Cleveland Dotplots of this sort are a very useful way of summarizing 1-D data that comes in categories</h4>
+  <ul>
+<li>Consider them in preference to bar or column charts</li>
+<li>Keeping the categories on the y-axis is often a good idea</li>
+<li>The principle extends to 1-D summaries of distributions</li>
+<li>They are also an excellent way to summarize model results with error ranges </li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-39'>
+  <h4>Summary Boxplots</h4>
+  <pre><code class="r">p &lt;- ggplot(data=organs.data,
+            aes(x=country,
+                y=donors)) 
+
+
+p + geom_boxplot() +
+    coord_flip() +
+    labs(x=&quot;&quot;,
+         y=&quot;Donor Procurement Rate&quot;)
+</code></pre>
+
+<pre><code>## Warning: Removed 34 rows containing non-finite values (stat_boxplot).
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-25-1.png" alt="plot of chunk unnamed-chunk-25"> </p>
+
+</section>
+<section class='' data-state='' id='slide-40'>
+  <h4>Summary Boxplots</h4>
+  <pre><code class="r">p &lt;- ggplot(data=organs.data,
+            aes(x=reorder(country, donors, na.rm=TRUE),
+                y=donors)) 
+
+
+p + geom_boxplot() +
+    coord_flip() +
+    labs(x=&quot;&quot;,
+         y=&quot;Donor Procurement Rate&quot;)
+</code></pre>
+
+<pre><code>## Warning: Removed 34 rows containing non-finite values (stat_boxplot).
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-26-1.png" alt="plot of chunk unnamed-chunk-26"> </p>
+
+</section>
+<section class='' data-state='' id='slide-41'>
+  <h4>Summary Boxplots</h4>
+  <pre><code class="r">p &lt;- ggplot(data=organs.data,
+            aes(x=reorder(country, donors, na.rm=TRUE),
+                y=donors)) 
+
+
+p + geom_boxplot(aes(fill=consent.law)) +
+    coord_flip() +
+    labs(x=&quot;&quot;,
+         y=&quot;Donor Procurement Rate&quot;)
+</code></pre>
+
+<pre><code>## Warning: Removed 34 rows containing non-finite values (stat_boxplot).
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-27-1.png" alt="plot of chunk unnamed-chunk-27"> </p>
+
+</section>
+<section class='' data-state='' id='slide-42'>
+  <h4>1-D point summaries</h4>
+  <pre><code class="r">p &lt;- ggplot(data=organs.data,
+            aes(x=reorder(country, donors, na.rm=TRUE),
+                y=donors)) 
+
+
+p + geom_point(aes(color=consent.law)) +
+    coord_flip() +
+    labs(x=&quot;&quot;,
+         y=&quot;Donor Procurement Rate&quot;)
+</code></pre>
+
+<pre><code>## Warning: Removed 34 rows containing missing values (geom_point).
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-28-1.png" alt="plot of chunk unnamed-chunk-28"> </p>
+
+</section>
+<section class='' data-state='' id='slide-43'>
+  <h4>Add a little jitter</h4>
+  <pre><code class="r">p &lt;- ggplot(data=organs.data,
+            aes(x=reorder(country, donors, na.rm=TRUE),
+                y=donors)) 
+
+
+p + geom_jitter(aes(color=consent.law)) +
+    coord_flip() +
+    labs(x=&quot;&quot;,
+         y=&quot;Donor Procurement Rate&quot;)
+</code></pre>
+
+<pre><code>## Warning: Removed 34 rows containing missing values (geom_point).
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-29-1.png" alt="plot of chunk unnamed-chunk-29"> </p>
+
+</section>
+<section class='' data-state='' id='slide-44'>
+  
+  
+</section>
+<section class='' data-state='' id='slide-45'>
+  <h4>Fine-tune the jittering</h4>
+  <pre><code class="r">p &lt;- ggplot(data=organs.data,
+            aes(x=reorder(country, donors, na.rm=TRUE),
+                y=donors)) 
+
+
+p + geom_jitter(aes(color=consent.law),
+                position = position_jitter(width=0.2)) +
+    coord_flip() +
+    labs(x=&quot;&quot;,
+         y=&quot;Donor Procurement Rate&quot;,
+         color=&quot;Consent Law&quot;) +
+    theme(legend.position=&quot;top&quot;)
+</code></pre>
+
+<pre><code>## Warning: Removed 34 rows containing missing values (geom_point).
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-30-1.png" alt="plot of chunk unnamed-chunk-30"> </p>
+
+</section>
+<section class='' data-state='' id='slide-46'>
+  
+  
+</section>
+    </div>
+  </div>
+</body>
+  <script src="./frameworks/revealjs/lib/js/head.min.js"></script>
+  <script src="./frameworks/revealjs/js/reveal.min.js"></script>
+  <script>
+  // Full list of configuration options available here:
+  // https://github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+    controls: true,
+    progress: true,
+    history: true,
+    center: true,
+    theme: Reveal.getQueryHash().theme || 'night', 
+    transition: Reveal.getQueryHash().transition || 'fade', 
+    dependencies: [
+    // Cross-browser shim that fully implements classList -
+    // https://github.com/eligrey/classList.js/
+      { src: './frameworks/revealjs/lib/js/classList.js', condition: function() { return !document.body.classList;}},
+      // Zoom in and out with Alt+click
+      { src: './frameworks/revealjs/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      // Speaker notes
+      { src: './frameworks/revealjs/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+      // Remote control your reveal.js presentation using a touch device
+      //{ src: './frameworks/revealjs/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+      ]
+  });
+  </script>  <!-- LOAD HIGHLIGHTER JS FILES -->
+<script src="./highlighters/highlight.js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!-- DONE LOADING HIGHLIGHTER JS FILES -->
+ 
+
+</html>
