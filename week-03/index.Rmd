@@ -28,7 +28,6 @@ revealjs:
 library(devtools)
 library(ggplot2)
 
-
 opts_chunk$set(fig.path="assets/fig/wk03-fig-",
                cache.path="../cache/working-",
                dev=c("png","pdf"),

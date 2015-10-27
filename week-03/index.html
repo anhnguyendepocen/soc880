@@ -126,7 +126,7 @@ p &lt;- ggplot(data=my.data,
   <pre><code class="r">p + geom_point()
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"> </p>
+<p><img src="assets/fig/wk03-fig-unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"> </p>
 
 </section>
 <section class='' data-state='' id='slide-10'>
@@ -163,7 +163,7 @@ shapes.</li>
     scale_x_log10()
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-3-1.png" alt="plot of chunk unnamed-chunk-3"> </p>
+<p><img src="assets/fig/wk03-fig-unnamed-chunk-3-1.png" alt="plot of chunk unnamed-chunk-3"> </p>
 
 </section>
 <section class='' data-state='' id='slide-13'>
@@ -173,7 +173,7 @@ shapes.</li>
     scale_x_log10()
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-4-1.png" alt="plot of chunk unnamed-chunk-4"> </p>
+<p><img src="assets/fig/wk03-fig-unnamed-chunk-4-1.png" alt="plot of chunk unnamed-chunk-4"> </p>
 
 </section>
 <section class='' data-state='' id='slide-14'>
@@ -190,7 +190,7 @@ p + geom_point(aes(color=continent)) +
     ggtitle(&quot;Broad Trends&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5"> </p>
+<p><img src="assets/fig/wk03-fig-unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5"> </p>
 
 </section>
 <section class='' data-state='' id='slide-15'>
@@ -206,7 +206,7 @@ p + geom_line() +
     scale_x_log10() 
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-6-1.png" alt="plot of chunk unnamed-chunk-6"> </p>
+<p><img src="assets/fig/wk03-fig-unnamed-chunk-6-1.png" alt="plot of chunk unnamed-chunk-6"> </p>
 
 <ul>
 <li>What&#39;s wrong with this picture?</li>
@@ -221,7 +221,7 @@ p + geom_line() +
     scale_x_log10() 
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-7-1.png" alt="plot of chunk unnamed-chunk-7"> </p>
+<p><img src="assets/fig/wk03-fig-unnamed-chunk-7-1.png" alt="plot of chunk unnamed-chunk-7"> </p>
 
 <ul>
 <li>Hmm, not much better</li>
@@ -236,7 +236,7 @@ p + geom_line() +
 p + geom_line() 
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8"> </p>
+<p><img src="assets/fig/wk03-fig-unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8"> </p>
 
 <ul>
 <li>Fix the scale. </li>
@@ -251,7 +251,7 @@ p + geom_line()
 p + geom_line(aes(group=country)) 
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-9-1.png" alt="plot of chunk unnamed-chunk-9"> </p>
+<p><img src="assets/fig/wk03-fig-unnamed-chunk-9-1.png" alt="plot of chunk unnamed-chunk-9"> </p>
 
 <ul>
 <li>More promising</li>
@@ -266,7 +266,7 @@ p + geom_line(aes(group=country,
                   color=continent)) 
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-10-1.png" alt="plot of chunk unnamed-chunk-10"> </p>
+<p><img src="assets/fig/wk03-fig-unnamed-chunk-10-1.png" alt="plot of chunk unnamed-chunk-10"> </p>
 
 <ul>
 <li>Better</li>
@@ -281,7 +281,7 @@ p + geom_line(aes(group=country,
                   color=(continent==&quot;Asia&quot;)))
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-11-1.png" alt="plot of chunk unnamed-chunk-11"> </p>
+<p><img src="assets/fig/wk03-fig-unnamed-chunk-11-1.png" alt="plot of chunk unnamed-chunk-11"> </p>
 
 </section>
 <section class='' data-state='' id='slide-22'>
@@ -293,7 +293,7 @@ p + geom_line(aes(group=country,
     scale_color_manual(values=c(&quot;gray70&quot;, &quot;firebrick&quot;)) 
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-12-1.png" alt="plot of chunk unnamed-chunk-12"> </p>
+<p><img src="assets/fig/wk03-fig-unnamed-chunk-12-1.png" alt="plot of chunk unnamed-chunk-12"> </p>
 
 </section>
 <section class='' data-state='' id='slide-23'>
@@ -305,7 +305,7 @@ p + geom_line(aes(group=country,
     scale_x_log10() 
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-13-1.png" alt="plot of chunk unnamed-chunk-13"> </p>
+<p><img src="assets/fig/wk03-fig-unnamed-chunk-13-1.png" alt="plot of chunk unnamed-chunk-13"> </p>
 
 </section>
 <section class='' data-state='' id='slide-24'>
@@ -318,7 +318,7 @@ p + geom_line(aes(group=country,
     theme(legend.position=&quot;top&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-14-1.png" alt="plot of chunk unnamed-chunk-14"> </p>
+<p><img src="assets/fig/wk03-fig-unnamed-chunk-14-1.png" alt="plot of chunk unnamed-chunk-14"> </p>
 
 </section>
 <section class='' data-state='' id='slide-25'>
@@ -332,7 +332,7 @@ p + geom_line(aes(group=country,
     guides(color=guide_legend(reverse = TRUE))
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-15-1.png" alt="plot of chunk unnamed-chunk-15"> </p>
+<p><img src="assets/fig/wk03-fig-unnamed-chunk-15-1.png" alt="plot of chunk unnamed-chunk-15"> </p>
 
 </section>
 <section class='' data-state='' id='slide-26'>
@@ -348,7 +348,7 @@ p + geom_line(aes(group=country,
     guides(color=guide_legend(reverse = TRUE))
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-16-1.png" alt="plot of chunk unnamed-chunk-16"> </p>
+<p><img src="assets/fig/wk03-fig-unnamed-chunk-16-1.png" alt="plot of chunk unnamed-chunk-16"> </p>
 
 </section>
 <section class='' data-state='' id='slide-27'>
@@ -427,10 +427,8 @@ organs.data$year &lt;- ad.Date(strptime(organs.data$year, format=&quot;%Y&quot;)
     theme(legend.position=&quot;top&quot;)
 </code></pre>
 
-<pre><code>## Warning: Removed 34 rows containing missing values (geom_path).
+<pre><code>## Error in as.Date.numeric(year): &#39;origin&#39; must be supplied
 </code></pre>
-
-<p><img src="assets/fig/unnamed-chunk-18-1.png" alt="plot of chunk unnamed-chunk-18"> </p>
 
 </section>
 <section class='' data-state='' id='slide-32'>
@@ -441,13 +439,8 @@ organs.data$year &lt;- ad.Date(strptime(organs.data$year, format=&quot;%Y&quot;)
     facet_grid(~consent.law)
 </code></pre>
 
-<pre><code>## Warning: Removed 16 rows containing missing values (geom_path).
+<pre><code>## Error in as.Date.numeric(year): &#39;origin&#39; must be supplied
 </code></pre>
-
-<pre><code>## Warning: Removed 18 rows containing missing values (geom_path).
-</code></pre>
-
-<p><img src="assets/fig/unnamed-chunk-19-1.png" alt="plot of chunk unnamed-chunk-19"> </p>
 
 </section>
 <section class='' data-state='' id='slide-33'>
@@ -458,12 +451,9 @@ library(dplyr)
 
 by.country &lt;- organs.data %&gt;% group_by(consent.law, country) %&gt;%
     summarize(donors=mean(donors, na.rm = TRUE))
-</code></pre>
 
-<pre><code>## Error in eval(expr, envir, enclos): column &#39;year&#39; has unsupported type : POSIXlt, POSIXt
-</code></pre>
 
-<pre><code class="r">by.country
+by.country
 </code></pre>
 
 <pre><code>## Source: local data frame [17 x 3]
@@ -497,7 +487,7 @@ by.country &lt;- organs.data %&gt;% group_by(consent.law, country) %&gt;%
 p + geom_point(size=3)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-21-1.png" alt="plot of chunk unnamed-chunk-21"> </p>
+<p><img src="assets/fig/wk03-fig-unnamed-chunk-21-1.png" alt="plot of chunk unnamed-chunk-21"> </p>
 
 <ul>
 <li>How can we improve this?</li>
@@ -510,7 +500,7 @@ p + geom_point(size=3)
 p + geom_point(size=3)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-22-1.png" alt="plot of chunk unnamed-chunk-22"> </p>
+<p><img src="assets/fig/wk03-fig-unnamed-chunk-22-1.png" alt="plot of chunk unnamed-chunk-22"> </p>
 
 <ul>
 <li>Get your factors (the categorical variable) in order</li>
@@ -526,7 +516,7 @@ p + geom_point(size=3)
     theme(legend.position=&quot;top&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-23-1.png" alt="plot of chunk unnamed-chunk-23"> </p>
+<p><img src="assets/fig/wk03-fig-unnamed-chunk-23-1.png" alt="plot of chunk unnamed-chunk-23"> </p>
 
 </section>
 <section class='' data-state='' id='slide-37'>
@@ -540,7 +530,7 @@ p + geom_point(size=3) +
     theme(legend.position=&quot;top&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-24-1.png" alt="plot of chunk unnamed-chunk-24"> </p>
+<p><img src="assets/fig/wk03-fig-unnamed-chunk-24-1.png" alt="plot of chunk unnamed-chunk-24"> </p>
 
 </section>
 <section class='' data-state='' id='slide-38'>
@@ -566,10 +556,7 @@ p + geom_boxplot() +
          y=&quot;Donor Procurement Rate&quot;)
 </code></pre>
 
-<pre><code>## Warning: Removed 34 rows containing non-finite values (stat_boxplot).
-</code></pre>
-
-<p><img src="assets/fig/unnamed-chunk-25-1.png" alt="plot of chunk unnamed-chunk-25"> </p>
+<p><img src="assets/fig/wk03-fig-unnamed-chunk-25-1.png" alt="plot of chunk unnamed-chunk-25"> </p>
 
 </section>
 <section class='' data-state='' id='slide-40'>
@@ -585,10 +572,7 @@ p + geom_boxplot() +
          y=&quot;Donor Procurement Rate&quot;)
 </code></pre>
 
-<pre><code>## Warning: Removed 34 rows containing non-finite values (stat_boxplot).
-</code></pre>
-
-<p><img src="assets/fig/unnamed-chunk-26-1.png" alt="plot of chunk unnamed-chunk-26"> </p>
+<p><img src="assets/fig/wk03-fig-unnamed-chunk-26-1.png" alt="plot of chunk unnamed-chunk-26"> </p>
 
 </section>
 <section class='' data-state='' id='slide-41'>
@@ -604,10 +588,7 @@ p + geom_boxplot(aes(fill=consent.law)) +
          y=&quot;Donor Procurement Rate&quot;)
 </code></pre>
 
-<pre><code>## Warning: Removed 34 rows containing non-finite values (stat_boxplot).
-</code></pre>
-
-<p><img src="assets/fig/unnamed-chunk-27-1.png" alt="plot of chunk unnamed-chunk-27"> </p>
+<p><img src="assets/fig/wk03-fig-unnamed-chunk-27-1.png" alt="plot of chunk unnamed-chunk-27"> </p>
 
 </section>
 <section class='' data-state='' id='slide-42'>
@@ -623,10 +604,7 @@ p + geom_point(aes(color=consent.law)) +
          y=&quot;Donor Procurement Rate&quot;)
 </code></pre>
 
-<pre><code>## Warning: Removed 34 rows containing missing values (geom_point).
-</code></pre>
-
-<p><img src="assets/fig/unnamed-chunk-28-1.png" alt="plot of chunk unnamed-chunk-28"> </p>
+<p><img src="assets/fig/wk03-fig-unnamed-chunk-28-1.png" alt="plot of chunk unnamed-chunk-28"> </p>
 
 </section>
 <section class='' data-state='' id='slide-43'>
@@ -642,10 +620,7 @@ p + geom_jitter(aes(color=consent.law)) +
          y=&quot;Donor Procurement Rate&quot;)
 </code></pre>
 
-<pre><code>## Warning: Removed 34 rows containing missing values (geom_point).
-</code></pre>
-
-<p><img src="assets/fig/unnamed-chunk-29-1.png" alt="plot of chunk unnamed-chunk-29"> </p>
+<p><img src="assets/fig/wk03-fig-unnamed-chunk-29-1.png" alt="plot of chunk unnamed-chunk-29"> </p>
 
 </section>
 <section class='' data-state='' id='slide-44'>
@@ -668,10 +643,7 @@ p + geom_jitter(aes(color=consent.law),
     theme(legend.position=&quot;top&quot;)
 </code></pre>
 
-<pre><code>## Warning: Removed 34 rows containing missing values (geom_point).
-</code></pre>
-
-<p><img src="assets/fig/unnamed-chunk-30-1.png" alt="plot of chunk unnamed-chunk-30"> </p>
+<p><img src="assets/fig/wk03-fig-unnamed-chunk-30-1.png" alt="plot of chunk unnamed-chunk-30"> </p>
 
 </section>
 <section class='' data-state='' id='slide-46'>
