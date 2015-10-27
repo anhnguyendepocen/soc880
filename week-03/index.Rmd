@@ -378,6 +378,8 @@ p + geom_line(aes(group=country,
     
 ```
 
+- Still lots of room for improvement. E.g., note how the Asian trend lines are drawn under the gray ones. 
+
 ---
 
 #### To see the logic behind each plot, peel each layer off from the last one to the first. See which parts of the plot change, or disappear. 

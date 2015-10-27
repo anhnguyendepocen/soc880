@@ -130,7 +130,7 @@ p <- ggplot(data=my.data,
 p + geom_point()
 ```
 
-![plot of chunk unnamed-chunk-2](assets/fig/wk03-fig-unnamed-chunk-2-1.png) 
+![plot of chunk unnamed-chunk-2](assets/fig/unnamed-chunk-2-1.png) 
 
 ---
 
@@ -170,7 +170,7 @@ p + geom_point(aes(color=continent)) +
     scale_x_log10()
 ```
 
-![plot of chunk unnamed-chunk-3](assets/fig/wk03-fig-unnamed-chunk-3-1.png) 
+![plot of chunk unnamed-chunk-3](assets/fig/unnamed-chunk-3-1.png) 
 
 ---
 
@@ -183,7 +183,7 @@ p + geom_point(aes(color=continent)) +
     scale_x_log10()
 ```
 
-![plot of chunk unnamed-chunk-4](assets/fig/wk03-fig-unnamed-chunk-4-1.png) 
+![plot of chunk unnamed-chunk-4](assets/fig/unnamed-chunk-4-1.png) 
 
 ---
 
@@ -203,7 +203,7 @@ p + geom_point(aes(color=continent)) +
     ggtitle("Broad Trends")
 ```
 
-![plot of chunk unnamed-chunk-5](assets/fig/wk03-fig-unnamed-chunk-5-1.png) 
+![plot of chunk unnamed-chunk-5](assets/fig/unnamed-chunk-5-1.png) 
 
 ---
 
@@ -220,7 +220,7 @@ p + geom_line() +
     scale_x_log10() 
 ```
 
-![plot of chunk unnamed-chunk-6](assets/fig/wk03-fig-unnamed-chunk-6-1.png) 
+![plot of chunk unnamed-chunk-6](assets/fig/unnamed-chunk-6-1.png) 
 
 - What's wrong with this picture?
 
@@ -236,7 +236,7 @@ p + geom_line() +
     scale_x_log10() 
 ```
 
-![plot of chunk unnamed-chunk-7](assets/fig/wk03-fig-unnamed-chunk-7-1.png) 
+![plot of chunk unnamed-chunk-7](assets/fig/unnamed-chunk-7-1.png) 
 
 - Hmm, not much better
 - Also, why are there no x labels for years?
@@ -253,7 +253,7 @@ p <- ggplot(my.data,
 p + geom_line() 
 ```
 
-![plot of chunk unnamed-chunk-8](assets/fig/wk03-fig-unnamed-chunk-8-1.png) 
+![plot of chunk unnamed-chunk-8](assets/fig/unnamed-chunk-8-1.png) 
 
 - Fix the scale. 
 - The plot is still meaningless, unfortunately
@@ -268,7 +268,7 @@ p <- ggplot(my.data,
 p + geom_line(aes(group=country)) 
 ```
 
-![plot of chunk unnamed-chunk-9](assets/fig/wk03-fig-unnamed-chunk-9-1.png) 
+![plot of chunk unnamed-chunk-9](assets/fig/unnamed-chunk-9-1.png) 
 
 - More promising
 
@@ -283,7 +283,7 @@ p + geom_line(aes(group=country,
                   color=continent)) 
 ```
 
-![plot of chunk unnamed-chunk-10](assets/fig/wk03-fig-unnamed-chunk-10-1.png) 
+![plot of chunk unnamed-chunk-10](assets/fig/unnamed-chunk-10-1.png) 
 
 - Better
 
@@ -301,7 +301,7 @@ p + geom_line(aes(group=country,
                   color=(continent=="Asia")))
 ```
 
-![plot of chunk unnamed-chunk-11](assets/fig/wk03-fig-unnamed-chunk-11-1.png) 
+![plot of chunk unnamed-chunk-11](assets/fig/unnamed-chunk-11-1.png) 
 
 ---
 
@@ -318,7 +318,7 @@ p + geom_line(aes(group=country,
     scale_color_manual(values=c("gray70", "firebrick")) 
 ```
 
-![plot of chunk unnamed-chunk-12](assets/fig/wk03-fig-unnamed-chunk-12-1.png) 
+![plot of chunk unnamed-chunk-12](assets/fig/unnamed-chunk-12-1.png) 
 
 ---
 
@@ -333,7 +333,7 @@ p + geom_line(aes(group=country,
     scale_x_log10() 
 ```
 
-![plot of chunk unnamed-chunk-13](assets/fig/wk03-fig-unnamed-chunk-13-1.png) 
+![plot of chunk unnamed-chunk-13](assets/fig/unnamed-chunk-13-1.png) 
 
 ---
 
@@ -351,7 +351,7 @@ p + geom_line(aes(group=country,
     theme(legend.position="top")
 ```
 
-![plot of chunk unnamed-chunk-14](assets/fig/wk03-fig-unnamed-chunk-14-1.png) 
+![plot of chunk unnamed-chunk-14](assets/fig/unnamed-chunk-14-1.png) 
 
 ---
 
@@ -369,7 +369,7 @@ p + geom_line(aes(group=country,
     guides(color=guide_legend(reverse = TRUE))
 ```
 
-![plot of chunk unnamed-chunk-15](assets/fig/wk03-fig-unnamed-chunk-15-1.png) 
+![plot of chunk unnamed-chunk-15](assets/fig/unnamed-chunk-15-1.png) 
 
 ---
 
@@ -389,7 +389,9 @@ p + geom_line(aes(group=country,
     guides(color=guide_legend(reverse = TRUE))
 ```
 
-![plot of chunk unnamed-chunk-16](assets/fig/wk03-fig-unnamed-chunk-16-1.png) 
+![plot of chunk unnamed-chunk-16](assets/fig/unnamed-chunk-16-1.png) 
+
+- Still lots of room for improvement. E.g., note how the Asian trend lines are drawn under the gray ones. 
 
 ---
 
@@ -546,7 +548,7 @@ p <- ggplot(by.country, aes(x=donors, y=country, color=consent.law))
 p + geom_point(size=3)
 ```
 
-![plot of chunk unnamed-chunk-21](assets/fig/wk03-fig-unnamed-chunk-21-1.png) 
+![plot of chunk unnamed-chunk-21](assets/fig/unnamed-chunk-21-1.png) 
 
 - How can we improve this?
 
@@ -559,7 +561,7 @@ p <- ggplot(by.country, aes(x=donors, y=reorder(country, donors), color=consent.
 p + geom_point(size=3)
 ```
 
-![plot of chunk unnamed-chunk-22](assets/fig/wk03-fig-unnamed-chunk-22-1.png) 
+![plot of chunk unnamed-chunk-22](assets/fig/unnamed-chunk-22-1.png) 
 
 - Get your factors (the categorical variable) in order
 
@@ -575,7 +577,7 @@ p + geom_point(size=3) +
     theme(legend.position="top")
 ```
 
-![plot of chunk unnamed-chunk-23](assets/fig/wk03-fig-unnamed-chunk-23-1.png) 
+![plot of chunk unnamed-chunk-23](assets/fig/unnamed-chunk-23-1.png) 
 
 ---
 
@@ -592,7 +594,7 @@ p + geom_point(size=3) +
     theme(legend.position="top")
 ```
 
-![plot of chunk unnamed-chunk-24](assets/fig/wk03-fig-unnamed-chunk-24-1.png) 
+![plot of chunk unnamed-chunk-24](assets/fig/unnamed-chunk-24-1.png) 
 
 ---
 
@@ -620,7 +622,11 @@ p + geom_boxplot() +
          y="Donor Procurement Rate")
 ```
 
-![plot of chunk unnamed-chunk-25](assets/fig/wk03-fig-unnamed-chunk-25-1.png) 
+```
+## Warning: Removed 34 rows containing non-finite values (stat_boxplot).
+```
+
+![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-25-1.png) 
 
 ---
 
@@ -639,7 +645,11 @@ p + geom_boxplot() +
          y="Donor Procurement Rate")
 ```
 
-![plot of chunk unnamed-chunk-26](assets/fig/wk03-fig-unnamed-chunk-26-1.png) 
+```
+## Warning: Removed 34 rows containing non-finite values (stat_boxplot).
+```
+
+![plot of chunk unnamed-chunk-26](assets/fig/unnamed-chunk-26-1.png) 
 
 ---
 
@@ -658,7 +668,11 @@ p + geom_boxplot(aes(fill=consent.law)) +
          y="Donor Procurement Rate")
 ```
 
-![plot of chunk unnamed-chunk-27](assets/fig/wk03-fig-unnamed-chunk-27-1.png) 
+```
+## Warning: Removed 34 rows containing non-finite values (stat_boxplot).
+```
+
+![plot of chunk unnamed-chunk-27](assets/fig/unnamed-chunk-27-1.png) 
 
 
 
@@ -679,7 +693,11 @@ p + geom_point(aes(color=consent.law)) +
          y="Donor Procurement Rate")
 ```
 
-![plot of chunk unnamed-chunk-28](assets/fig/wk03-fig-unnamed-chunk-28-1.png) 
+```
+## Warning: Removed 34 rows containing missing values (geom_point).
+```
+
+![plot of chunk unnamed-chunk-28](assets/fig/unnamed-chunk-28-1.png) 
 
 ---
 
@@ -698,7 +716,11 @@ p + geom_jitter(aes(color=consent.law)) +
          y="Donor Procurement Rate")
 ```
 
-![plot of chunk unnamed-chunk-29](assets/fig/wk03-fig-unnamed-chunk-29-1.png) 
+```
+## Warning: Removed 34 rows containing missing values (geom_point).
+```
+
+![plot of chunk unnamed-chunk-29](assets/fig/unnamed-chunk-29-1.png) 
 
 ---
 
@@ -723,7 +745,11 @@ p + geom_jitter(aes(color=consent.law),
     theme(legend.position="top")
 ```
 
-![plot of chunk unnamed-chunk-30](assets/fig/wk03-fig-unnamed-chunk-30-1.png) 
+```
+## Warning: Removed 34 rows containing missing values (geom_point).
+```
+
+![plot of chunk unnamed-chunk-30](assets/fig/unnamed-chunk-30-1.png) 
 
 ---
 
