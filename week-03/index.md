@@ -298,7 +298,7 @@ p + geom_line(aes(group=country,
 p <- ggplot(my.data,
             aes(x=year, y=lifeExp))
 p + geom_line(aes(group=country,
-                  color=(continent=="Asia")))
+                  color=(continent=="Asia"))) + scale_color_manual(values=c("gray70", "firebrick")) 
 ```
 
 ![plot of chunk unnamed-chunk-11](assets/fig/unnamed-chunk-11-1.png) 
@@ -442,11 +442,7 @@ head(organs.data)
 
 ```r
 ## For convenience, let R know year is a time measure.
-organs.data$year <- ad.Date(strptime(organs.data$year, format="%Y"))
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "ad.Date"
+organs.data$year <- as.Date(strptime(organs.data$year, format="%Y"))
 ```
 
 
@@ -462,9 +458,17 @@ organs.data$year <- ad.Date(strptime(organs.data$year, format="%Y"))
 
 ```r
 p <- ggplot(data=organs.data,
-            aes(x=as.Date(year),
+            aes(x=year,
                 y=donors))
+
+p + geom_point()
 ```
+
+```
+## Warning: Removed 34 rows containing missing values (geom_point).
+```
+
+![plot of chunk unnamed-chunk-17](assets/fig/unnamed-chunk-17-1.png) 
 
 
 ---
@@ -491,12 +495,18 @@ p + geom_line(aes(group=country,
 p + geom_line(aes(group=country)) +
     labs(x="Year",
          y="Donors") +
-    facet_grid(~consent.law)
+    facet_grid(~ consent.law)
 ```
 
 ```
-## Error in as.Date.numeric(year): 'origin' must be supplied
+## Warning: Removed 16 rows containing missing values (geom_path).
 ```
+
+```
+## Warning: Removed 18 rows containing missing values (geom_path).
+```
+
+![plot of chunk unnamed-chunk-19](assets/fig/unnamed-chunk-19-1.png) 
 
 ---
 
@@ -732,21 +742,21 @@ p + geom_jitter(aes(color=consent.law)) +
 
 ```r
 p <- ggplot(data=organs.data,
-            aes(x=reorder(country, donors, na.rm=TRUE),
-                y=donors)) 
+            aes(x=reorder(country, assault, na.rm=TRUE),
+                y=assault)) 
 
 
-p + geom_jitter(aes(color=consent.law),
-                position = position_jitter(width=0.2)) +
+p + geom_jitter(aes(color=world),
+                position = position_jitter(width=0.15)) +
     coord_flip() +
-    labs(x="",
-         y="Donor Procurement Rate",
-         color="Consent Law") +
+    ## labs(x="",
+    ##      y="Donor Procurement Rate",
+    ##      color="Consent Law") +
     theme(legend.position="top")
 ```
 
 ```
-## Warning: Removed 34 rows containing missing values (geom_point).
+## Warning: Removed 17 rows containing missing values (geom_point).
 ```
 
 ![plot of chunk unnamed-chunk-30](assets/fig/unnamed-chunk-30-1.png) 

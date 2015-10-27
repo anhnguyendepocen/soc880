@@ -278,7 +278,7 @@ p + geom_line(aes(group=country,
   <pre><code class="r">p &lt;- ggplot(my.data,
             aes(x=year, y=lifeExp))
 p + geom_line(aes(group=country,
-                  color=(continent==&quot;Asia&quot;)))
+                  color=(continent==&quot;Asia&quot;))) + scale_color_manual(values=c(&quot;gray70&quot;, &quot;firebrick&quot;)) 
 </code></pre>
 
 <p><img src="assets/fig/unnamed-chunk-11-1.png" alt="plot of chunk unnamed-chunk-11"> </p>
@@ -396,10 +396,7 @@ dim(organs.data)
 </code></pre>
 
 <pre><code class="r">## For convenience, let R know year is a time measure.
-organs.data$year &lt;- ad.Date(strptime(organs.data$year, format=&quot;%Y&quot;))
-</code></pre>
-
-<pre><code>## Error in eval(expr, envir, enclos): could not find function &quot;ad.Date&quot;
+organs.data$year &lt;- as.Date(strptime(organs.data$year, format=&quot;%Y&quot;))
 </code></pre>
 
 </section>
@@ -414,9 +411,16 @@ organs.data$year &lt;- ad.Date(strptime(organs.data$year, format=&quot;%Y&quot;)
 <section class='' data-state='' id='slide-30'>
   
   <pre><code class="r">p &lt;- ggplot(data=organs.data,
-            aes(x=as.Date(year),
+            aes(x=year,
                 y=donors))
+
+p + geom_point()
 </code></pre>
+
+<pre><code>## Warning: Removed 34 rows containing missing values (geom_point).
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-17-1.png" alt="plot of chunk unnamed-chunk-17"> </p>
 
 </section>
 <section class='' data-state='' id='slide-31'>
@@ -440,11 +444,16 @@ organs.data$year &lt;- ad.Date(strptime(organs.data$year, format=&quot;%Y&quot;)
   <pre><code class="r">p + geom_line(aes(group=country)) +
     labs(x=&quot;Year&quot;,
          y=&quot;Donors&quot;) +
-    facet_grid(~consent.law)
+    facet_grid(~ consent.law)
 </code></pre>
 
-<pre><code>## Error in as.Date.numeric(year): &#39;origin&#39; must be supplied
+<pre><code>## Warning: Removed 16 rows containing missing values (geom_path).
 </code></pre>
+
+<pre><code>## Warning: Removed 18 rows containing missing values (geom_path).
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-19-1.png" alt="plot of chunk unnamed-chunk-19"> </p>
 
 </section>
 <section class='' data-state='' id='slide-33'>
@@ -649,20 +658,20 @@ p + geom_jitter(aes(color=consent.law)) +
 <section class='' data-state='' id='slide-45'>
   <h4>Fine-tune the jittering</h4>
   <pre><code class="r">p &lt;- ggplot(data=organs.data,
-            aes(x=reorder(country, donors, na.rm=TRUE),
-                y=donors)) 
+            aes(x=reorder(country, assault, na.rm=TRUE),
+                y=assault)) 
 
 
-p + geom_jitter(aes(color=consent.law),
-                position = position_jitter(width=0.2)) +
+p + geom_jitter(aes(color=world),
+                position = position_jitter(width=0.15)) +
     coord_flip() +
-    labs(x=&quot;&quot;,
-         y=&quot;Donor Procurement Rate&quot;,
-         color=&quot;Consent Law&quot;) +
+    ## labs(x=&quot;&quot;,
+    ##      y=&quot;Donor Procurement Rate&quot;,
+    ##      color=&quot;Consent Law&quot;) +
     theme(legend.position=&quot;top&quot;)
 </code></pre>
 
-<pre><code>## Warning: Removed 34 rows containing missing values (geom_point).
+<pre><code>## Warning: Removed 17 rows containing missing values (geom_point).
 </code></pre>
 
 <p><img src="assets/fig/unnamed-chunk-30-1.png" alt="plot of chunk unnamed-chunk-30"> </p>
