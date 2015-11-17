@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Maps</title>
+  <meta name="description" content="">
+  <meta name="author" content="Kieran Healy">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="stylesheet" href="./frameworks/revealjs/css/reveal.min.css">
+  <link rel="stylesheet" href="./frameworks/revealjs/css/theme/night.css" id="theme">
+  <link rel="stylesheet" href="./highlighters/highlight.js/css/solarized_light.css" id="theme">
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->  
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section class='' data-state='' id='slide-1'>
+  
+  <style type='text/css'>
+.reveal {
+  font-size: 28px;  
+}
+</style>
+
+<h1>Maps</h1>
+
+<h2>Data Visualization, Week 5</h2>
+
+<h3>Kieran Healy, Duke University</h3>
+
+</section>
+<section class='' data-state='' id='slide-2'>
+  <h2>Outline for Today</h2>
+  <ol>
+<li>Housekeeping</li>
+<li>Reviewing the Homework</li>
+<li>Git</li>
+<li>Maps</li>
+</ol>
+
+</section>
+<section class='' data-state='' id='slide-3'>
+  <h2>How to Navigate these Slides</h2>
+  <ul>
+<li>When you view them online, notice the compass in the bottom right corner</li>
+<li>You can go left or right, or sometimes down to more detail.</li>
+<li>Hit the <code>Escape</code> key to get an overview of all the slides. On a phone
+or tablet, pinch to get the slide overview.</li>
+<li>You can use the arrow keys (or swipe up and down) in this view, as well. </li>
+<li>Hit <code>Escape</code> again to return to the slide you were looking at. </li>
+<li>On a phone or tablet, tap the slide you want.</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-4'>
+  <h2>Git</h2>
+  
+</section>
+<section class='' data-state='' id='slide-5'>
+  <h3>Git is Horrible</h3>
+  <ul>
+<li>But it can help you keep track of what you did</li>
+<li>It&#39;s also where a lot of software development happens</li>
+<li>So it&#39;s worth getting a feel for it</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-6'>
+  <h3>Simplest GitHub Use Case</h3>
+  <ul>
+<li>You have no account there.</li>
+<li>You download stuff from it.</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-7'>
+  <h3>Next Simplest GitHub Use Case</h3>
+  <ul>
+<li>You have an account there.</li>
+<li>You fork (i.e., copy) things on other people&#39;s GitHub accounts to
+your GitHub account. </li>
+<li>Then you clone (i.e., copy, or download) them to your laptop.</li>
+<li>This kind of confusing, doubled-up, garbage terminology is typical of Git. </li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-8'>
+  <h3>Basic One-Person Regular Git Use Case</h3>
+  <ul>
+<li>You have a file under version control.</li>
+<li>You make a change to it and save the file.</li>
+<li>You stage or <code>add</code> a snapshot of the changed files, </li>
+<li>Then you <code>commit</code> the snapshot of changes to the
+repository, with a message saying what you did.</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-9'>
+  <h3>Basic One-Person Regular Git Use Case</h3>
+  <ul>
+<li>You have a file under version control.</li>
+<li>You make a change to it and save the file.</li>
+<li>You stage or <code>add</code> a snapshot of the changed files, </li>
+<li>Then you <code>commit</code> the snapshot of changes to the
+repository, with a message saying what you did.</li>
+<li>You <code>push</code> that change up to e.g. GitHub.</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-10'>
+  <h3>Tutorial</h3>
+  <ul>
+<li><a href="https://try.github.io/levels/1/challenges/1">https://try.github.io/levels/1/challenges/1</a></li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-11'>
+  <h2>Data Manipulation</h2>
+  <p><img src="../assets/wk-05-new-cuyama.png" alt="Data Manipulation"></p>
+
+</section>
+<section class='' data-state='' id='slide-12'>
+  <h2>Maps</h2>
+  
+</section>
+<section class='' data-state='' id='slide-13'>
+  <h3>2012 US Election, Winner by State</h3>
+  <p><img src="../assets/wk-05-election-state.jpeg" alt="Election Map 1"></p>
+
+</section>
+<section class='' data-state='' id='slide-14'>
+  <h3>2012 US Election, Winner by County</h3>
+  <p><img src="../assets/wk-05-election-county.png" alt="Election Map 2"></p>
+
+</section>
+<section class='' data-state='' id='slide-15'>
+  <h3>2012 US Election, Winner by County Share</h3>
+  <p><img src="../assets/wk-05-election-county-share.png" alt="Election Map 3"></p>
+
+</section>
+<section class='' data-state='' id='slide-16'>
+  <h3>2012 US Election, Color-Centered</h3>
+  <p><img src="../assets/wk-05-election-county-purple.png" alt="Election Map 4"></p>
+
+</section>
+<section class='' data-state='' id='slide-17'>
+  <h3>2012 US Election, Color-Centered, Scaled by Population</h3>
+  <p><img src="../assets/wk-05-election-county-purple-pop.png" alt="Election Map 5"></p>
+
+</section>
+<section class='' data-state='' id='slide-18'>
+  <h3>2012 US Election, Electoral College Cartogram</h3>
+  <p><img src="../assets/wk-05-election-electoral-college-cartogram.png" alt="Election Map 6"></p>
+
+</section>
+<section class='' data-state='' id='slide-19'>
+  <h3>Projections</h3>
+  <p><img src="../assets/wk-05-mercator.png" alt="Mercator"></p>
+
+</section>
+<section class='' data-state='' id='slide-20'>
+  <h3>Projections</h3>
+  <p><img src="../assets/wk-05-usa-four-ways.jpg" alt="4 US projections"></p>
+
+</section>
+<section class='' data-state='' id='slide-21'>
+  <h3>Projections</h3>
+  <p><img src="../assets/wk-05-usa-nat-atlas.png" alt="US National Atlas"></p>
+
+</section>
+<section class='' data-state='' id='slide-22'>
+  <h2>America&#39;s Ur-Choropleths</h2>
+  
+</section>
+<section class='' data-state='' id='slide-23'>
+  
+  <p><img src="../assets/wk-05-us-pop-density-2014.png" alt="Population Density"></p>
+
+</section>
+<section class='' data-state='' id='slide-24'>
+  
+  <p><img src="../assets/wk-05-us-pct-black-2013.png" alt="Percent Black"></p>
+
+</section>
+<section class='' data-state='' id='slide-25'>
+  
+  <p><img src="../assets/wk-05-roser-gun-suicides.png" alt="Gun Suicides"></p>
+
+</section>
+<section class='' data-state='' id='slide-26'>
+  
+  <p><img src="../assets/wk-05-us-pop-density-reverse-coded-2014.png" alt="Reverse-Coded Pop Density"></p>
+
+</section>
+<section class='' data-state='' id='slide-27'>
+  <h2>Often, you don&#39;t need a &#39;real&#39; map</h2>
+  
+</section>
+<section class='' data-state='' id='slide-28'>
+  <h2>Statebins, by Bob Rudis</h2>
+  <pre><code class="r">devtools::install_github(&quot;hrbrmstr/statebins&quot;)
+</code></pre>
+
+<pre><code>## Downloading GitHub repo hrbrmstr/statebins@master
+## Installing statebins
+## &#39;/Library/Frameworks/R.framework/Resources/bin/R&#39; --no-site-file  \
+##   --no-environ --no-save --no-restore CMD INSTALL  \
+##   &#39;/private/var/folders/0c/hc2fp3hn3sl1r1pv973q5dsc0000gn/T/Rtmp6batHh/devtools1459e605ca68e/hrbrmstr-statebins-23d1e11&#39;  \
+##   --library=&#39;/Users/kjhealy/Library/R/library&#39; --install-tests 
+## 
+## Reloading installed statebins
+</code></pre>
+
+<pre><code class="r">dat &lt;- read.csv(&quot;http://www.washingtonpost.com/wp-srv/special/business/states-most-threatened-by-trade/states.csv?cache=1&quot;, stringsAsFactors=FALSE)
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-29'>
+  
+  <pre><code class="r">head(dat)
+</code></pre>
+
+<pre><code>##   fipst stab          state workers1994 workers1995 workers1996
+## 1    37   NC North Carolina        3831        2631        8716
+## 2     1   AL        Alabama        1504        3527        7627
+## 3    28   MS    Mississippi        1613        3344        4454
+## 4     5   AR       Arkansas        1376        1107        1473
+## 5    47   TN      Tennessee        3210        4149        7297
+## 6    45   SC South Carolina        1991        1289        3422
+##   workers1997 workers1998 workers1999 workers2000 workers2001 workers2002
+## 1       12324        9428       12414        4790       12596       19564
+## 2        6858        5340        8697        3919        4400        9895
+## 3        1938        3108        6143        2839        3292        4796
+## 4        2426        2559        2653         604        3041        3741
+## 5        7544        7435        5706        5107        7104        8137
+## 6         975        3922        1739        2427        6296        6585
+##   workers2003 workers2004 workers2005 workers2006 workers2007 workers2008
+## 1       21126       11435       13167       10602       14815       11767
+## 2        3285        3156        1895        5358        4156        6377
+## 3        3785        1350        1345        1807        2246        3366
+## 4        3417        1093        2223        3781        4905        3220
+## 5        7528        2673        6156        4849        8254        7262
+## 6        5690        4623        5913        5270        3473        4479
+##   workers2009 workers2010 workers2011 workers2012 workers2013
+## 1       11533       12746        4120        2953        3301
+## 2        6661        5306         571        1033         834
+## 3        3262         473          77         386         226
+## 4        2891        3088        2239        3769         507
+## 5        7647        7938        7100        2108        2606
+## 6        5846        2575        1513        1864        1321
+##   share_cut1994 share_cut1995 share_cut1996 share_cut1997 share_cut1998
+## 1           1.4           0.9           3.0           4.1           3.0
+## 2           1.1           2.4           5.2           4.6           3.5
+## 3           2.0           3.9           5.1           2.2           3.4
+## 4           1.6           1.3           1.6           2.7           2.7
+## 5           1.6           2.0           3.4           3.5           3.3
+## 6           1.5           1.0           2.5           0.7           2.7
+##   share_cut1999 share_cut2000 share_cut2001 share_cut2002 share_cut2003
+## 1           3.9           1.5           3.8           6.1           6.7
+## 2           5.6           2.5           2.8           6.5           2.2
+## 3           6.7           3.1           3.6           5.4           4.3
+## 4           2.8           0.6           3.1           3.9           3.6
+## 5           2.5           2.2           3.1           3.6           3.3
+## 6           1.2           1.6           4.1           4.5           3.9
+##   share_cut2004 share_cut2005 share_cut2006 share_cut2007 share_cut2008
+## 1           3.6           4.1           3.2           4.3           3.4
+## 2           2.1           1.2           3.3           2.6           3.9
+## 3           1.5           1.5           2.0           2.5           3.7
+## 4           1.1           2.3           3.8           4.9           3.2
+## 5           1.2           2.7           2.1           3.5           3.0
+## 6           3.1           3.9           3.4           2.2           2.8
+##   share_cut2009 share_cut2010 share_cut2011 share_cut2012 share_cut2013
+## 1           3.5           4.1           1.3           0.9           1.0
+## 2           4.3           3.6           0.4           0.7           0.6
+## 3           3.7           0.6           0.1           0.5           0.3
+## 4           3.0           3.3           2.4           3.9           0.5
+## 5           3.4           3.7           3.2           0.9           1.1
+## 6           3.9           1.8           1.0           1.2           0.9
+##   avgshare avgshare94_00 avgshare01_07 avgshare08_12
+## 1     3.56          2.53          4.56          2.64
+## 2     3.22          3.55          2.95          2.58
+## 3     2.94          3.77          2.99          1.71
+## 4     2.89          1.91          3.27          3.16
+## 5     2.86          2.64          2.77          2.85
+## 6     2.61          1.60          3.57          2.14
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-30'>
+  
+  <pre><code class="r">p &lt;- statebins(dat, &quot;state&quot;, &quot;avgshare94_00&quot;, breaks=4, 
+                labels=c(&quot;0-1&quot;, &quot;1-2&quot;, &quot;2-3&quot;, &quot;3-4&quot;),
+                legend_title=&quot;Share of workforce with jobs lost or threatened by trade&quot;,
+                font_size=3)
+
+p + theme(legend.position=&quot;bottom&quot;) +
+    ggtitle(&quot;1994-2000&quot;)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-3-1.png" alt="plot of chunk unnamed-chunk-3"> </p>
+
+</section>
+<section class='' data-state='' id='slide-31'>
+  
+  <pre><code class="r">p &lt;- statebins_continuous(dat, &quot;state&quot;, &quot;avgshare01_07&quot;,
+               legend_title=&quot;Share of workforce with jobs lost or threatened by trade&quot;,
+               brewer_pal = &quot;OrRd&quot;,               
+                font_size=3)
+
+p + theme(legend.position=&quot;bottom&quot;) +
+    ggtitle(&quot;2001-2007&quot;)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-4-1.png" alt="plot of chunk unnamed-chunk-4"> </p>
+
+</section>
+<section class='' data-state='' id='slide-32'>
+  
+  <pre><code class="r">library(httr)
+library(dplyr)
+
+election_2012 &lt;- GET(&quot;https://raw.githubusercontent.com/hrbrmstr/statebins/master/tmp/election2012.csv&quot;)
+
+results &lt;- read.csv(textConnection(content(election_2012, as=&quot;text&quot;)),
+                    header=TRUE, stringsAsFactors=FALSE)
+
+results &lt;- results %&gt;%
+    mutate(color=ifelse(is.na(Obama), &quot;#2166ac&quot;, &quot;#b2182b&quot;)) %&gt;%
+    select(state, color)
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-33'>
+  
+  <pre><code class="r">head(results, 15)
+</code></pre>
+
+<pre><code>##    state   color
+## 1     AL #2166ac
+## 2     AK #2166ac
+## 3     AZ #2166ac
+## 4     AR #2166ac
+## 5     CA #b2182b
+## 6     CO #b2182b
+## 7     CT #b2182b
+## 8     DE #b2182b
+## 9     DC #b2182b
+## 10    FL #b2182b
+## 11    GA #2166ac
+## 12    HI #b2182b
+## 13    ID #2166ac
+## 14    IL #b2182b
+## 15    IN #2166ac
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-34'>
+  
+  <pre><code class="r">results %&gt;%
+    statebins_manual(font_size=4, text_color = &quot;white&quot;,
+                     labels=c(&quot;Romney&quot;, &quot;Obama&quot;),
+                     legend_position=&quot;right&quot;,
+                     legend_title=&quot;Winner&quot;)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-7-1.png" alt="plot of chunk unnamed-chunk-7"> </p>
+
+</section>
+<section class='' data-state='' id='slide-35'>
+  <h2>US County Maps in R</h2>
+  <h3>From the Terminal</h3>
+
+<p><code>git clone https://github.com/kjhealy/us-county.git</code></p>
+
+<ul>
+<li>Or clone it in your browser, or git client</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-36'>
+  
+  
+</section>
+    </div>
+  </div>
+</body>
+  <script src="./frameworks/revealjs/lib/js/head.min.js"></script>
+  <script src="./frameworks/revealjs/js/reveal.min.js"></script>
+  <script>
+  // Full list of configuration options available here:
+  // https://github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+    controls: true,
+    progress: true,
+    history: true,
+    center: true,
+    theme: Reveal.getQueryHash().theme || 'night', 
+    transition: Reveal.getQueryHash().transition || 'fade', 
+    dependencies: [
+    // Cross-browser shim that fully implements classList -
+    // https://github.com/eligrey/classList.js/
+      { src: './frameworks/revealjs/lib/js/classList.js', condition: function() { return !document.body.classList;}},
+      // Zoom in and out with Alt+click
+      { src: './frameworks/revealjs/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      // Speaker notes
+      { src: './frameworks/revealjs/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+      // Remote control your reveal.js presentation using a touch device
+      //{ src: './frameworks/revealjs/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+      ]
+  });
+  </script>  <!-- LOAD HIGHLIGHTER JS FILES -->
+<script src="./highlighters/highlight.js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!-- DONE LOADING HIGHLIGHTER JS FILES -->
+ 
+
+</html>
