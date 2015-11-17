@@ -183,11 +183,14 @@ the basics of plotting clean data.
 [Rmd file for the slides](https://github.com/socviz/soc880/blob/gh-pages/week-04/index.Rmd)
 
 
-## Week 5: Networks, Maps, Trees
+## Week 5: Maps 
 
-* Network data
-* Clustering, Heatmaps, and Mosaics
 * Maps and Map Projections 
+
+[Week 5 Slides](week-05/index.html)
+
+[Rmd file for the slides](https://github.com/socviz/soc880/blob/gh-pages/week-05/index.Rmd)
+
 
 ## Week 6: Refining Plots for Presentation
 
