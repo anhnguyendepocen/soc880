@@ -1,0 +1,17 @@
+base
+devtools
+knitr
+kfigr
+testthat
+kjhutils
+Defaults
+slidify
+ggplot2
+scales
+MASS
+stringr
+ggthemes
+tidyr
+dplyr
+SparseM
+quantreg

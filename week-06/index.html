@@ -1,0 +1,887 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="author" content="Kieran Healy">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="stylesheet" href="./frameworks/revealjs/css/reveal.min.css">
+  <link rel="stylesheet" href="./frameworks/revealjs/css/theme/night.css" id="theme">
+  <link rel="stylesheet" href="./highlighters/highlight.js/css/solarized_light.css" id="theme">
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->  
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section class='' data-state='' id='slide-1'>
+  
+  <style type='text/css'>
+.reveal {
+  font-size: 28px;  
+}
+</style>
+
+<h1>Refining Plots</h1>
+
+<h2>Data Visualization, Week 6</h2>
+
+<h3>Kieran Healy, Duke University</h3>
+
+</section>
+<section class='' data-state='' id='slide-2'>
+  <h2>Outline for Today</h2>
+  <ol>
+<li>Housekeeping</li>
+<li>Building up plots, again</li>
+<li>ggplot themes</li>
+<li>Writing a small helper function</li>
+<li>Custom plots and layouts</li>
+</ol>
+
+</section>
+<section class='' data-state='' id='slide-3'>
+  <h2>How to Navigate these Slides</h2>
+  <ul>
+<li>When you view them online, notice the compass in the bottom right corner</li>
+<li>You can go left or right, or sometimes down to more detail.</li>
+<li>Hit the <code>Escape</code> key to get an overview of all the slides. On a phone
+or tablet, pinch to get the slide overview.</li>
+<li>You can use the arrow keys (or swipe up and down) in this view, as well. </li>
+<li>Hit <code>Escape</code> again to return to the slide you were looking at. </li>
+<li>On a phone or tablet, tap the slide you want.</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-4'>
+  <h2>Building up Plots, Again</h2>
+  
+</section>
+<section class='' data-state='' id='slide-5'>
+  
+  <pre><code class="r">library(ggplot2)
+library(scales)
+library(MASS)
+library(stringr)
+library(splines)
+
+theme_set(theme_gray())
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-6'>
+  <h3>ASA Membership &amp; Revenue data</h3>
+  <ul>
+<li>On Github: <a href="https://github.com/kjhealy/asa-sections">ASA Sections</a></li>
+<li>Or manually: </li>
+</ul>
+
+<pre><code class="r">asa.url &lt;- &quot;https://raw.githubusercontent.com/kjhealy/asa-sections/master/data/asa-section-membership.csv&quot;
+asa.data &lt;- read.csv((url(asa.url)), header = TRUE)
+
+## If you cloned the github repository, launch R in it and then
+## asa.data &lt;-  read.csv(&quot;data/asa-section-membership.csv&quot;, header=TRUE) 
+
+dim(asa.data)
+</code></pre>
+
+<pre><code>## [1] 52 18
+</code></pre>
+
+<pre><code class="r">head(asa.data)
+</code></pre>
+
+<pre><code>##                                Section         Sname X2005 X2006 X2007
+## 1      Aging and the Life Course (018)         Aging   598   603   614
+## 2     Alcohol, Drugs and Tobacco (030) Alcohol/Drugs   301   304   303
+## 3 Altruism and Social Solidarity (047)      Altruism    NA    NA    NA
+## 4            Animals and Society (042)       Animals   209   208   218
+## 5             Asia/Asian America (024)          Asia   365   379   398
+## 6            Body and Embodiment (048)          Body    NA    NA    NA
+##   X2008 X2009 X2010 X2011 X2012 X2013 X2014 X2015 Beginning Revenues
+## 1   606   624   605   612   620   610   580   612     12752    12104
+## 2   288   255   213   226   200   195   173   171     11933     1144
+## 3    NA   139   216   320   305   306   318   307      1139     1862
+## 4   176   180   167   172   149   160   154   141       473      820
+## 5   368   405   351   377   337   349   336   313      9056     2116
+## 6    NA   302   295   307   306   309   312   321      3408     1618
+##   Expenses Ending Journal
+## 1    12007  12849      No
+## 2      400  12677      No
+## 3     1875   1126      No
+## 4     1116    177      No
+## 5     1710   9462      No
+## 6     1920   3106      No
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-7'>
+  <h3>Quick &amp; Dirty Function for custom colors</h3>
+  <pre><code class="r">my.colors &lt;- function (palette = &quot;cb&quot;) {
+    cb.palette &lt;- c(&quot;#999999&quot;, &quot;#E69F00&quot;, &quot;#56B4E9&quot;, &quot;#009E73&quot;,
+                    &quot;#F0E442&quot;, &quot;#0072B2&quot;, &quot;#D55E00&quot;, &quot;#CC79A7&quot;)
+    rcb.palette &lt;- rev(cb.palette)
+    bly.palette &lt;- c(&quot;#E69F00&quot;, &quot;#0072B2&quot;, &quot;#999999&quot;, &quot;#56B4E9&quot;,
+                     &quot;#009E73&quot;, &quot;#F0E442&quot;, &quot;#D55E00&quot;, &quot;#CC79A7&quot;)
+    if (palette == &quot;cb&quot;)
+        return(cb.palette)
+    else if (palette == &quot;rcb&quot;)
+        return(rcb.palette)
+    else if (palette == &quot;bly&quot;)
+        return(bly.palette)
+    else stop(&quot;Choose cb, rcb, or bly ony.&quot;)
+}
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-8'>
+  <h2>Make sure the figures/ directory is available</h2>
+  <pre><code class="r">ifelse(!dir.exists(file.path(&quot;figures&quot;)),
+       dir.create(file.path(&quot;figures&quot;)),
+       FALSE)
+</code></pre>
+
+<pre><code>## [1] FALSE
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-9'>
+  <h2>Starting with the basics again</h2>
+  <pre><code class="r">p &lt;- ggplot(asa.data, aes(x=X2014, y=Revenues, label=Sname))
+
+p0 &lt;- p + geom_point()
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-10'>
+  
+  <pre><code class="r">print(p0)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-6-1.png" alt="plot of chunk unnamed-chunk-6"> </p>
+
+</section>
+<section class='' data-state='' id='slide-11'>
+  <h2>Add a smoother</h2>
+  <pre><code class="r">p &lt;- ggplot(asa.data, aes(x=X2014, y=Revenues, label=Sname))
+
+p0 &lt;- p + geom_smooth() +
+    geom_point()
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-12'>
+  
+  <pre><code class="r">print(p0)
+</code></pre>
+
+<pre><code>## geom_smooth: method=&quot;auto&quot; and size of largest group is &lt;1000, so using loess. Use &#39;method = x&#39; to change the smoothing method.
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8"> </p>
+
+</section>
+<section class='' data-state='' id='slide-13'>
+  <h2>Pick out some outliers</h2>
+  <pre><code class="r">p &lt;- ggplot(asa.data, aes(x=X2014, y=Revenues, label=Sname))
+
+p0 &lt;- p + geom_smooth() +
+    geom_point() +
+    geom_text(data=subset(asa.data, Revenues &gt; 7000)) 
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-14'>
+  
+  <pre><code class="r">print(p0)
+</code></pre>
+
+<pre><code>## geom_smooth: method=&quot;auto&quot; and size of largest group is &lt;1000, so using loess. Use &#39;method = x&#39; to change the smoothing method.
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-10-1.png" alt="plot of chunk unnamed-chunk-10"> </p>
+
+</section>
+<section class='' data-state='' id='slide-15'>
+  <h2>Introduce a third variable</h2>
+  <pre><code class="r">p &lt;- ggplot(asa.data, aes(x=X2014, y=Revenues, label=Sname))
+
+p0 &lt;- p + geom_smooth() +
+    geom_point(aes(color = Journal)) +
+    geom_text(data=subset(asa.data, Revenues &gt; 7000)) 
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-16'>
+  
+  <pre><code class="r">print(p0)
+</code></pre>
+
+<pre><code>## geom_smooth: method=&quot;auto&quot; and size of largest group is &lt;1000, so using loess. Use &#39;method = x&#39; to change the smoothing method.
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-12-1.png" alt="plot of chunk unnamed-chunk-12"> </p>
+
+</section>
+<section class='' data-state='' id='slide-17'>
+  <h2>Change the fitted line</h2>
+  <pre><code class="r">p &lt;- ggplot(asa.data, aes(x=X2014, y=Revenues, label=Sname))
+
+p0 &lt;- p + geom_smooth(method = &quot;lm&quot;,
+                  se = FALSE,
+                  color = &quot;gray80&quot;) +
+    geom_point(aes(color = Journal)) +
+    geom_text(data=subset(asa.data, Revenues &gt; 7000)) 
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-18'>
+  
+  <pre><code class="r">print(p0)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-14-1.png" alt="plot of chunk unnamed-chunk-14"> </p>
+
+</section>
+<section class='' data-state='' id='slide-19'>
+  <h2>Tidy up the labeled text</h2>
+  <pre><code class="r">p &lt;- ggplot(asa.data, aes(x=X2014, y=Revenues, label=Sname))
+
+p0 &lt;- p + geom_smooth(method = &quot;lm&quot;,
+                  se = FALSE,
+                  color = &quot;gray80&quot;) +
+    geom_point(aes(color = Journal)) +
+    geom_text(data=subset(asa.data, Revenues &gt; 7000),
+              size = 2,
+              aes(x=X2014+10,
+                  hjust = 0,
+                  lineheight = 0.7)) 
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-20'>
+  
+  <pre><code class="r">print(p0)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-16-1.png" alt="plot of chunk unnamed-chunk-16"> </p>
+
+</section>
+<section class='' data-state='' id='slide-21'>
+  <h2>Label the Axes and Scales</h2>
+  <pre><code class="r">p &lt;- ggplot(asa.data, aes(x=X2014, y=Revenues, label=Sname))
+
+p0 &lt;- p + geom_smooth(method = &quot;lm&quot;,
+                  se = FALSE,
+                  color = &quot;gray80&quot;) +
+    geom_point(aes(color = Journal)) +
+    geom_text(data=subset(asa.data, Revenues &gt; 7000),
+              size = 2,
+              aes(x=X2014+10,
+                  hjust = 0,
+                  lineheight = 0.7)) +
+
+   labs(x=&quot;Membership&quot;,
+        y=&quot;Revenues&quot;,
+        color = &quot;Section has own Journal&quot;) 
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-22'>
+  
+  <pre><code class="r">print(p0)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-18-1.png" alt="plot of chunk unnamed-chunk-18"> </p>
+
+</section>
+<section class='' data-state='' id='slide-23'>
+  <h2>Fix Tick Marks and Colors</h2>
+  <pre><code class="r">p &lt;- ggplot(asa.data, aes(x=X2014, y=Revenues, label=Sname))
+
+p0 &lt;- p + geom_smooth(method = &quot;lm&quot;,
+                  se = FALSE,
+                  color = &quot;gray80&quot;) +
+    geom_point(aes(color = Journal)) +
+    geom_text(data=subset(asa.data, Revenues &gt; 7000),
+              size = 2,
+              aes(x=X2014+10,
+                  hjust = 0,
+                  lineheight = 0.7)) +
+    scale_y_continuous(labels = dollar) +
+    scale_color_manual(values = my.colors(&quot;bly&quot;)) +
+    labs(x=&quot;Membership&quot;,
+        y=&quot;Revenues&quot;,
+        color = &quot;Section has own Journal&quot;) 
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-24'>
+  
+  <pre><code class="r">print(p0)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-20-1.png" alt="plot of chunk unnamed-chunk-20"> </p>
+
+</section>
+<section class='' data-state='' id='slide-25'>
+  <h2>Add a title and move the legend</h2>
+  <pre><code class="r">p &lt;- ggplot(asa.data, aes(x=X2014, y=Revenues, label=Sname))
+
+p0 &lt;- p + geom_smooth(method = &quot;lm&quot;,
+                  se = FALSE,
+                  color = &quot;gray80&quot;) +
+    geom_point(aes(color = Journal)) +
+    geom_text(data=subset(asa.data, Revenues &gt; 7000),
+              size = 2,
+              aes(x=X2014+10,
+                  hjust = 0,
+                  lineheight = 0.7)) +
+    scale_y_continuous(labels = dollar) +
+    scale_color_manual(values = my.colors(&quot;bly&quot;)) +
+    labs(x=&quot;Membership&quot;,
+        y=&quot;Revenues&quot;,
+        color = &quot;Section has own Journal&quot;) +
+    theme(legend.position = &quot;bottom&quot;) +
+    ggtitle(&quot;ASA Sections, Membership vs Revenues&quot;)
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-26'>
+  
+  <pre><code class="r">print(p0)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-22-1.png" alt="plot of chunk unnamed-chunk-22"> </p>
+
+</section>
+<section class='' data-state='' id='slide-27'>
+  <h2>Change the theme</h2>
+  <pre><code class="r">theme_set(theme_minimal())
+
+print(p0)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-23-1.png" alt="plot of chunk unnamed-chunk-23"> </p>
+
+</section>
+<section class='' data-state='' id='slide-28'>
+  <h2>Change the theme</h2>
+  <pre><code class="r">theme_set(theme_light())
+
+print(p0)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-24-1.png" alt="plot of chunk unnamed-chunk-24"> </p>
+
+</section>
+<section class='' data-state='' id='slide-29'>
+  <h2>Moar themes</h2>
+  <pre><code class="r">library(ggthemes)
+theme_set(theme_fivethirtyeight())
+</code></pre>
+
+<pre><code>## Warning: New theme missing the following elements: panel.margin.x,
+## panel.margin.y
+</code></pre>
+
+<pre><code class="r">print(p0)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-25-1.png" alt="plot of chunk unnamed-chunk-25"> </p>
+
+</section>
+<section class='' data-state='' id='slide-30'>
+  <h2>Moar themes</h2>
+  <pre><code class="r">theme_set(theme_economist())
+</code></pre>
+
+<pre><code>## Warning: New theme missing the following elements: legend.box,
+## panel.margin.x, panel.margin.y
+</code></pre>
+
+<pre><code class="r">print(p0)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-26-1.png" alt="plot of chunk unnamed-chunk-26"> </p>
+
+</section>
+<section class='' data-state='' id='slide-31'>
+  <h2>Moar themes</h2>
+  <pre><code class="r">theme_set(theme_wsj())
+</code></pre>
+
+<pre><code>## Warning: New theme missing the following elements: panel.margin.x,
+## panel.margin.y
+</code></pre>
+
+<pre><code class="r">print(p0)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-27-1.png" alt="plot of chunk unnamed-chunk-27"> </p>
+
+</section>
+<section class='' data-state='' id='slide-32'>
+  <h2>If you must</h2>
+  <pre><code class="r">theme_set(theme_stata())
+</code></pre>
+
+<pre><code>## Warning: New theme missing the following elements: panel.margin.x,
+## panel.margin.y
+</code></pre>
+
+<pre><code class="r">print(p0)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-28-1.png" alt="plot of chunk unnamed-chunk-28"> </p>
+
+</section>
+<section class='' data-state='' id='slide-33'>
+  
+  <pre><code></code></pre>
+
+</section>
+<section class='' data-state='' id='slide-34'>
+  <h2>Membership trends over time</h2>
+  <pre><code class="r">library(tidyr)
+library(dplyr)
+
+yrs &lt;- colnames(asa.data) %in% paste(&quot;X&quot;, 2005:2015, sep=&quot;&quot;)
+
+data.m &lt;- subset(asa.data, select = c(&quot;Sname&quot;, colnames(asa.data)[yrs]))
+
+data.m &lt;- gather(data.m, Year, Members, X2005:X2015)
+
+data.m$Year &lt;- as.integer(str_replace(data.m$Year, &quot;X&quot;, &quot;&quot;))
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-35'>
+  <h2>Membership trends over time</h2>
+  <pre><code class="r">trend.tab &lt;- data.m %&gt;% group_by(Year) %&gt;%
+    mutate(yr.tot = sum(Members, na.rm=TRUE)) %&gt;%
+    group_by(Sname) %&gt;%
+    na.omit() %&gt;%
+    mutate(Ave = mean(Members, na.rm=TRUE),
+           Dif = Members - Ave,
+           Pct.All = round((Members/yr.tot*100), 2),
+           Age = length(Members)) %&gt;%
+    group_by(Sname) %&gt;%
+    mutate(Index = (Members / first(Members, order_by = Year))*100,
+           AveInd = mean(Index))
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-36'>
+  <h2>Membership trends over time</h2>
+  <pre><code class="r">index.labs &lt;- trend.tab %&gt;%
+    filter(Year == 2015) %&gt;%
+    ungroup() %&gt;%
+    filter(min_rank(desc(Index)) &lt; 12 | min_rank(desc(Index)) &gt; 44)
+
+
+index.low &lt;- trend.tab %&gt;%
+    filter(Year == 2015) %&gt;%
+    ungroup() %&gt;%
+    filter(min_rank(Index) &lt; 12)
+
+
+index.high &lt;- trend.tab %&gt;%
+    filter(Year == 2015) %&gt;%
+    ungroup() %&gt;%
+    filter(min_rank(desc(Index)) &lt; 12)
+
+ind.all &lt;- trend.tab$Sname %in% index.labs$Sname
+ind.low &lt;- trend.tab$Sname %in% index.low$Sname
+ind.high &lt;- trend.tab$Sname %in% index.high$Sname
+
+
+trend.tab$Track.all &lt;- ind.all
+trend.tab$Track.low &lt;- ind.low
+trend.tab$Track.high &lt;- ind.high
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-37'>
+  
+  <pre><code class="r">library(quantreg)
+
+p &lt;- ggplot(subset(trend.tab, Age==11 &amp; AveInd &lt; 105),
+            aes(x=Year, y=Index, group=Sname, color = Track.low))
+
+p0 &lt;-  p + geom_smooth(method = &quot;rqss&quot;, formula = y ~ qss(x), se = FALSE) +
+    geom_hline(yintercept = 100) +
+    geom_text(data=subset(index.low, Age==11 &amp; AveInd &lt; 105),
+              aes(x=Year+0.2, y=Index+rnorm(1, sd=0.8),
+                  label=Sname,
+                  lineheight=0.8),
+              hjust = 0,
+              color = &quot;black&quot;,
+              size = 2.9) +
+    expand_limits(x = c(2005:2016)) +
+    scale_color_manual(values = my.colors(&quot;bly&quot;)[c(3, 1)]) +
+    scale_x_continuous(breaks = c(seq(2005, 2015, 3))) +
+    guides(color = FALSE) +
+    ggtitle(&quot;Declining Sections. 2005 = 100&quot;)
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-38'>
+  
+  <pre><code class="r">print(p0)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-34-1.png" alt="plot of chunk unnamed-chunk-34"> </p>
+
+</section>
+<section class='' data-state='' id='slide-39'>
+  <h4>Simple functions help you out</h4>
+  <pre><code class="r">plot.section &lt;- function(section=&quot;Culture&quot;, x = &quot;Year&quot;,
+                         y = &quot;Members&quot;, data = trend.tab,
+                         smooth=FALSE){
+    require(ggplot2)
+    require(splines)
+    ## Note use of aes_string() rather than aes() 
+    p &lt;- ggplot(subset(data, Sname==section),
+            aes_string(x=x, y=y))
+
+    if(smooth == TRUE) {
+        p0 &lt;- p + geom_smooth(color = my.colors(&quot;bly&quot;)[2],
+                              size = 1.2, method = &quot;lm&quot;,
+                              formula = y ~ ns(x, 3)) +
+            scale_x_continuous(breaks = c(seq(2005, 2015, 4))) +
+            ggtitle(section)
+    } else {
+    p0 &lt;- p + geom_line(color=my.colors(&quot;bly&quot;)[2], size=1.2) +
+        scale_x_continuous(breaks = c(seq(2005, 2015, 4))) +
+        ggtitle(section)
+    }
+
+    print(p0)
+}
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-40'>
+  
+  <pre><code class="r">plot.section()
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-36-1.png" alt="plot of chunk unnamed-chunk-36"> </p>
+
+</section>
+<section class='' data-state='' id='slide-41'>
+  
+  <pre><code class="r">plot.section(&quot;Rationality&quot;)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-37-1.png" alt="plot of chunk unnamed-chunk-37"> </p>
+
+</section>
+<section class='' data-state='' id='slide-42'>
+  
+  <pre><code class="r">plot.section(&quot;OOW&quot;)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-38-1.png" alt="plot of chunk unnamed-chunk-38"> </p>
+
+</section>
+<section class='' data-state='' id='slide-43'>
+  
+  <pre><code class="r">plot.section(&quot;Sexualities&quot;, smooth = TRUE)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-39-1.png" alt="plot of chunk unnamed-chunk-39"> </p>
+
+</section>
+<section class='' data-state='' id='slide-44'>
+  <h3>Note how this function could be made progressively more general</h3>
+  <ul>
+<li>E.g. calculate breaks from the data</li>
+<li>Allow <code>geom_smooth()</code> arguments to be passed through</li>
+</ul>
+
+</section>
+<section class='' data-state='' id='slide-45'>
+  
+  <pre><code class="r">plot.section2 &lt;- function(section=&quot;Culture&quot;, x = &quot;Year&quot;,
+                         y = &quot;Members&quot;, data = trend.tab,
+                         smooth=FALSE, ...){
+    require(ggplot2)
+    require(splines)
+    ## Note use of aes_string() rather than aes() 
+    p &lt;- ggplot(subset(data, Sname==section),
+            aes_string(x=x, y=y))
+
+    if(smooth == TRUE) {
+        p0 &lt;- p + geom_smooth(color = my.colors(&quot;bly&quot;)[2],
+                              size = 1.2, ...) + 
+            scale_x_continuous(breaks = c(seq(2005, 2015, 4))) +
+            ggtitle(section)
+        } else {
+    p0 &lt;- p + geom_line(color=my.colors(&quot;bly&quot;)[2], size=1.2) +
+        scale_x_continuous(breaks = c(seq(2005, 2015, 4))) +
+        ggtitle(section)
+    }
+
+    print(p0)
+}
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-46'>
+  
+  <pre><code class="r">plot.section2(&quot;Comm/Urban&quot;, smooth = TRUE, method = &quot;loess&quot;)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-41-1.png" alt="plot of chunk unnamed-chunk-41"> </p>
+
+</section>
+<section class='' data-state='' id='slide-47'>
+  
+  <pre><code class="r">plot.section2(&quot;Children&quot;, smooth = TRUE, method = &quot;lm&quot;, formula = y ~ ns(x, 2))
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-42-1.png" alt="plot of chunk unnamed-chunk-42"> </p>
+
+</section>
+<section class='' data-state='' id='slide-48'>
+  <h2>Another Example: Apple Sales Data</h2>
+  <ul>
+<li><code>git clone https://github.com/kjhealy/apple</code></li>
+</ul>
+
+<pre><code class="r">apple.url &lt;- &quot;https://raw.githubusercontent.com/kjhealy/apple/master/data/apple-all-products-quarterly-sales.csv&quot;
+apple.data &lt;- read.csv((url(apple.url)), header = TRUE)
+
+## If you cloned the github repository, launch R in it and then
+## asa.data &lt;-  read.csv(&quot;data/asa-section-membership.csv&quot;, header=TRUE) 
+
+dim(apple.data)
+</code></pre>
+
+<pre><code>## [1] 67  6
+</code></pre>
+
+<pre><code class="r">head(apple.data)
+</code></pre>
+
+<pre><code>##    Time Period iPhone iPad iPod   Mac
+## 1 Q4/98      1     NA   NA   NA 0.944
+## 2 Q1/99      2     NA   NA   NA 0.827
+## 3 Q2/99      3     NA   NA   NA 0.905
+## 4 Q3/99      4     NA   NA   NA 0.772
+## 5 Q4/99      5     NA   NA   NA 1.377
+## 6 Q1/00      6     NA   NA   NA 1.043
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-49'>
+  
+  <pre><code class="r">library(dplyr)
+library(ggplot2)
+library(tidyr)
+library(splines)
+library(scales)
+library(grid)
+
+## data &lt;- read.csv(&quot;data/apple-all-products-quarterly-sales.csv&quot;,
+## header=TRUE)
+
+apple.data$Date &lt;- seq(as.Date(&quot;1998/12/31&quot;), as.Date(&quot;2015/7/2&quot;), by = &quot;quarter&quot;)
+
+apple.data.m &lt;- gather(apple.data, Product, Sales, iPhone:Mac)
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-50'>
+  
+  <pre><code class="r">head(apple.data.m)
+</code></pre>
+
+<pre><code>##    Time Period       Date Product Sales
+## 1 Q4/98      1 1998-12-31  iPhone    NA
+## 2 Q1/99      2 1999-03-31  iPhone    NA
+## 3 Q2/99      3 1999-07-01  iPhone    NA
+## 4 Q3/99      4 1999-10-01  iPhone    NA
+## 5 Q4/99      5 1999-12-31  iPhone    NA
+## 6 Q1/00      6 2000-03-31  iPhone    NA
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-51'>
+  
+  <pre><code class="r">p &lt;- ggplot(subset(apple.data.m, Product!=&quot;iPod&quot; &amp; Period&gt;30),
+            aes(x=Date, y=Sales, color=Product, fill=Product))
+p0 &lt;- p + geom_point(size=1.3) +
+    geom_smooth(size=0.8, se=FALSE, method = &quot;loess&quot;) +
+    theme(legend.position=&quot;top&quot;) +
+    scale_x_date(labels = date_format(&quot;%Y&quot;),
+                 breaks=date_breaks(&quot;year&quot;)) +
+    scale_colour_manual(values=my.colors()) +
+    scale_fill_manual(values=my.colors()) + 
+    labs(x=&quot;&quot;, y=&quot;Sales (millions)&quot;) 
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-52'>
+  
+  <pre><code class="r">print(p0)
+</code></pre>
+
+<pre><code>## Warning: Removed 4 rows containing missing values (stat_smooth).
+</code></pre>
+
+<pre><code>## Warning: Removed 16 rows containing missing values (stat_smooth).
+</code></pre>
+
+<pre><code>## Warning: Removed 20 rows containing missing values (geom_point).
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-47-1.png" alt="plot of chunk unnamed-chunk-47"> </p>
+
+</section>
+<section class='' data-state='' id='slide-53'>
+  
+  <pre><code class="r">### Convert to time series objects
+ipad &lt;- apple.data.m %&gt;%
+    group_by(Product) %&gt;%
+    filter(Product==&quot;iPad&quot;) %&gt;%
+    na.omit() %&gt;%
+    data.frame(.)
+
+ipad.ts &lt;- ts(ipad$Sales, start=c(2010, 2), frequency = 4)
+
+
+iphone &lt;- apple.data.m %&gt;%
+    group_by(Product) %&gt;%
+    filter(Product==&quot;iPhone&quot;) %&gt;%
+    na.omit() %&gt;%
+    data.frame(.)
+
+iphone.ts &lt;- ts(iphone$Sales, start=c(2007, 2), frequency = 4)
+
+mac &lt;- apple.data.m %&gt;%
+    group_by(Product) %&gt;%
+    filter(Product==&quot;Mac&quot;) %&gt;%
+    na.omit() %&gt;%
+    data.frame(.)
+
+mac.ts &lt;- ts(mac$Sales, start=c(1998, 4), frequency = 4)
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-54'>
+  
+  <pre><code class="r">## Loess decomposition 
+
+iphone.stl &lt;- stl(iphone.ts, s.window = &quot;periodic&quot;, t.jump = 1)
+plot(iphone.stl)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-49-1.png" alt="plot of chunk unnamed-chunk-49"> </p>
+
+</section>
+<section class='' data-state='' id='slide-55'>
+  <h4>Redraw the STL plot with GGplot</h4>
+  <pre><code class="r">iphone.stl2 &lt;- stl(iphone.ts, s.window = 11, t.jump = 1)
+
+ggiphone.stl &lt;- data.frame(iphone.stl2$time.series)
+
+ggiphone.stl$sales &lt;- apple.data$iPhone %&gt;% na.omit()
+
+ind &lt;- is.na(apple.data$iPhone)
+
+ggiphone.stl$Date &lt;- apple.data$Date[!ind]
+
+ggiphone.stl$Product &lt;- &quot;iPhone&quot;
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-56'>
+  <h4>Redraw the STL plot with GGplot</h4>
+  <pre><code class="r">p &lt;- ggplot(ggiphone.stl, aes(x=Date, y=sales))
+p1 &lt;- p + geom_line() + ylab(&quot;Data&quot;)
+
+p &lt;- ggplot(ggiphone.stl, aes(x=Date, y=trend))
+p2 &lt;- p + geom_line() + ylab(&quot;Trend&quot;)
+
+p &lt;- ggplot(ggiphone.stl, aes(x=Date, y=seasonal))
+p3 &lt;- p + geom_line() + ylab(&quot;Seasonal&quot;)
+
+p &lt;- ggplot(ggiphone.stl, aes(x=Date, y=remainder))
+p4 &lt;- p + geom_bar(stat=&quot;identity&quot;, position=&quot;dodge&quot;) + ylab(&quot;Remainder&quot;)
+
+p &lt;- ggplot(ggiphone.stl, aes(x=Date, y=(seasonal/trend)*100))
+p5 &lt;- p + geom_line(stat=&quot;identity&quot;, position=&quot;dodge&quot;) + ylab(&quot;Seasonal/\nTrend (pct)&quot;)
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-57'>
+  <h4>Redraw the STL plot with GGplot</h4>
+  <pre><code class="r">grid.newpage()
+vplayout &lt;- function(x, y) viewport(layout.pos.row = x, layout.pos.col = y)
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-58'>
+  
+  <pre><code class="r">pushViewport(viewport(layout = grid.layout(5, 1)))
+print(p1, vp = vplayout(1, 1))
+print(p2, vp = vplayout(2, 1))
+print(p3, vp = vplayout(3, 1))
+print(p4, vp = vplayout(4, 1))
+print(p5, vp = vplayout(5, 1))
+</code></pre>
+
+<pre><code>## ymax not defined: adjusting position using y instead
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-53-1.png" alt="plot of chunk unnamed-chunk-53"> </p>
+
+</section>
+<section class='' data-state='' id='slide-59'>
+  <h3>Try it for the Mac and iPad data</h3>
+  
+</section>
+<section class='' data-state='' id='slide-60'>
+  
+  
+</section>
+    </div>
+  </div>
+</body>
+  <script src="./frameworks/revealjs/lib/js/head.min.js"></script>
+  <script src="./frameworks/revealjs/js/reveal.min.js"></script>
+  <script>
+  // Full list of configuration options available here:
+  // https://github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+    controls: true,
+    progress: true,
+    history: true,
+    center: true,
+    theme: Reveal.getQueryHash().theme || 'night', 
+    transition: Reveal.getQueryHash().transition || 'fade', 
+    dependencies: [
+    // Cross-browser shim that fully implements classList -
+    // https://github.com/eligrey/classList.js/
+      { src: './frameworks/revealjs/lib/js/classList.js', condition: function() { return !document.body.classList;}},
+      // Zoom in and out with Alt+click
+      { src: './frameworks/revealjs/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      // Speaker notes
+      { src: './frameworks/revealjs/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+      // Remote control your reveal.js presentation using a touch device
+      //{ src: './frameworks/revealjs/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+      ]
+  });
+  </script>  <!-- LOAD HIGHLIGHTER JS FILES -->
+<script src="./highlighters/highlight.js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!-- DONE LOADING HIGHLIGHTER JS FILES -->
+ 
+
+</html>
