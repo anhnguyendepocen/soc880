@@ -194,9 +194,14 @@ the basics of plotting clean data.
 
 ## Week 6: Refining Plots for Presentation
 
-* Post-processing plots.
-* Plots for slides, screens, and printed pages.
-* Annotation, typography, integration with page or slides.
+* Building up plots, again.
+* Annotation, themes, integration with page or slides.
+* Helper functions
+
+[Week 6 Slides](week-06/index.html)
+
+[Rmd file for the slides](https://github.com/socviz/soc880/blob/gh-pages/week-06/index.Rmd)
+
 
 ## Week 7: Presentations
 
